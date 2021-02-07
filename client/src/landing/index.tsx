@@ -2,51 +2,70 @@ import { useAuth0 } from "@auth0/auth0-react";
 import {
   Button,
   Container,
+  Grid,
   makeStyles,
   Paper,
   Typography,
 } from "@material-ui/core";
-import { log } from "console";
 import React from "react";
 
 const useStyles = makeStyles((theme) => ({
+  container: {
+    height: "100vh",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    backgroundImage: "url(/splash-photo.jpg)",
+    backgroundSize: "cover"
+  },
   paper: {
-    marginTop: theme.spacing(8),
     padding: theme.spacing(2),
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
+    justifyContent: "center",
   },
-  avatar: {
-    margin: theme.spacing(1),
-    backgroundColor: theme.palette.secondary.main,
-  },
-  form: {
-    width: "100%", // Fix IE 11 issue.
-    marginTop: theme.spacing(3),
-  },
-  submit: {
-    margin: theme.spacing(3, 0, 2),
+  summary: {
+    paddingTop: theme.spacing(2),
+    paddingBottom: theme.spacing(2),
   },
 }));
+
+// Photo by Jan Kahánek on Unsplash
 
 function Landing() {
   const classes = useStyles();
   const { loginWithRedirect } = useAuth0();
 
   return (
-    <Container component="main" maxWidth="sm">
+    <Container className={classes.container} component="main">
       <Paper className={classes.paper} elevation={0}>
         <Typography component="h1" variant="h5">
           Your Portfolio
         </Typography>
-        <Typography component="p" variant="body1">
+        <Typography className={classes.summary} component="p" variant="body1">
           Track your portfolio as you work.
         </Typography>
-        <Button onClick={() => loginWithRedirect({ })}>
-          Register
-        </Button>
-        <Button onClick={() => loginWithRedirect()}>Login</Button>
+        <Grid container spacing={3} alignItems="center" justify="center">
+          <Grid item>
+            <Button
+              variant="contained"
+              color="primary"
+              onClick={() => loginWithRedirect()}
+            >
+              Login
+            </Button>
+          </Grid>
+          <Grid item>
+            <Button
+              variant="contained"
+              color="secondary"
+              onClick={() => loginWithRedirect({})}
+            >
+              Register
+            </Button>
+          </Grid>
+        </Grid>
       </Paper>
     </Container>
   );
