@@ -16,7 +16,7 @@ const useStyles = makeStyles((theme) => ({
     alignItems: "center",
     justifyContent: "center",
     backgroundImage: "url(/splash-photo.jpg)",
-    backgroundSize: "cover"
+    backgroundSize: "cover",
   },
   paper: {
     padding: theme.spacing(2),
@@ -39,7 +39,7 @@ function Landing() {
 
   return (
     <Container className={classes.container} component="main">
-      <Paper className={classes.paper} elevation={0}>
+      <Paper className={classes.paper}>
         <Typography component="h1" variant="h5">
           Your Portfolio
         </Typography>
@@ -60,7 +60,11 @@ function Landing() {
             <Button
               variant="contained"
               color="secondary"
-              onClick={() => loginWithRedirect({})}
+              onClick={() =>
+                loginWithRedirect({
+                  screen_hint: "signup",
+                })
+              }
             >
               Register
             </Button>
