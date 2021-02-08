@@ -106,8 +106,12 @@ function Home() {
             </Typography>
           </CardContent>
           <CardActions>
-            <Button size="small">Edit</Button>
-            <Button size="small">Add Job</Button>
+            <Button variant="contained" size="small">
+              Edit
+            </Button>
+            <Button color="primary" variant="contained" size="small">
+              Add Job
+            </Button>
           </CardActions>
         </Card>
       </Grid>
@@ -120,9 +124,6 @@ function Home() {
       </Typography>
       <Grid container spacing={2}>
         {shiftCards}
-        <Grid item xs={6} sm={6} lg={3}>
-          <Card>Add Shift</Card>
-        </Grid>
       </Grid>
     </Nav>
   );
