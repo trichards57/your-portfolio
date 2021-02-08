@@ -6,9 +6,6 @@ import {
   Hidden,
   IconButton,
   List,
-  ListItem,
-  ListItemIcon,
-  ListItemText,
   makeStyles,
   Toolbar,
   Typography,
@@ -16,6 +13,7 @@ import {
 } from "@material-ui/core";
 import { Home as HomeIcon, Menu as MenuIcon } from "@material-ui/icons";
 import React from "react";
+import NavItem from "./nav-item";
 
 const drawerWidth = 240;
 
@@ -67,12 +65,7 @@ function Nav(props: { children: React.ReactNode }) {
       <div className={classes.toolbar} />
       <Divider />
       <List>
-        <ListItem button component="a" href="/home">
-          <ListItemIcon>
-            <HomeIcon />
-          </ListItemIcon>
-          <ListItemText primary="Home" />
-        </ListItem>
+        <NavItem href="/home" icon={<HomeIcon />} name="Home" />
       </List>
     </div>
   );
@@ -97,7 +90,6 @@ function Nav(props: { children: React.ReactNode }) {
         </Toolbar>
       </AppBar>
       <nav className={classes.drawer} aria-label="mailbox folders">
-        {/* The implementation can be swapped with js to avoid SEO duplication of links. */}
         <Hidden smUp>
           <Drawer
             variant="temporary"
