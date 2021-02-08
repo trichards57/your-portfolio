@@ -1,18 +1,11 @@
 import { withAuthenticationRequired } from "@auth0/auth0-react";
-import {
-  Button,
-  Card,
-  CardActions,
-  CardContent,
-  Grid,
-  makeStyles,
-  Typography,
-} from "@material-ui/core";
-import { format, formatISO, parseISO, sub } from "date-fns";
+import { Grid, Typography } from "@material-ui/core";
+import { formatISO, sub } from "date-fns";
 import React from "react";
 import Nav from "../nav";
 import randomWords from "random-words";
-import classNames from "classnames";
+import ShiftCard from "./shift-card";
+import { Shift } from "../../../shared/model/shift";
 
 function randomRole() {
   const val = Math.random();
@@ -22,24 +15,8 @@ function randomRole() {
   return "CRU";
 }
 
-const useStyles = makeStyles({
-  date: {
-    fontSize: 14,
-  },
-  trimText: {
-    textOverflow: "ellipsis",
-    whiteSpace: "nowrap",
-    overflow: "hidden",
-  },
-  location: {
-    marginBottom: 12,
-  },
-});
-
 function Home() {
-  const classes = useStyles();
-
-  const shifts = [
+  const shifts: Shift[] = [
     {
       id: 1,
       date: formatISO(sub(Date.now(), { days: 1 }), { representation: "date" }),
@@ -76,44 +53,7 @@ function Home() {
     .sort((a, b) => a.date.localeCompare(b.date))
     .map((s) => (
       <Grid item key={s.id} xs={6} sm={6} lg={3}>
-        <Card>
-          <CardContent>
-            <Typography
-              className={classNames(classes.date, classes.trimText)}
-              color="textSecondary"
-              gutterBottom
-            >
-              {format(parseISO(s.date), "d MMMM yyyy")}
-            </Typography>
-            <Typography
-              className={classes.trimText}
-              variant="h5"
-              component="h2"
-            >
-              {s.event}
-            </Typography>
-            <Typography
-              className={classNames(classes.location, classes.trimText)}
-              color="textSecondary"
-            >
-              {s.location}
-            </Typography>
-            <Typography variant="body2" component="p">
-              Role : {s.role}
-            </Typography>
-            <Typography variant="body2" component="p">
-              Logged Calls : {s.loggedCalls}
-            </Typography>
-          </CardContent>
-          <CardActions>
-            <Button variant="contained" size="small">
-              Edit
-            </Button>
-            <Button color="primary" variant="contained" size="small">
-              Add Job
-            </Button>
-          </CardActions>
-        </Card>
+        <ShiftCard shift={s} />
       </Grid>
     ));
 
