@@ -5,7 +5,7 @@ import React from "react";
 import Nav from "../nav";
 import randomWords from "random-words";
 import ShiftCard from "./shift-card";
-import { Shift } from "../../../shared/model/shift";
+import { ShiftSummary } from "../../../shared/model/shift";
 
 function randomRole() {
   const val = Math.random();
@@ -16,7 +16,7 @@ function randomRole() {
 }
 
 function Home() {
-  const shifts: Shift[] = [
+  const shifts: ShiftSummary[] = [
     {
       id: 1,
       date: formatISO(sub(Date.now(), { days: 1 }), { representation: "date" }),

@@ -1,10 +1,10 @@
-export interface Shift {
+export interface ShiftSummary {
   id: number;
   date: string;
   event: string;
   location: string;
   duration: number;
-  role: string;
+  role: "EAC" | "AFA" | "CRU";
   crewMate: string;
   loggedCalls: number;
 }

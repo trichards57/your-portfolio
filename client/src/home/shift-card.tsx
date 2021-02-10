@@ -9,7 +9,7 @@ import {
 import classNames from "classnames";
 import { format, parseISO } from "date-fns";
 import React from "react";
-import { Shift } from "../../../shared/model/shift";
+import { ShiftSummary } from "../../../shared/model/shift";
 
 const useStyles = makeStyles({
   date: {
@@ -25,7 +25,7 @@ const useStyles = makeStyles({
   },
 });
 
-function ShiftCard({ shift }: { shift: Shift }) {
+function ShiftCard({ shift }: { shift: ShiftSummary }) {
   const classes = useStyles();
 
   return (
