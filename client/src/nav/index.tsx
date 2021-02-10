@@ -11,7 +11,11 @@ import {
   Typography,
   useTheme,
 } from "@material-ui/core";
-import { Home as HomeIcon, Menu as MenuIcon } from "@material-ui/icons";
+import {
+  Home as HomeIcon,
+  Menu as MenuIcon,
+  PostAdd as AddShiftIcon,
+} from "@material-ui/icons";
 import React from "react";
 import NavItem from "./nav-item";
 
@@ -66,6 +70,7 @@ function Nav(props: { children: React.ReactNode }) {
       <Divider />
       <List>
         <NavItem href="/home" icon={<HomeIcon />} name="Home" />
+        <NavItem href="/addShift" icon={<AddShiftIcon />} name="Add Shift" />
       </List>
     </div>
   );

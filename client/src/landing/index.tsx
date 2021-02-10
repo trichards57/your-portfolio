@@ -58,7 +58,7 @@ function Landing() {
           </Grid>
           <Grid item>
             <Button
-              variant="contained"
+              variant="outlined"
               color="secondary"
               onClick={() =>
                 loginWithRedirect({

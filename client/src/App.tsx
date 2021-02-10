@@ -3,6 +3,7 @@ import React from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Landing from "./landing";
 import Home from "./home";
+import AddShift from "./add-shift";
 
 function App() {
   return (
@@ -15,6 +16,9 @@ function App() {
         <Switch>
           <Route path="/home">
             <Home />
+          </Route>
+          <Route path="/addShift">
+            <AddShift />
           </Route>
           <Route exact path="/">
             <Landing />
