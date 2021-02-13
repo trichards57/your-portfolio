@@ -1,10 +1,17 @@
-export interface ShiftSummary {
-  id: number;
+type RoleType = "EAC" | "AFA" | "CRU";
+
+export interface Shift {
+  id: string;
   date: string;
   event: string;
-  location: string;
+  location?: string;
   duration: number;
-  role: "EAC" | "AFA" | "CRU";
-  crewMate: string;
+  role: RoleType;
+  crewMate?: string;
+}
+
+export interface ShiftSummary extends Shift {
   loggedCalls: number;
 }
+
+export interface NewShift extends Omit<Shift, "id"> {}

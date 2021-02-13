@@ -1,4 +1,4 @@
-import { withAuthenticationRequired } from "@auth0/auth0-react";
+import { useAuth0, withAuthenticationRequired } from "@auth0/auth0-react";
 import {
   Button,
   FormControl,
@@ -13,6 +13,7 @@ import {
 } from "@material-ui/core";
 import { Save as SaveIcon } from "@material-ui/icons";
 import React from "react";
+import { useHistory } from "react-router-dom";
 import Nav from "../nav";
 
 const useStyles = makeStyles((theme) => ({
@@ -26,6 +27,25 @@ const useStyles = makeStyles((theme) => ({
 
 function AddShift() {
   const classes = useStyles();
+  const history = useHistory();
+
+  const { getAccessTokenSilently } = useAuth0();
+
+  async function submit() {
+    const token = await getAccessTokenSilently();
+    const uri = "/api/LogShift";
+
+    const response = await fetch(uri, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+      method: "POST",
+    });
+
+    if (response.ok) {
+      history.push("/");
+    }
+  }
 
   return (
     <Nav>
@@ -77,6 +97,7 @@ function AddShift() {
                   startIcon={<SaveIcon />}
                   color="primary"
                   variant="contained"
+                  onClick={submit}
                 >
                   Save
                 </Button>

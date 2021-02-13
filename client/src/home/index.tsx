@@ -1,4 +1,4 @@
-import { withAuthenticationRequired } from "@auth0/auth0-react";
+import { useAuth0, withAuthenticationRequired } from "@auth0/auth0-react";
 import { Grid, Typography } from "@material-ui/core";
 import { formatISO, sub } from "date-fns";
 import React from "react";
@@ -18,7 +18,7 @@ function randomRole() {
 function Home() {
   const shifts: ShiftSummary[] = [
     {
-      id: 1,
+      id: "1",
       date: formatISO(sub(Date.now(), { days: 1 }), { representation: "date" }),
       event: (randomWords({ min: 3, max: 6 }) as string[]).join(" "),
       location: (randomWords({ min: 3, max: 6 }) as string[]).join(" "),
@@ -28,7 +28,7 @@ function Home() {
       loggedCalls: Math.round(Math.random() * 12),
     },
     {
-      id: 2,
+      id: "2",
       date: formatISO(sub(Date.now(), { days: 3 }), { representation: "date" }),
       event: (randomWords({ min: 3, max: 6 }) as string[]).join(" "),
       location: (randomWords({ min: 3, max: 6 }) as string[]).join(" "),
@@ -38,7 +38,7 @@ function Home() {
       loggedCalls: Math.round(Math.random() * 12),
     },
     {
-      id: 3,
+      id: "3",
       date: formatISO(Date.now(), { representation: "date" }),
       event: (randomWords({ min: 3, max: 6 }) as string[]).join(" "),
       location: (randomWords({ min: 3, max: 6 }) as string[]).join(" "),
