@@ -9,7 +9,7 @@ import {
 import classNames from "classnames";
 import { format, parseISO } from "date-fns";
 import React from "react";
-import { ShiftSummary } from "../../../shared/model/shift";
+import { ShiftSummary } from "../model/shift";
 
 const useStyles = makeStyles({
   date: {

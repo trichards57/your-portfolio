@@ -1,11 +1,11 @@
-import { useAuth0, withAuthenticationRequired } from "@auth0/auth0-react";
+import { withAuthenticationRequired } from "@auth0/auth0-react";
 import { Grid, Typography } from "@material-ui/core";
 import { formatISO, sub } from "date-fns";
 import React from "react";
 import Nav from "../nav";
 import randomWords from "random-words";
 import ShiftCard from "./shift-card";
-import { ShiftSummary } from "../../../shared/model/shift";
+import { ShiftSummary } from "../model/shift";
 
 function randomRole() {
   const val = Math.random();
