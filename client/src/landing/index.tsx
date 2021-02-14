@@ -51,7 +51,11 @@ function Landing() {
             <Button
               variant="contained"
               color="primary"
-              onClick={() => loginWithRedirect()}
+              onClick={() =>
+                loginWithRedirect({
+                  audience: "https://tr-toolbox.me.uk/your-portfolio",
+                })
+              }
             >
               Login
             </Button>
@@ -63,6 +67,7 @@ function Landing() {
               onClick={() =>
                 loginWithRedirect({
                   screen_hint: "signup",
+                  audience: "https://tr-toolbox.me.uk/your-portfolio",
                 })
               }
             >

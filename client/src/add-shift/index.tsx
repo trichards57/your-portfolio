@@ -32,7 +32,9 @@ function AddShift() {
   const { getAccessTokenSilently } = useAuth0();
 
   async function submit() {
-    const token = await getAccessTokenSilently();
+    const token = await getAccessTokenSilently({
+      audience: "https://tr-toolbox.me.uk/your-portfolio"
+    });
     const uri = "/api/LogShift";
 
     const response = await fetch(uri, {
