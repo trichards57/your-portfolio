@@ -22,7 +22,10 @@ namespace PortfolioServer
                     ApplicationName = "ShiftsServer",
                 });
             });
-            builder.Services.AddScoped<IShiftService, ShiftService>();
+            builder.Services.AddScoped<IShiftService, ShiftService>(c =>
+            {
+                return new ShiftService(c.GetService<CosmosClient>(), System.Environment.GetEnvironmentVariable("DB_NAME"), System.Environment.GetEnvironmentVariable("DB_SHIFTS_TABLE"));
+            });
             builder.Services.AddScoped<IAuthenticationHelper, AuthenticationHelper>();
         }
     }

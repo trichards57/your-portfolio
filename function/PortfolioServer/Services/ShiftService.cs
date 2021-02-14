@@ -24,9 +24,11 @@ namespace PortfolioServer.Services
         private Container _container;
         private Database _database;
 
-        public ShiftService(CosmosClient client)
+        public ShiftService(CosmosClient client, string databaseId, string containerId)
         {
             _client = client;
+            _containerId = containerId;
+            _databaseId = databaseId;
         }
 
         public async Task<string> AddShift(string userId, NewShift shift)
