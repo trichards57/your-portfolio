@@ -17,7 +17,7 @@ namespace PortfolioServer.Services
         Task UpdateShift(string userId, Shift shift);
     }
 
-    internal class ShiftService : IShiftService
+    public class ShiftService : IShiftService
     {
         private readonly CosmosClient _client;
         private readonly string _containerId;
@@ -34,8 +34,9 @@ namespace PortfolioServer.Services
 
         public async Task<string> AddShift(string userId, NewShift shift)
         {
-            if (userId is null)
-                throw new ArgumentNullException(nameof(userId));
+            if (string.IsNullOrWhiteSpace(userId))
+                throw new ArgumentException($"'{nameof(userId)}' cannot be null or whitespace", nameof(userId));
+
             if (shift is null)
                 throw new ArgumentNullException(nameof(shift));
 
