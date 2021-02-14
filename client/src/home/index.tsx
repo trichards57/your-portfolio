@@ -1,53 +1,42 @@
-import { withAuthenticationRequired } from "@auth0/auth0-react";
+import { useAuth0, withAuthenticationRequired } from "@auth0/auth0-react";
 import { Grid, Typography } from "@material-ui/core";
-import { formatISO, sub } from "date-fns";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Nav from "../nav";
-import randomWords from "random-words";
 import ShiftCard from "./shift-card";
 import { ShiftSummary } from "../model/shift";
 
-function randomRole() {
-  const val = Math.random();
-
-  if (val < 1 / 3) return "EAC";
-  if (val < 2 / 3) return "AFA";
-  return "CRU";
-}
-
 function Home() {
-  const shifts: ShiftSummary[] = [
-    {
-      id: "1",
-      date: formatISO(sub(Date.now(), { days: 1 }), { representation: "date" }),
-      event: (randomWords({ min: 3, max: 6 }) as string[]).join(" "),
-      location: (randomWords({ min: 3, max: 6 }) as string[]).join(" "),
-      duration: Math.random() * 12,
-      role: randomRole(),
-      crewMate: (randomWords(2) as string[]).join(" "),
-      loggedCalls: Math.round(Math.random() * 12),
-    },
-    {
-      id: "2",
-      date: formatISO(sub(Date.now(), { days: 3 }), { representation: "date" }),
-      event: (randomWords({ min: 3, max: 6 }) as string[]).join(" "),
-      location: (randomWords({ min: 3, max: 6 }) as string[]).join(" "),
-      duration: Math.random() * 12,
-      role: randomRole(),
-      crewMate: (randomWords(2) as string[]).join(" "),
-      loggedCalls: Math.round(Math.random() * 12),
-    },
-    {
-      id: "3",
-      date: formatISO(Date.now(), { representation: "date" }),
-      event: (randomWords({ min: 3, max: 6 }) as string[]).join(" "),
-      location: (randomWords({ min: 3, max: 6 }) as string[]).join(" "),
-      duration: Math.random() * 12,
-      role: randomRole(),
-      crewMate: (randomWords(2) as string[]).join(" "),
-      loggedCalls: Math.round(Math.random() * 12),
-    },
-  ];
+  const [shifts, setShifts] = useState<ShiftSummary[]>([]);
+  const [isLoading, setIsLoading] = useState(false);
+
+  const { getAccessTokenSilently } = useAuth0();
+
+  useEffect(() => {
+    setIsLoading(true);
+
+    async function loadData() {
+      const token = await getAccessTokenSilently({
+        audience: "https://tr-toolbox.me.uk/your-portfolio",
+      });
+      const uri = "/api/RecentShifts";
+
+      const response = await fetch(uri, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      if (response.ok) {
+        const newShifts = (await response.json()) as ShiftSummary[];
+
+        setShifts(newShifts);
+      }
+
+      setIsLoading(false);
+    }
+
+    loadData();
+  }, [getAccessTokenSilently]);
 
   const shiftCards = shifts
     .sort((a, b) => a.date.localeCompare(b.date))
