@@ -2,11 +2,11 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Azure.WebJobs;
 using Microsoft.Azure.WebJobs.Extensions.Http;
 using Microsoft.Extensions.Logging;
+using Newtonsoft.Json;
 using PortfolioServer.Authentication;
 using PortfolioServer.Model;
 using PortfolioServer.Services;
 using System.Net.Http;
-using System.Text.Json;
 using System.Threading.Tasks;
 
 namespace PortfolioServer
@@ -29,7 +29,7 @@ namespace PortfolioServer
 
             var claims = await _authenticationHelper.DecodeToken(req.Headers.Authorization);
 
-            if (claims == null)
+            if (claims == null || !claims.Identity.IsAuthenticated)
             {
                 log.LogInformation("Unauthorised request received.");
                 return new UnauthorizedResult();
@@ -39,7 +39,7 @@ namespace PortfolioServer
 
             try
             {
-                newShift = await JsonSerializer.DeserializeAsync<NewShift>(await req.Content.ReadAsStreamAsync());
+                newShift = JsonConvert.DeserializeObject<NewShift>(await req.Content.ReadAsStringAsync());
             }
             catch (JsonException)
             {
@@ -55,7 +55,7 @@ namespace PortfolioServer
                 return new BadRequestResult();
             }
 
-            await _shiftService.AddShift(_authenticationHelper.UserId, newShift);
+            await _shiftService.AddShift(claims.Identity.Name, newShift);
 
             return new OkResult();
         }

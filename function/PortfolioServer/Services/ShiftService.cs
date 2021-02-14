@@ -1,5 +1,6 @@
 ﻿using Microsoft.Azure.Cosmos;
 using PortfolioServer.Model;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -33,8 +34,16 @@ namespace PortfolioServer.Services
 
         public async Task<string> AddShift(string userId, NewShift shift)
         {
+            if (userId is null)
+                throw new ArgumentNullException(nameof(userId));
+            if (shift is null)
+                throw new ArgumentNullException(nameof(shift));
+
+            await Initialise();
+
             var newShift = new Shift
             {
+                Id = Guid.NewGuid().ToString("N"),
                 CrewMate = shift.CrewMate,
                 Date = shift.Date,
                 Duration = shift.Duration,
@@ -50,7 +59,9 @@ namespace PortfolioServer.Services
 
         public async Task<IEnumerable<Shift>> GetAllShifts(string userId)
         {
-            using var resultSet = _container.GetItemQueryIterator<Shift>(new QueryDefinition($"select * from {_containerId} s where s.UserId = @UserId").WithParameter("@UserId", userId), requestOptions: new QueryRequestOptions
+            await Initialise();
+
+            using var resultSet = _container.GetItemQueryIterator<Shift>(new QueryDefinition($"select * from {_containerId} s where s.userId = @UserId").WithParameter("@UserId", userId), requestOptions: new QueryRequestOptions
             {
                 PartitionKey = new PartitionKey(userId)
             });
@@ -68,6 +79,8 @@ namespace PortfolioServer.Services
 
         public async Task<Shift> GetShift(string userId, string id)
         {
+            await Initialise();
+
             try
             {
                 var item = (Shift)(await _container.ReadItemAsync<Shift>(id, new PartitionKey(userId)));
@@ -82,12 +95,16 @@ namespace PortfolioServer.Services
 
         public async Task Initialise()
         {
-            _database = await _client.CreateDatabaseIfNotExistsAsync(_databaseId);
-            _container = await _database.CreateContainerIfNotExistsAsync(_containerId, "/UserId");
+            if (_database == null)
+                _database = await _client.CreateDatabaseIfNotExistsAsync(_databaseId);
+            if (_container == null)
+                _container = await _database.CreateContainerIfNotExistsAsync(_containerId, "/userId");
         }
 
         public async Task UpdateShift(string userId, Shift shift)
         {
+            await Initialise();
+
             await _container.ReplaceItemAsync(shift, shift.Id, new PartitionKey(userId), new ItemRequestOptions
             {
                 EnableContentResponseOnWrite = true
