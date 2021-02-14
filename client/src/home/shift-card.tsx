@@ -41,22 +41,18 @@ function ShiftCard({ shift }: { shift: ShiftSummary }) {
         <Typography className={classes.trimText} variant="h5" component="h2">
           {shift.event}
         </Typography>
-        {shift.location && (
-          <Typography
-            className={classNames(classes.location, classes.trimText)}
-            color="textSecondary"
-          >
-            {shift.location}
-          </Typography>
-        )}
+        <Typography
+          className={classNames(classes.location, classes.trimText)}
+          color="textSecondary"
+        >
+          {shift.location}
+        </Typography>
         <Typography variant="body2" component="p">
           Role: {shift.role}
         </Typography>
-        {shift.loggedCalls > 0 && (
-          <Typography variant="body2" component="p">
-            Logged Calls: {shift.loggedCalls}
-          </Typography>
-        )}
+        <Typography variant="body2" component="p">
+          Logged Calls: {shift.loggedCalls}
+        </Typography>
       </CardContent>
       <CardActions>
         <Button variant="contained" size="small">

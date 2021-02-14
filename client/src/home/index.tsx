@@ -4,6 +4,7 @@ import React, { useEffect, useState } from "react";
 import Nav from "../nav";
 import ShiftCard from "./shift-card";
 import { ShiftSummary } from "../model/shift";
+import LoadingCard from "./loading-card";
 
 function Home() {
   const [shifts, setShifts] = useState<ShiftSummary[]>([]);
@@ -46,13 +47,19 @@ function Home() {
       </Grid>
     ));
 
+  const loadingCards = [{}, {}, {}, {}].map((s, i) => (
+    <Grid item key={i} xs={6} sm={6} lg={3}>
+      <LoadingCard />
+    </Grid>
+  ));
+
   return (
     <Nav>
       <Typography component="h2" variant="h5">
         Recent Shifts
       </Typography>
       <Grid container spacing={2}>
-        {shiftCards}
+        {isLoading ? loadingCards : shiftCards}
       </Grid>
     </Nav>
   );
