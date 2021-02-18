@@ -9,6 +9,7 @@ import {
 import classNames from "classnames";
 import { format, parseISO } from "date-fns";
 import React from "react";
+import { Link } from "react-router-dom";
 import { ShiftSummary } from "../model/shift";
 
 const useStyles = makeStyles({
@@ -55,7 +56,11 @@ function ShiftCard({ shift }: { shift: ShiftSummary }) {
         </Typography>
       </CardContent>
       <CardActions>
-        <Button variant="contained" size="small">
+        <Button
+          variant="contained"
+          size="small"
+          {...{ component: Link, to: `/editShift/${shift.id}` }}
+        >
           Edit
         </Button>
         <Button color="primary" variant="contained" size="small">

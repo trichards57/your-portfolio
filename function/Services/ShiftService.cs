@@ -60,6 +60,9 @@ namespace PortfolioServer.Services
 
         public async Task<IEnumerable<Shift>> GetAllShifts(string userId)
         {
+            if (string.IsNullOrWhiteSpace(userId))
+                throw new ArgumentException($"'{nameof(userId)}' cannot be null or whitespace", nameof(userId));
+
             await Initialise();
 
             using var resultSet = _container.GetItemQueryIterator<Shift>(new QueryDefinition($"select * from {_containerId} s where s.userId = @UserId").WithParameter("@UserId", userId), requestOptions: new QueryRequestOptions
@@ -80,6 +83,12 @@ namespace PortfolioServer.Services
 
         public async Task<Shift> GetShift(string userId, string id)
         {
+            if (string.IsNullOrWhiteSpace(userId))
+                throw new ArgumentException($"'{nameof(userId)}' cannot be null or whitespace", nameof(userId));
+
+            if (string.IsNullOrWhiteSpace(id))
+                throw new ArgumentException($"'{nameof(id)}' cannot be null or whitespace", nameof(id));
+
             await Initialise();
 
             try
@@ -104,6 +113,12 @@ namespace PortfolioServer.Services
 
         public async Task UpdateShift(string userId, Shift shift)
         {
+            if (string.IsNullOrWhiteSpace(userId))
+                throw new ArgumentException($"'{nameof(userId)}' cannot be null or whitespace", nameof(userId));
+
+            if (shift is null)
+                throw new ArgumentNullException(nameof(shift));
+
             await Initialise();
 
             await _container.ReplaceItemAsync(shift, shift.Id, new PartitionKey(userId), new ItemRequestOptions

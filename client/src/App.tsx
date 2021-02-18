@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Landing from "./landing";
 import Home from "./home";
 import AddShift from "./add-shift";
+import EditShift from "./edit-shift";
 
 function App() {
   return (
@@ -19,6 +20,9 @@ function App() {
           </Route>
           <Route path="/addShift">
             <AddShift />
+          </Route>
+          <Route path="/editShift/:id">
+            <EditShift />
           </Route>
           <Route exact path="/">
             <Landing />

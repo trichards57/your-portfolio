@@ -84,7 +84,7 @@ function AddShift() {
     });
 
     if (response.ok) {
-      history.push("/");
+      history.push("/home");
     }
   }
 
