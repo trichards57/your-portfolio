@@ -15,6 +15,8 @@ namespace PortfolioServer.Authentication
         string UserId { get; }
 
         Task<ClaimsPrincipal> DecodeToken(AuthenticationHeaderValue value);
+
+        Task<ClaimsPrincipal> DecodeToken(string value);
     }
 
     internal class AuthenticationHelper : IAuthenticationHelper
@@ -42,6 +44,14 @@ namespace PortfolioServer.Authentication
             if (value?.Scheme != "Bearer")
                 return null;
 
+            return await DecodeToken(value.Parameter);
+        }
+
+        public async Task<ClaimsPrincipal> DecodeToken(string value)
+        {
+            if (value.StartsWith("Bearer"))
+                value = value[7..];
+
             var config = await _configurationManager.GetConfigurationAsync(CancellationToken.None);
 
             var validationParameter = new TokenValidationParameters
@@ -65,7 +75,7 @@ namespace PortfolioServer.Authentication
                 try
                 {
                     var handler = new JwtSecurityTokenHandler();
-                    result = handler.ValidateToken(value.Parameter, validationParameter, out var token);
+                    result = handler.ValidateToken(value, validationParameter, out var token);
                 }
                 catch (SecurityTokenSignatureKeyNotFoundException)
                 {

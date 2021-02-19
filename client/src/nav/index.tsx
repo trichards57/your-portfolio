@@ -71,6 +71,7 @@ function Nav(props: { children: React.ReactNode }) {
       <List>
         <NavItem href="/home" icon={<HomeIcon />} name="Home" />
         <NavItem href="/addShift" icon={<AddShiftIcon />} name="Add Shift" />
+        <NavItem href="/shifts" icon={<AddShiftIcon />} name="All Shifts" />
       </List>
     </div>
   );

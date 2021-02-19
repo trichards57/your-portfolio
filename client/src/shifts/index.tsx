@@ -6,7 +6,7 @@ import ShiftCard from "../shared/shift-card";
 import { ShiftSummary } from "../model/shift";
 import LoadingCard from "../shared/loading-card";
 
-function Home() {
+function Shifts() {
   const [shifts, setShifts] = useState<ShiftSummary[]>([]);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -19,7 +19,7 @@ function Home() {
       const token = await getAccessTokenSilently({
         audience: "https://tr-toolbox.me.uk/your-portfolio",
       });
-      const uri = "/api/RecentShifts";
+      const uri = "/api/GetAllShifts";
 
       const response = await fetch(uri, {
         headers: {
@@ -56,7 +56,7 @@ function Home() {
   return (
     <Nav>
       <Typography component="h2" variant="h5">
-        Recent Shifts
+        Shifts
       </Typography>
       <Grid container spacing={2}>
         {isLoading ? loadingCards : shiftCards}
@@ -65,4 +65,4 @@ function Home() {
   );
 }
 
-export default withAuthenticationRequired(Home);
+export default withAuthenticationRequired(Shifts);

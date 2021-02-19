@@ -5,6 +5,7 @@ import Landing from "./landing";
 import Home from "./home";
 import AddShift from "./add-shift";
 import EditShift from "./edit-shift";
+import Shifts from "./shifts";
 
 function App() {
   return (
@@ -17,6 +18,9 @@ function App() {
         <Switch>
           <Route path="/home">
             <Home />
+          </Route>
+          <Route path="/shifts">
+            <Shifts />
           </Route>
           <Route path="/addShift">
             <AddShift />
