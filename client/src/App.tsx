@@ -6,6 +6,7 @@ import Home from "./home";
 import AddShift from "./add-shift";
 import EditShift from "./edit-shift";
 import Shifts from "./shifts";
+import AddJob from "./add-job";
 
 function App() {
   return (
@@ -24,6 +25,9 @@ function App() {
           </Route>
           <Route path="/addShift">
             <AddShift />
+          </Route>
+          <Route path="/addJob">
+            <AddJob />
           </Route>
           <Route path="/editShift/:id">
             <EditShift />

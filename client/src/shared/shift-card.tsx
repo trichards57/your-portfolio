@@ -63,7 +63,12 @@ function ShiftCard({ shift }: { shift: ShiftSummary }) {
         >
           Edit
         </Button>
-        <Button color="primary" variant="contained" size="small">
+        <Button
+          color="primary"
+          variant="contained"
+          size="small"
+          {...{ component: Link, to: `/addJob?shift=${shift.id}` }}
+        >
           Add Job
         </Button>
       </CardActions>

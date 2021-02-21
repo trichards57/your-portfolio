@@ -9,6 +9,8 @@ namespace PortfolioServer.Services
 {
     public interface IShiftService
     {
+        Task<bool> AddJob(string userId, NewJob job);
+
         Task<string> AddShift(string userId, NewShift shift);
 
         Task<IEnumerable<Shift>> GetAllShifts(string userId);
@@ -31,6 +33,43 @@ namespace PortfolioServer.Services
             _client = client;
             _containerId = containerId;
             _databaseId = databaseId;
+        }
+
+        public async Task<bool> AddJob(string userId, NewJob job)
+        {
+            if (string.IsNullOrWhiteSpace(userId))
+                throw new ArgumentException($"'{nameof(userId)}' cannot be null or whitespace", nameof(userId));
+
+            if (job is null)
+                throw new ArgumentNullException(nameof(job));
+
+            await Initialise();
+
+            var newJob = new Job
+            {
+                Age = job.Age,
+                BlueLights = job.BlueLights,
+                Category = job.Category,
+                Drove = job.Drove,
+                Gender = job.Gender,
+                Notes = job.Notes,
+                Outcome = job.Outcome,
+                ReflectionFlag = job.ReflectionFlag
+            };
+
+            var shift = await GetShift(userId, job.Shift);
+
+            if (shift == null)
+                return false;
+
+            shift.Jobs.Add(newJob);
+
+            await _container.ReplaceItemAsync(shift, shift.Id, new PartitionKey(userId), new ItemRequestOptions
+            {
+                EnableContentResponseOnWrite = true
+            });
+
+            return true;
         }
 
         public async Task<string> AddShift(string userId, NewShift shift)
