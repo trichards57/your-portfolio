@@ -1,5 +1,7 @@
 ﻿using Newtonsoft.Json;
+using PortfolioServer.Converters;
 using System;
+using System.Collections.Generic;
 
 namespace PortfolioServer.Model
 {
@@ -20,6 +22,9 @@ namespace PortfolioServer.Model
         [JsonProperty("id")]
         public string Id { get; set; }
 
+        [JsonProperty("jobs")]
+        public ICollection<Job> Jobs { get; set; } = new List<Job>();
+
         [JsonProperty("location")]
         public string Location { get; set; }
 
@@ -28,5 +33,10 @@ namespace PortfolioServer.Model
 
         [JsonProperty("userId")]
         public string UserId { get; set; }
+
+        public bool ShouldSerializeJobs()
+        {
+            return Jobs?.Count > 0;
+        }
     }
 }

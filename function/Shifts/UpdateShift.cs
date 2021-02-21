@@ -4,7 +4,7 @@ using Microsoft.Azure.WebJobs.Extensions.Http;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 using PortfolioServer.Authentication;
-using PortfolioServer.Model;
+using PortfolioServer.RequestModel;
 using PortfolioServer.Services;
 using System.Net.Http;
 using System.Threading.Tasks;

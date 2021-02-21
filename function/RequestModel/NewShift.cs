@@ -1,8 +1,10 @@
 ﻿using FluentValidation;
 using Newtonsoft.Json;
+using PortfolioServer.Converters;
+using PortfolioServer.Model;
 using System;
 
-namespace PortfolioServer.Model
+namespace PortfolioServer.RequestModel
 {
     public class NewShift
     {

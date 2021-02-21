@@ -48,9 +48,8 @@ namespace PortfolioServer.Shifts
 
             var shifts = await _shiftService.GetAllShifts(claims.Identity.Name);
             req.HttpContext.Response.Headers.Add("X-Total-Count", shifts.Count().ToString());
-            
-            shifts = shifts.OrderByDescending(s => s.Date).Skip(page * count).Take(count);
 
+            shifts = shifts.OrderByDescending(s => s.Date).Skip(page * count).Take(count);
 
             return new OkObjectResult(shifts.Select(s => new ShiftSummary
             {
@@ -60,7 +59,7 @@ namespace PortfolioServer.Shifts
                 Event = s.Event,
                 Id = s.Id,
                 Location = s.Location,
-                LoggedCalls = 0, // Placeholder until logging calls works
+                LoggedCalls = s.Jobs?.Count ?? 0,
                 Role = s.Role
             }));
         }

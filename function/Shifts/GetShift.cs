@@ -3,7 +3,7 @@ using Microsoft.Azure.WebJobs;
 using Microsoft.Azure.WebJobs.Extensions.Http;
 using Microsoft.Extensions.Logging;
 using PortfolioServer.Authentication;
-using PortfolioServer.Model;
+using PortfolioServer.RequestModel;
 using PortfolioServer.Services;
 using System.Linq;
 using System.Net.Http;

@@ -1,5 +1,6 @@
 ﻿using Microsoft.Azure.Cosmos;
 using PortfolioServer.Model;
+using PortfolioServer.RequestModel;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;

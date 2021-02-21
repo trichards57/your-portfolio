@@ -1,7 +1,7 @@
 ﻿using Newtonsoft.Json;
 using System;
 
-namespace PortfolioServer.Model
+namespace PortfolioServer.Converters
 {
     public class TimespanConverter : JsonConverter<TimeSpan>
     {

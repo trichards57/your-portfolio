@@ -50,7 +50,7 @@ namespace PortfolioServer.Shifts
                 Event = s.Event,
                 Id = s.Id,
                 Location = s.Location,
-                LoggedCalls = 0, // Placeholder until logging calls works
+                LoggedCalls = s.Jobs?.Count ?? 0,
                 Role = s.Role
             }));
         }
