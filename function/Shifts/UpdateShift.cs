@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Azure.WebJobs;
 using Microsoft.Azure.WebJobs.Extensions.Http;
@@ -6,7 +7,6 @@ using Newtonsoft.Json;
 using PortfolioServer.Authentication;
 using PortfolioServer.RequestModel;
 using PortfolioServer.Services;
-using System.Net.Http;
 using System.Threading.Tasks;
 
 namespace PortfolioServer.Shifts
@@ -24,12 +24,12 @@ namespace PortfolioServer.Shifts
 
         [FunctionName("UpdateShift")]
         public async Task<IActionResult> Run(
-            [HttpTrigger(AuthorizationLevel.Anonymous, "post", Route = null)] HttpRequestMessage req,
+            [HttpTrigger(AuthorizationLevel.Anonymous, "post", Route = null)] HttpRequest req,
             ILogger log)
         {
             log.LogInformation("Received update shift request.");
 
-            var claims = await _authenticationHelper.DecodeToken(req.Headers.Authorization);
+            var claims = await _authenticationHelper.DecodeToken(req.Headers["Authorization"]);
 
             if (claims == null || !claims.Identity.IsAuthenticated)
             {
@@ -41,7 +41,7 @@ namespace PortfolioServer.Shifts
 
             try
             {
-                updatedShift = JsonConvert.DeserializeObject<UpdatedShift>(await req.Content.ReadAsStringAsync());
+                updatedShift = JsonConvert.DeserializeObject<UpdatedShift>(await req.ReadAsStringAsync());
             }
             catch (JsonException)
             {

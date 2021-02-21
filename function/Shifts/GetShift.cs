@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Azure.WebJobs;
 using Microsoft.Azure.WebJobs.Extensions.Http;
@@ -6,7 +7,6 @@ using PortfolioServer.Authentication;
 using PortfolioServer.RequestModel;
 using PortfolioServer.Services;
 using System.Linq;
-using System.Net.Http;
 using System.Threading.Tasks;
 
 namespace PortfolioServer.Shifts
@@ -24,12 +24,12 @@ namespace PortfolioServer.Shifts
 
         [FunctionName("GetShift")]
         public async Task<IActionResult> Run(
-            [HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = null)] HttpRequestMessage req,
+            [HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = null)] HttpRequest req,
             ILogger log)
         {
             log.LogInformation("Received recent shift request.");
 
-            var claims = await _authenticationHelper.DecodeToken(req.Headers.Authorization);
+            var claims = await _authenticationHelper.DecodeToken(req.Headers["Authorization"]);
 
             if (claims == null || !claims.Identity.IsAuthenticated)
             {
@@ -37,7 +37,7 @@ namespace PortfolioServer.Shifts
                 return new UnauthorizedResult();
             }
 
-            var query = req.RequestUri.ParseQueryString();
+            var query = req.Query;
 
             if (!query.Keys.OfType<string>().Contains("id"))
                 return new BadRequestResult();

@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Azure.WebJobs;
 using Microsoft.Azure.WebJobs.Extensions.Http;
@@ -6,7 +7,6 @@ using Newtonsoft.Json;
 using PortfolioServer.Authentication;
 using PortfolioServer.RequestModel;
 using PortfolioServer.Services;
-using System.Net.Http;
 using System.Threading.Tasks;
 
 namespace PortfolioServer.Shifts
@@ -23,11 +23,11 @@ namespace PortfolioServer.Shifts
         }
 
         [FunctionName("LogShift")]
-        public async Task<IActionResult> Run([HttpTrigger(AuthorizationLevel.Anonymous, "post", Route = null)] HttpRequestMessage req, ILogger log)
+        public async Task<IActionResult> Run([HttpTrigger(AuthorizationLevel.Anonymous, "post", Route = null)] HttpRequest req, ILogger log)
         {
             log.LogInformation("Received log shift request.");
 
-            var claims = await _authenticationHelper.DecodeToken(req.Headers.Authorization);
+            var claims = await _authenticationHelper.DecodeToken(req.Headers["Authorization"]);
 
             if (claims == null || !claims.Identity.IsAuthenticated)
             {
@@ -39,7 +39,7 @@ namespace PortfolioServer.Shifts
 
             try
             {
-                newShift = JsonConvert.DeserializeObject<NewShift>(await req.Content.ReadAsStringAsync());
+                newShift = JsonConvert.DeserializeObject<NewShift>(await req.ReadAsStringAsync());
             }
             catch (JsonException)
             {
