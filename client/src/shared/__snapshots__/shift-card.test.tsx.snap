@@ -1,0 +1,93 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<div
+  className="MuiPaper-root MuiCard-root MuiPaper-elevation1 MuiPaper-rounded"
+>
+  <div
+    className="MuiCardContent-root"
+  >
+    <p
+      className="MuiTypography-root makeStyles-date-1 makeStyles-trimText-2 MuiTypography-body1 MuiTypography-colorTextSecondary MuiTypography-gutterBottom"
+    >
+      1 October 2021
+    </p>
+    <h2
+      className="MuiTypography-root makeStyles-trimText-2 MuiTypography-h5"
+    >
+      SWASFT Shift
+    </h2>
+    <p
+      className="MuiTypography-root makeStyles-location-3 makeStyles-trimText-2 MuiTypography-body1 MuiTypography-colorTextSecondary"
+    >
+      Test Location
+    </p>
+    <p
+      className="MuiTypography-root MuiTypography-body2"
+    >
+      Role: 
+      EAC
+    </p>
+    <p
+      className="MuiTypography-root MuiTypography-body2"
+    >
+      Logged Calls: 
+      5
+    </p>
+  </div>
+  <div
+    className="MuiCardActions-root MuiCardActions-spacing"
+  >
+    <a
+      aria-disabled={false}
+      className="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedSizeSmall MuiButton-sizeSmall"
+      href="/editShift/abcdef"
+      onBlur={[Function]}
+      onClick={[Function]}
+      onDragLeave={[Function]}
+      onFocus={[Function]}
+      onKeyDown={[Function]}
+      onKeyUp={[Function]}
+      onMouseDown={[Function]}
+      onMouseLeave={[Function]}
+      onMouseUp={[Function]}
+      onTouchEnd={[Function]}
+      onTouchMove={[Function]}
+      onTouchStart={[Function]}
+      role="button"
+      tabIndex={0}
+    >
+      <span
+        className="MuiButton-label"
+      >
+        Edit
+      </span>
+    </a>
+    <a
+      aria-disabled={false}
+      className="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-containedSizeSmall MuiButton-sizeSmall"
+      href="/addJob?shift=abcdef"
+      onBlur={[Function]}
+      onClick={[Function]}
+      onDragLeave={[Function]}
+      onFocus={[Function]}
+      onKeyDown={[Function]}
+      onKeyUp={[Function]}
+      onMouseDown={[Function]}
+      onMouseLeave={[Function]}
+      onMouseUp={[Function]}
+      onTouchEnd={[Function]}
+      onTouchMove={[Function]}
+      onTouchStart={[Function]}
+      role="button"
+      tabIndex={0}
+    >
+      <span
+        className="MuiButton-label"
+      >
+        Add Job
+      </span>
+    </a>
+  </div>
+</div>
+`;
