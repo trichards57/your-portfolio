@@ -15,6 +15,7 @@ import {
   Home as HomeIcon,
   Menu as MenuIcon,
   PostAdd as AddShiftIcon,
+  CalendarViewDay as ShiftsIcon
 } from "@material-ui/icons";
 import React from "react";
 import NavItem from "./nav-item";
@@ -71,7 +72,7 @@ function Nav(props: { children: React.ReactNode }) {
       <List>
         <NavItem href="/home" icon={<HomeIcon />} name="Home" />
         <NavItem href="/addShift" icon={<AddShiftIcon />} name="Add Shift" />
-        <NavItem href="/shifts" icon={<AddShiftIcon />} name="All Shifts" />
+        <NavItem href="/shifts" icon={<ShiftsIcon />} name="All Shifts" />
       </List>
     </div>
   );

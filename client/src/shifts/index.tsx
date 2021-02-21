@@ -5,10 +5,15 @@ import Nav from "../nav";
 import ShiftCard from "../shared/shift-card";
 import { ShiftSummary } from "../model/shift";
 import LoadingCard from "../shared/loading-card";
+import { Pagination } from "@material-ui/lab";
+
+const PAGE_SIZE = 6;
 
 function Shifts() {
-  const [shifts, setShifts] = useState<ShiftSummary[]>([]);
+  const [shifts, setShifts] = useState<ShiftSummary[][]>([]);
   const [isLoading, setIsLoading] = useState(false);
+  const [currentPage, setCurrentPage] = useState(0);
+  const [totalShifts, setTotalShifts] = useState(0);
 
   const { getAccessTokenSilently } = useAuth0();
 
@@ -19,7 +24,8 @@ function Shifts() {
       const token = await getAccessTokenSilently({
         audience: "https://tr-toolbox.me.uk/your-portfolio",
       });
-      const uri = "/api/GetAllShifts";
+      const page = currentPage;
+      const uri = `/api/GetAllShifts?count=${PAGE_SIZE}&page=${page}`;
 
       const response = await fetch(uri, {
         headers: {
@@ -30,22 +36,30 @@ function Shifts() {
       if (response.ok) {
         const newShifts = (await response.json()) as ShiftSummary[];
 
-        setShifts(newShifts);
+        setShifts((s) => {
+          s[page] = newShifts;
+          return s;
+        });
+        const totalCount = response.headers.get("x-total-count");
+        if (totalCount) setTotalShifts(parseInt(totalCount));
+        else setTotalShifts(newShifts.length);
       }
 
       setIsLoading(false);
     }
 
     loadData();
-  }, [getAccessTokenSilently]);
+  }, [getAccessTokenSilently, currentPage]);
 
-  const shiftCards = shifts
-    .sort((a, b) => a.date.localeCompare(b.date))
-    .map((s) => (
-      <Grid item key={s.id} xs={6} sm={6} lg={3}>
-        <ShiftCard shift={s} />
-      </Grid>
-    ));
+  const shiftCards =
+    shifts[currentPage] &&
+    shifts[currentPage]
+      .sort((a, b) => b.date.localeCompare(a.date))
+      .map((s) => (
+        <Grid item key={s.id} xs={6} sm={6} lg={3}>
+          <ShiftCard shift={s} />
+        </Grid>
+      ));
 
   const loadingCards = [{}, {}, {}, {}].map((s, i) => (
     <Grid item key={i} xs={6} sm={6} lg={3}>
@@ -59,7 +73,18 @@ function Shifts() {
         Shifts
       </Typography>
       <Grid container spacing={2}>
-        {isLoading ? loadingCards : shiftCards}
+        <>
+          {isLoading ? loadingCards : shiftCards}
+          {!isLoading && totalShifts > PAGE_SIZE && (
+            <Grid item xs={12}>
+              <Pagination
+                count={Math.ceil(totalShifts / PAGE_SIZE)}
+                page={currentPage + 1}
+                onChange={(_, v) => setCurrentPage(v - 1)}
+              />
+            </Grid>
+          )}
+        </>
       </Grid>
     </Nav>
   );

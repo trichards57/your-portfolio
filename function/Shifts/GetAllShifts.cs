@@ -47,9 +47,10 @@ namespace PortfolioServer.Shifts
                 page = 0;
 
             var shifts = await _shiftService.GetAllShifts(claims.Identity.Name);
+            req.HttpContext.Response.Headers.Add("X-Total-Count", shifts.Count().ToString());
+            
             shifts = shifts.OrderByDescending(s => s.Date).Skip(page * count).Take(count);
 
-            req.HttpContext.Response.Headers.Add("X-Total-Count", shifts.Count().ToString());
 
             return new OkObjectResult(shifts.Select(s => new ShiftSummary
             {
