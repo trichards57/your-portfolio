@@ -8,6 +8,7 @@ import {
   Typography,
 } from "@material-ui/core";
 import React from "react";
+import { ServerAudience } from "../shared/constants";
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -53,7 +54,7 @@ function Landing() {
               color="primary"
               onClick={() =>
                 loginWithRedirect({
-                  audience: "https://tr-toolbox.me.uk/your-portfolio",
+                  audience: ServerAudience,
                 })
               }
             >
@@ -67,7 +68,7 @@ function Landing() {
               onClick={() =>
                 loginWithRedirect({
                   screen_hint: "signup",
-                  audience: "https://tr-toolbox.me.uk/your-portfolio",
+                  audience: ServerAudience,
                 })
               }
             >
