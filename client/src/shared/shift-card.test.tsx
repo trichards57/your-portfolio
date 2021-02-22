@@ -25,6 +25,8 @@ it("renders without crashing", () => {
     </Router>,
     div
   );
+
+  ReactDOM.unmountComponentAtNode(div);
 });
 
 it("renders correctly", () => {
