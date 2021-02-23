@@ -15,10 +15,10 @@ jest.mock("react-router-dom", () => ({
 
 const testToken = "abcdefg";
 
-const recentShiftsEndPoint = "/api/RecentShifts";
+const endPoint = "/api/RecentShifts";
 
 const server = setupServer(
-  rest.get(recentShiftsEndPoint, (req, res, ctx) => {
+  rest.get(endPoint, (req, res, ctx) => {
     if (req.headers.get("authorization") === `Bearer ${testToken}`) {
       return res(
         ctx.json([
@@ -60,6 +60,14 @@ const server = setupServer(
 
 beforeAll(() => server.listen());
 
+beforeEach(() =>
+  (useAuth0 as jest.Mock).mockReturnValue({
+    getAccessTokenSilently: jest
+      .fn()
+      .mockReturnValue(Promise.resolve(testToken)),
+  })
+);
+
 afterEach(() => server.resetHandlers());
 
 afterAll(() => server.close());
@@ -67,24 +75,12 @@ afterAll(() => server.close());
 it("renders without crashing", () => {
   const div = document.createElement("div");
 
-  (useAuth0 as jest.Mock).mockReturnValue({
-    getAccessTokenSilently: jest
-      .fn()
-      .mockReturnValue(Promise.resolve(testToken)),
-  });
-
   ReactDOM.render(<Home />, div);
 
   ReactDOM.unmountComponentAtNode(div);
 });
 
 it("renders successful load correctly", async () => {
-  (useAuth0 as jest.Mock).mockReturnValue({
-    getAccessTokenSilently: jest
-      .fn()
-      .mockReturnValue(Promise.resolve(testToken)),
-  });
-
   const res = render(<Home />);
 
   await res.findByText("Test Shift 1");
@@ -111,14 +107,8 @@ it("redirects to the home page if not authorised", async () => {
 });
 
 it("displays an error if the request fails", async () => {
-  (useAuth0 as jest.Mock).mockReturnValue({
-    getAccessTokenSilently: jest
-      .fn()
-      .mockReturnValue(Promise.resolve(testToken)),
-  });
-
   server.use(
-    rest.get(recentShiftsEndPoint, (_, res, ctx) => {
+    rest.get(endPoint, (_, res, ctx) => {
       return res(ctx.status(500));
     })
   );
