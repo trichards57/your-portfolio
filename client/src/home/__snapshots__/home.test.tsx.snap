@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`renders successful load correctly 1`] = `
+exports[`renders loading correctly 1`] = `
 <DocumentFragment>
   <div
     class="makeStyles-root-11"
@@ -70,17 +70,271 @@ exports[`renders successful load correctly 1`] = `
               class="MuiCardContent-root"
             >
               <p
-                class="MuiTypography-root makeStyles-date-21 makeStyles-trimText-22 MuiTypography-body1 MuiTypography-colorTextSecondary MuiTypography-gutterBottom"
+                class="MuiTypography-root makeStyles-date-18 MuiTypography-body1 MuiTypography-gutterBottom"
+              >
+                <span
+                  class="MuiSkeleton-root MuiSkeleton-text MuiSkeleton-pulse"
+                />
+              </p>
+              <h2
+                class="MuiTypography-root makeStyles-trimText-19 MuiTypography-h5"
+              >
+                <span
+                  class="MuiSkeleton-root MuiSkeleton-text MuiSkeleton-pulse"
+                />
+              </h2>
+              <p
+                class="MuiTypography-root makeStyles-location-20 MuiTypography-body1 MuiTypography-colorTextSecondary"
+              >
+                <span
+                  class="MuiSkeleton-root MuiSkeleton-text MuiSkeleton-pulse"
+                />
+              </p>
+              <p
+                class="MuiTypography-root MuiTypography-body2"
+              >
+                <span
+                  class="MuiSkeleton-root MuiSkeleton-text MuiSkeleton-pulse"
+                />
+              </p>
+              <p
+                class="MuiTypography-root MuiTypography-body2"
+              >
+                <span
+                  class="MuiSkeleton-root MuiSkeleton-text MuiSkeleton-pulse"
+                />
+              </p>
+            </div>
+          </div>
+        </div>
+        <div
+          class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-6 MuiGrid-grid-sm-6 MuiGrid-grid-lg-3"
+        >
+          <div
+            class="MuiPaper-root MuiCard-root MuiPaper-elevation1 MuiPaper-rounded"
+          >
+            <div
+              class="MuiCardContent-root"
+            >
+              <p
+                class="MuiTypography-root makeStyles-date-18 MuiTypography-body1 MuiTypography-gutterBottom"
+              >
+                <span
+                  class="MuiSkeleton-root MuiSkeleton-text MuiSkeleton-pulse"
+                />
+              </p>
+              <h2
+                class="MuiTypography-root makeStyles-trimText-19 MuiTypography-h5"
+              >
+                <span
+                  class="MuiSkeleton-root MuiSkeleton-text MuiSkeleton-pulse"
+                />
+              </h2>
+              <p
+                class="MuiTypography-root makeStyles-location-20 MuiTypography-body1 MuiTypography-colorTextSecondary"
+              >
+                <span
+                  class="MuiSkeleton-root MuiSkeleton-text MuiSkeleton-pulse"
+                />
+              </p>
+              <p
+                class="MuiTypography-root MuiTypography-body2"
+              >
+                <span
+                  class="MuiSkeleton-root MuiSkeleton-text MuiSkeleton-pulse"
+                />
+              </p>
+              <p
+                class="MuiTypography-root MuiTypography-body2"
+              >
+                <span
+                  class="MuiSkeleton-root MuiSkeleton-text MuiSkeleton-pulse"
+                />
+              </p>
+            </div>
+          </div>
+        </div>
+        <div
+          class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-6 MuiGrid-grid-sm-6 MuiGrid-grid-lg-3"
+        >
+          <div
+            class="MuiPaper-root MuiCard-root MuiPaper-elevation1 MuiPaper-rounded"
+          >
+            <div
+              class="MuiCardContent-root"
+            >
+              <p
+                class="MuiTypography-root makeStyles-date-18 MuiTypography-body1 MuiTypography-gutterBottom"
+              >
+                <span
+                  class="MuiSkeleton-root MuiSkeleton-text MuiSkeleton-pulse"
+                />
+              </p>
+              <h2
+                class="MuiTypography-root makeStyles-trimText-19 MuiTypography-h5"
+              >
+                <span
+                  class="MuiSkeleton-root MuiSkeleton-text MuiSkeleton-pulse"
+                />
+              </h2>
+              <p
+                class="MuiTypography-root makeStyles-location-20 MuiTypography-body1 MuiTypography-colorTextSecondary"
+              >
+                <span
+                  class="MuiSkeleton-root MuiSkeleton-text MuiSkeleton-pulse"
+                />
+              </p>
+              <p
+                class="MuiTypography-root MuiTypography-body2"
+              >
+                <span
+                  class="MuiSkeleton-root MuiSkeleton-text MuiSkeleton-pulse"
+                />
+              </p>
+              <p
+                class="MuiTypography-root MuiTypography-body2"
+              >
+                <span
+                  class="MuiSkeleton-root MuiSkeleton-text MuiSkeleton-pulse"
+                />
+              </p>
+            </div>
+          </div>
+        </div>
+        <div
+          class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-6 MuiGrid-grid-sm-6 MuiGrid-grid-lg-3"
+        >
+          <div
+            class="MuiPaper-root MuiCard-root MuiPaper-elevation1 MuiPaper-rounded"
+          >
+            <div
+              class="MuiCardContent-root"
+            >
+              <p
+                class="MuiTypography-root makeStyles-date-18 MuiTypography-body1 MuiTypography-gutterBottom"
+              >
+                <span
+                  class="MuiSkeleton-root MuiSkeleton-text MuiSkeleton-pulse"
+                />
+              </p>
+              <h2
+                class="MuiTypography-root makeStyles-trimText-19 MuiTypography-h5"
+              >
+                <span
+                  class="MuiSkeleton-root MuiSkeleton-text MuiSkeleton-pulse"
+                />
+              </h2>
+              <p
+                class="MuiTypography-root makeStyles-location-20 MuiTypography-body1 MuiTypography-colorTextSecondary"
+              >
+                <span
+                  class="MuiSkeleton-root MuiSkeleton-text MuiSkeleton-pulse"
+                />
+              </p>
+              <p
+                class="MuiTypography-root MuiTypography-body2"
+              >
+                <span
+                  class="MuiSkeleton-root MuiSkeleton-text MuiSkeleton-pulse"
+                />
+              </p>
+              <p
+                class="MuiTypography-root MuiTypography-body2"
+              >
+                <span
+                  class="MuiSkeleton-root MuiSkeleton-text MuiSkeleton-pulse"
+                />
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`renders successful load correctly 1`] = `
+<DocumentFragment>
+  <div
+    class="makeStyles-root-21"
+  >
+    <header
+      class="MuiPaper-root MuiAppBar-root MuiAppBar-positionFixed MuiAppBar-colorPrimary makeStyles-appBar-23 mui-fixed MuiPaper-elevation4"
+    >
+      <div
+        class="MuiToolbar-root MuiToolbar-regular MuiToolbar-gutters"
+      >
+        <button
+          aria-label="open drawer"
+          class="MuiButtonBase-root MuiIconButton-root makeStyles-menuButton-24 MuiIconButton-colorInherit MuiIconButton-edgeStart"
+          tabindex="0"
+          type="button"
+        >
+          <span
+            class="MuiIconButton-label"
+          >
+            <svg
+              aria-hidden="true"
+              class="MuiSvgIcon-root"
+              focusable="false"
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"
+              />
+            </svg>
+          </span>
+          <span
+            class="MuiTouchRipple-root"
+          />
+        </button>
+        <h6
+          class="MuiTypography-root MuiTypography-h6 MuiTypography-noWrap"
+        >
+          Your Portfolio
+        </h6>
+      </div>
+    </header>
+    <nav
+      aria-label="mailbox folders"
+      class="makeStyles-drawer-22"
+    />
+    <main
+      class="makeStyles-content-27"
+    >
+      <div
+        class="makeStyles-toolbar-25"
+      />
+      <h2
+        class="MuiTypography-root MuiTypography-h5"
+      >
+        Recent Shifts
+      </h2>
+      <div
+        class="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-2"
+      >
+        <div
+          class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-6 MuiGrid-grid-sm-6 MuiGrid-grid-lg-3"
+        >
+          <div
+            class="MuiPaper-root MuiCard-root MuiPaper-elevation1 MuiPaper-rounded"
+          >
+            <div
+              class="MuiCardContent-root"
+            >
+              <p
+                class="MuiTypography-root makeStyles-date-31 makeStyles-trimText-32 MuiTypography-body1 MuiTypography-colorTextSecondary MuiTypography-gutterBottom"
               >
                 1 January 2020
               </p>
               <h2
-                class="MuiTypography-root makeStyles-trimText-22 MuiTypography-h5"
+                class="MuiTypography-root makeStyles-trimText-32 MuiTypography-h5"
               >
                 Test Shift 1
               </h2>
               <p
-                class="MuiTypography-root makeStyles-location-23 makeStyles-trimText-22 MuiTypography-body1 MuiTypography-colorTextSecondary"
+                class="MuiTypography-root makeStyles-location-33 makeStyles-trimText-32 MuiTypography-body1 MuiTypography-colorTextSecondary"
               >
                 Test Location 1
               </p>
@@ -143,17 +397,17 @@ exports[`renders successful load correctly 1`] = `
               class="MuiCardContent-root"
             >
               <p
-                class="MuiTypography-root makeStyles-date-21 makeStyles-trimText-22 MuiTypography-body1 MuiTypography-colorTextSecondary MuiTypography-gutterBottom"
+                class="MuiTypography-root makeStyles-date-31 makeStyles-trimText-32 MuiTypography-body1 MuiTypography-colorTextSecondary MuiTypography-gutterBottom"
               >
                 3 January 2020
               </p>
               <h2
-                class="MuiTypography-root makeStyles-trimText-22 MuiTypography-h5"
+                class="MuiTypography-root makeStyles-trimText-32 MuiTypography-h5"
               >
                 Test Shift 3
               </h2>
               <p
-                class="MuiTypography-root makeStyles-location-23 makeStyles-trimText-22 MuiTypography-body1 MuiTypography-colorTextSecondary"
+                class="MuiTypography-root makeStyles-location-33 makeStyles-trimText-32 MuiTypography-body1 MuiTypography-colorTextSecondary"
               />
               <p
                 class="MuiTypography-root MuiTypography-body2"
@@ -214,17 +468,17 @@ exports[`renders successful load correctly 1`] = `
               class="MuiCardContent-root"
             >
               <p
-                class="MuiTypography-root makeStyles-date-21 makeStyles-trimText-22 MuiTypography-body1 MuiTypography-colorTextSecondary MuiTypography-gutterBottom"
+                class="MuiTypography-root makeStyles-date-31 makeStyles-trimText-32 MuiTypography-body1 MuiTypography-colorTextSecondary MuiTypography-gutterBottom"
               >
                 2 February 2020
               </p>
               <h2
-                class="MuiTypography-root makeStyles-trimText-22 MuiTypography-h5"
+                class="MuiTypography-root makeStyles-trimText-32 MuiTypography-h5"
               >
                 Test Shift 2
               </h2>
               <p
-                class="MuiTypography-root makeStyles-location-23 makeStyles-trimText-22 MuiTypography-body1 MuiTypography-colorTextSecondary"
+                class="MuiTypography-root makeStyles-location-33 makeStyles-trimText-32 MuiTypography-body1 MuiTypography-colorTextSecondary"
               >
                 Test Location 2
               </p>

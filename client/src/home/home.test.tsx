@@ -80,6 +80,12 @@ it("renders without crashing", () => {
   ReactDOM.unmountComponentAtNode(div);
 });
 
+it("renders loading correctly", async () => {
+  const res = render(<Home />);
+
+  expect(res.asFragment()).toMatchSnapshot();
+});
+
 it("renders successful load correctly", async () => {
   const res = render(<Home />);
 
