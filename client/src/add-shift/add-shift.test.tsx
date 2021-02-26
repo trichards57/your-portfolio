@@ -6,11 +6,16 @@ import { setupServer } from "msw/node";
 import { useAuth0 } from "@auth0/auth0-react";
 import { useHistory } from "react-router-dom";
 import { NewShift } from "../model/shift";
-import { EditShiftBase } from ".";
+import { AddShiftBase } from ".";
 
-const getEndPoint = "/api/GetShift";
-const testId = "abcd";
+jest.mock("@auth0/auth0-react");
+jest.mock("react-router-dom", () => ({
+  useHistory: jest.fn(),
+}));
 const testToken = "abcdefg";
+
+const endPoint = "/api/LogShift";
+
 const testUpdate: NewShift = {
   date: "2021-01-02",
   duration: 6.5,
@@ -19,50 +24,15 @@ const testUpdate: NewShift = {
   crewMate: "New Crew Mate",
   location: "New Location",
 };
-const updateEndPoint = "/api/UpdateShift";
-
-jest.mock("@auth0/auth0-react");
-jest.mock("react-router-dom", () => ({
-  useHistory: jest.fn(),
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  useParams<T>() {
-    return { id: testId };
-  },
-}));
 
 const server = setupServer(
-  rest.get(getEndPoint, (req, res, ctx) => {
+  rest.post(endPoint, (req, res, ctx) => {
     if (req.headers.get("authorization") === `Bearer ${testToken}`) {
-      if (req.url.searchParams.get("id") === testId) {
-        return res(
-          ctx.json({
-            date: "2020-01-01",
-            duration: 3,
-            event: "Test Shift 1",
-            id: "abcdef",
-            loggedCalls: 4,
-            role: "EAC",
-            crewMate: "Test Crewmate 1",
-            location: "Test Location 1",
-          })
-        );
-      }
-      return res(ctx.status(404));
-    }
-    return res(ctx.status(401));
-  }),
-  rest.post(updateEndPoint, (req, res, ctx) => {
-    if (req.headers.get("authorization") === `Bearer ${testToken}`) {
-      const { id, ...update } = JSON.parse(req.body?.toString() ?? "") as {
-        id: string;
-      } & NewShift;
+      const update = JSON.parse(req.body?.toString() ?? "") as NewShift;
 
-      if (id === testId) {
-        expect(update).toEqual(testUpdate);
+      expect(update).toEqual(testUpdate);
 
-        return res(ctx.status(200));
-      }
-      return res(ctx.status(404));
+      return res(ctx.status(200));
     }
     return res(ctx.status(401));
   })
@@ -85,80 +55,19 @@ afterAll(() => server.close());
 it("renders without crashing", () => {
   const div = document.createElement("div");
 
-  ReactDOM.render(<EditShiftBase />, div);
+  ReactDOM.render(<AddShiftBase />, div);
 
   ReactDOM.unmountComponentAtNode(div);
 });
 
-it("renders loading correctly", async () => {
-  const res = render(<EditShiftBase />);
-
-  expect(res.asFragment()).toMatchSnapshot();
-});
-
-it("renders successful load correctly", async () => {
-  const res = render(<EditShiftBase />);
-
-  await res.findByDisplayValue("Test Shift 1");
-
-  expect(res.asFragment()).toMatchSnapshot();
-});
-
-it("redirects to the login page if not authorised", async () => {
-  (useAuth0 as jest.Mock).mockReturnValue({
-    getAccessTokenSilently: jest
-      .fn()
-      .mockReturnValue(Promise.resolve("BadToken")),
-  });
-
-  const testPush = jest.fn();
-
-  (useHistory as jest.Mock).mockReturnValue({
-    push: testPush,
-  });
-
-  render(<EditShiftBase />);
-
-  await waitFor(() => expect(testPush).toBeCalledWith("/"));
-});
-
-it("redirects to the home page if not found", async () => {
-  const testPush = jest.fn();
-
-  (useHistory as jest.Mock).mockReturnValue({
-    push: testPush,
-  });
-
-  server.use(
-    rest.get(getEndPoint, (req, res, ctx) => {
-      if (req.headers.get("authorization") === `Bearer ${testToken}`) {
-        return res(ctx.status(404));
-      }
-      return res(ctx.status(401));
-    })
-  );
-
-  render(<EditShiftBase />);
-
-  await waitFor(() => expect(testPush).toBeCalledWith("/home"));
-});
-
-it("displays an error if the request fails", async () => {
-  server.use(rest.get(getEndPoint, (_, res, ctx) => res(ctx.status(500))));
-
-  const res = render(<EditShiftBase />);
-
-  await res.findByText("There was a problem speaking to the server.", {
-    exact: false,
-  });
+it("renders correctly", async () => {
+  const res = render(<AddShiftBase />);
 
   expect(res.asFragment()).toMatchSnapshot();
 });
 
 it("displays an invalid date properly", async () => {
-  const res = render(<EditShiftBase />);
-
-  await res.findByDisplayValue("Test Shift 1");
+  const res = render(<AddShiftBase />);
 
   const box = res.getByLabelText("Date", {
     exact: false,
@@ -178,9 +87,7 @@ it("displays an invalid date properly", async () => {
 });
 
 it("displays an invalid duration properly", async () => {
-  const res = render(<EditShiftBase />);
-
-  await res.findByDisplayValue("Test Shift 1");
+  const res = render(<AddShiftBase />);
 
   const box = res.getByRole("spinbutton", {
     name: "Hours",
@@ -200,12 +107,14 @@ it("displays an invalid duration properly", async () => {
 });
 
 it("displays an invalid event name properly", async () => {
-  const res = render(<EditShiftBase />);
-
-  await res.findByDisplayValue("Test Shift 1");
+  const res = render(<AddShiftBase />);
 
   const box = res.getByRole("textbox", {
     name: "Event",
+  });
+
+  fireEvent.change(box, {
+    target: { value: "a" },
   });
 
   fireEvent.change(box, {
@@ -228,9 +137,7 @@ it("submits data to the server when save is clicked", async () => {
     push: testPush,
   });
 
-  const res = render(<EditShiftBase />);
-
-  await res.findByDisplayValue("Test Shift 1");
+  const res = render(<AddShiftBase />);
 
   fireEvent.change(res.getByLabelText("Date", { exact: false }), {
     target: { value: testUpdate.date },
@@ -267,11 +174,9 @@ it("displays alert when save fails", async () => {
     push: testPush,
   });
 
-  const res = render(<EditShiftBase />);
+  const res = render(<AddShiftBase />);
 
-  server.use(rest.post(updateEndPoint, (_, r, ctx) => r(ctx.status(500))));
-
-  await res.findByDisplayValue("Test Shift 1");
+  server.use(rest.post(endPoint, (_, rs, ctx) => rs(ctx.status(500))));
 
   fireEvent.change(res.getByLabelText("Date", { exact: false }), {
     target: { value: testUpdate.date },
