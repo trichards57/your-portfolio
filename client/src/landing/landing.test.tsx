@@ -1,9 +1,10 @@
 import { fireEvent, render, screen } from "@testing-library/react";
-import Landing from ".";
 import ReactDOM from "react-dom";
-import { ServerAudience } from "../shared/constants";
 import renderer from "react-test-renderer";
 import { useAuth0 } from "@auth0/auth0-react";
+import React from "react";
+import { ServerAudience } from "../shared/constants";
+import Landing from ".";
 
 jest.mock("@auth0/auth0-react");
 

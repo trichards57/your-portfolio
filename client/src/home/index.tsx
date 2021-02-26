@@ -2,11 +2,11 @@ import { Grid, Typography, makeStyles } from "@material-ui/core";
 import React, { ReactNode, useEffect, useState } from "react";
 import { useAuth0, withAuthenticationRequired } from "@auth0/auth0-react";
 import { Alert } from "@material-ui/lab";
+import { useHistory } from "react-router-dom";
 import LoadingCard from "../shared/loading-card";
 import Nav from "../nav";
 import ShiftCard from "../shared/shift-card";
 import { ShiftSummary } from "../model/shift";
-import { useHistory } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
   alert: {
@@ -15,7 +15,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export function Home() {
+export function HomeBase() {
   const classes = useStyles();
   const history = useHistory();
   const [shifts, setShifts] = useState<ShiftSummary[]>([]);
@@ -67,6 +67,7 @@ export function Home() {
     ));
 
   const loadingCards = [{}, {}, {}, {}].map((s, i) => (
+    // eslint-disable-next-line react/no-array-index-key
     <Grid item key={i} xs={6} sm={6} lg={3}>
       <LoadingCard />
     </Grid>
@@ -96,4 +97,4 @@ export function Home() {
   );
 }
 
-export default withAuthenticationRequired(Home);
+export default withAuthenticationRequired(HomeBase);

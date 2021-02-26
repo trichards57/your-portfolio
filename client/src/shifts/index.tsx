@@ -1,9 +1,9 @@
 import { Grid, Typography } from "@material-ui/core";
 import React, { useEffect, useState } from "react";
 import { useAuth0, withAuthenticationRequired } from "@auth0/auth0-react";
+import { Pagination } from "@material-ui/lab";
 import LoadingCard from "../shared/loading-card";
 import Nav from "../nav";
-import { Pagination } from "@material-ui/lab";
 import ShiftCard from "../shared/shift-card";
 import { ShiftSummary } from "../model/shift";
 
@@ -37,11 +37,12 @@ function Shifts() {
         const newShifts = (await response.json()) as ShiftSummary[];
 
         setShifts((s) => {
+          // eslint-disable-next-line no-param-reassign
           s[page] = newShifts;
           return s;
         });
         const totalCount = response.headers.get("x-total-count");
-        if (totalCount) setTotalShifts(parseInt(totalCount));
+        if (totalCount) setTotalShifts(parseInt(totalCount, 10));
         else setTotalShifts(newShifts.length);
       }
 
@@ -62,6 +63,7 @@ function Shifts() {
       ));
 
   const loadingCards = [{}, {}, {}, {}].map((s, i) => (
+    // eslint-disable-next-line react/no-array-index-key
     <Grid item key={i} xs={6} sm={6} lg={3}>
       <LoadingCard />
     </Grid>

@@ -9,8 +9,8 @@ import {
 import { format, parseISO } from "date-fns";
 import { Link } from "react-router-dom";
 import React from "react";
-import { ShiftSummary } from "../model/shift";
 import classNames from "classnames";
+import { ShiftSummary } from "../model/shift";
 
 const useStyles = makeStyles({
   date: {

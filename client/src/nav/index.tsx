@@ -17,8 +17,8 @@ import {
   makeStyles,
   useTheme,
 } from "@material-ui/core";
-import NavItem from "./nav-item";
 import React from "react";
+import NavItem from "./nav-item";
 
 const drawerWidth = 240;
 

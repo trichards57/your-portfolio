@@ -7,8 +7,8 @@ import {
   makeStyles,
 } from "@material-ui/core";
 import React from "react";
-import { ServerAudience } from "../shared/constants";
 import { useAuth0 } from "@auth0/auth0-react";
+import { ServerAudience } from "../shared/constants";
 
 const useStyles = makeStyles((theme) => ({
   container: {

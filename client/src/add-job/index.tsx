@@ -12,13 +12,12 @@ import {
   Typography,
   makeStyles,
 } from "@material-ui/core";
-import { NewJob, Outcome } from "../model/job";
 import { useAuth0, withAuthenticationRequired } from "@auth0/auth0-react";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useHistory, useLocation } from "react-router-dom";
-import Nav from "../nav";
-import React from "react";
 import { Save as SaveIcon } from "@material-ui/icons";
+import Nav from "../nav";
+import { NewJob, Outcome } from "../model/job";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -106,7 +105,7 @@ function AddJob() {
                 className={classes.item}
                 value={age?.toString() ?? ""}
                 onChange={(c) => {
-                  const val = parseInt(c.currentTarget.value);
+                  const val = parseInt(c.currentTarget.value, 10);
                   if (!val || val <= 0) setAge(undefined);
                   else setAge(val);
                 }}

@@ -1,11 +1,11 @@
 import { Route, BrowserRouter as Router, Switch } from "react-router-dom";
+import { Auth0Provider } from "@auth0/auth0-react";
+import React from "react";
 import AddJob from "./add-job";
 import AddShift from "./add-shift";
-import { Auth0Provider } from "@auth0/auth0-react";
 import EditShift from "./edit-shift";
 import Home from "./home";
 import Landing from "./landing";
-import React from "react";
 import Shifts from "./shifts";
 
 function App() {
@@ -13,7 +13,7 @@ function App() {
     <Auth0Provider
       domain="tr-toolbox.eu.auth0.com"
       clientId="BaYjw4rJJQONsdFN7Vxd6Km9Z38rFUKR"
-      redirectUri={window.location.origin + "/home"}
+      redirectUri={`${window.location.origin}/home`}
     >
       <Router>
         <Switch>
