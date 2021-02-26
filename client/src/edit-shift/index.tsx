@@ -5,19 +5,19 @@ import {
   Grid,
   InputLabel,
   makeStyles,
-  MenuItem,
   Paper,
   Select,
   TextField,
   Typography,
 } from "@material-ui/core";
 import { Save as SaveIcon } from "@material-ui/icons";
-import { Skeleton } from "@material-ui/lab";
+import { Alert, Skeleton } from "@material-ui/lab";
 import { formatISO, isValid, parseISO } from "date-fns";
 import React, { useEffect, useState } from "react";
 import { useHistory, useParams } from "react-router-dom";
 import { NewShift, RoleType } from "../model/shift";
 import Nav from "../nav";
+import { ServerAudience } from "../shared/constants";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -29,9 +29,13 @@ const useStyles = makeStyles((theme) => ({
   skeleton: {
     height: "72px",
   },
+  alert: {
+    marginTop: theme.spacing(1),
+    marginBottom: theme.spacing(1),
+  },
 }));
 
-function EditShift() {
+export function EditShift() {
   const { id } = useParams<{ id: string }>();
 
   const classes = useStyles();
@@ -51,6 +55,9 @@ function EditShift() {
   const [crewMate, setCrewMate] = useState("");
   const [canSubmit, setCanSubmit] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const [errorLoading, setErrorLoading] = useState(false);
+  const [saveRunning, setSaveRunning] = useState(false);
+  const [errorSaving, setErrorSaving] = useState(false);
 
   const { getAccessTokenSilently } = useAuth0();
 
@@ -64,11 +71,14 @@ function EditShift() {
     setEventNameValid(eventName.trim().length > 0);
   }, [eventName]);
   useEffect(() => {
-    setCanSubmit(dateValid && durationValid && eventNameValid);
-  }, [dateValid, durationValid, eventNameValid]);
+    setCanSubmit(dateValid && durationValid && eventNameValid && !saveRunning);
+  }, [dateValid, durationValid, eventNameValid, saveRunning]);
 
   useEffect(() => {
     setIsLoading(true);
+
+    const abortController = new AbortController();
+
     async function loadData() {
       const token = await getAccessTokenSilently({
         audience: "https://tr-toolbox.me.uk/your-portfolio",
@@ -79,14 +89,19 @@ function EditShift() {
         headers: {
           Authorization: `Bearer ${token}`,
         },
-        method: "GET",
+        signal: abortController.signal,
       });
 
       if (!response.ok) {
-        history.push("/home");
+        if (response.status === 401) history.push("/");
+        else if (response.status === 404) history.push("/home");
+        else setErrorLoading(true);
+        return;
       }
 
       const shift = (await response.json()) as NewShift;
+
+      if (abortController.signal.aborted) return;
 
       setShiftDate(shift.date.split("T")[0]);
       setDuration(shift.duration);
@@ -98,13 +113,17 @@ function EditShift() {
       setIsLoading(false);
     }
     loadData();
+    return () => abortController.abort();
   }, [getAccessTokenSilently, history, id]);
 
   async function submit() {
     if (!canSubmit) return;
 
+    setSaveRunning(true);
+    setErrorSaving(false);
+
     const token = await getAccessTokenSilently({
-      audience: "https://tr-toolbox.me.uk/your-portfolio",
+      audience: ServerAudience,
     });
     const uri = "/api/UpdateShift";
 
@@ -126,15 +145,31 @@ function EditShift() {
 
     if (response.ok) {
       history.push("/home");
+    } else {
+      setErrorSaving(true);
     }
+
+    setSaveRunning(false);
   }
 
   return (
     <Nav>
       <Paper className={classes.root}>
         <Typography component="h2" variant="h5" gutterBottom>
-          Add Shift
+          Edit Shift
         </Typography>
+        {errorSaving && (
+          <Alert severity="error" className={classes.alert}>
+            There was an problem speaking to the server. Please try again, or
+            retry later.
+          </Alert>
+        )}
+        {errorLoading && (
+          <Alert severity="error" className={classes.alert}>
+            There was a problem speaking to the server. Try refreshing, or come
+            back a little later.
+          </Alert>
+        )}
         <form noValidate>
           <Grid container spacing={2}>
             <Grid item xs={6} sm={8} md={3} lg={2}>
@@ -144,15 +179,16 @@ function EditShift() {
                 <TextField
                   label="Date"
                   type="date"
+                  id="date"
                   InputLabelProps={{
                     shrink: true,
                   }}
                   className={classes.item}
                   value={shiftDate}
-                  onChange={(c) => setShiftDate(c.currentTarget.value)}
+                  onChange={(c) => setShiftDate(c.target.value)}
                   required
                   error={!dateValid}
-                  helperText={dateValid ? "" : "A valid date is required"}
+                  helperText={dateValid ? "" : "You need to enter a date"}
                   variant="filled"
                 />
               )}
@@ -164,6 +200,7 @@ function EditShift() {
                 <TextField
                   label="Hours"
                   type="number"
+                  id="hours"
                   className={classes.item}
                   value={duration.toString()}
                   onChange={(c) =>
@@ -184,6 +221,7 @@ function EditShift() {
               ) : (
                 <TextField
                   label="Event"
+                  id="event"
                   className={classes.item}
                   value={eventName}
                   onChange={(c) => {
@@ -207,6 +245,7 @@ function EditShift() {
               ) : (
                 <TextField
                   label="Location"
+                  id="location"
                   className={classes.item}
                   value={location}
                   onChange={(c) => setLocation(c.currentTarget.value)}
@@ -219,15 +258,19 @@ function EditShift() {
                 <Skeleton className={classes.skeleton} />
               ) : (
                 <FormControl className={classes.item} required variant="filled">
-                  <InputLabel id="role-label">Role</InputLabel>
+                  <InputLabel htmlFor="role" id="role-label">
+                    Role
+                  </InputLabel>
                   <Select
                     labelId="role-label"
+                    id="role"
                     value={role}
                     onChange={(c) => setRole(c.target.value as RoleType)}
+                    native
                   >
-                    <MenuItem value="EAC">EAC</MenuItem>
-                    <MenuItem value="AFA">AFA</MenuItem>
-                    <MenuItem value="CRU">CRU</MenuItem>
+                    <option value="EAC">EAC</option>
+                    <option value="AFA">AFA</option>
+                    <option value="CRU">CRU</option>
                   </Select>
                 </FormControl>
               )}
@@ -238,6 +281,7 @@ function EditShift() {
               ) : (
                 <TextField
                   label="Crew Mate"
+                  id="crew-mate"
                   className={classes.item}
                   value={crewMate}
                   onChange={(c) => setCrewMate(c.currentTarget.value)}
@@ -253,6 +297,7 @@ function EditShift() {
                   variant="contained"
                   onClick={submit}
                   disabled={!canSubmit}
+                  id="save-button"
                 >
                   Save
                 </Button>
