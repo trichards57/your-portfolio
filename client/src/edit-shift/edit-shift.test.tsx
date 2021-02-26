@@ -309,7 +309,7 @@ it("displays alert when save fails", async () => {
   await waitFor(() => res.getByRole("alert"));
 
   const alert = res.getByRole("alert");
-  expect(alert).toContainHTML("problem speaking to the server");
+  expect(alert).toHaveTextContent("problem speaking to the server");
 
   expect(testPush).not.toBeCalled();
 
