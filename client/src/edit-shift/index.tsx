@@ -1,22 +1,22 @@
-import { useAuth0, withAuthenticationRequired } from "@auth0/auth0-react";
+import { Alert, Skeleton } from "@material-ui/lab";
 import {
   Button,
   FormControl,
   Grid,
   InputLabel,
-  makeStyles,
   Paper,
   Select,
   TextField,
   Typography,
+  makeStyles,
 } from "@material-ui/core";
-import { Save as SaveIcon } from "@material-ui/icons";
-import { Alert, Skeleton } from "@material-ui/lab";
-import { formatISO, isValid, parseISO } from "date-fns";
-import React, { useEffect, useState } from "react";
-import { useHistory, useParams } from "react-router-dom";
 import { NewShift, RoleType } from "../model/shift";
+import React, { useEffect, useState } from "react";
+import { formatISO, isValid, parseISO } from "date-fns";
+import { useAuth0, withAuthenticationRequired } from "@auth0/auth0-react";
+import { useHistory, useParams } from "react-router-dom";
 import Nav from "../nav";
+import { Save as SaveIcon } from "@material-ui/icons";
 import { ServerAudience } from "../shared/constants";
 
 const useStyles = makeStyles((theme) => ({

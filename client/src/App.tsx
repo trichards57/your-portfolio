@@ -1,12 +1,12 @@
-import { Auth0Provider } from "@auth0/auth0-react";
-import React from "react";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import Landing from "./landing";
-import Home from "./home";
-import AddShift from "./add-shift";
-import EditShift from "./edit-shift";
-import Shifts from "./shifts";
+import { Route, BrowserRouter as Router, Switch } from "react-router-dom";
 import AddJob from "./add-job";
+import AddShift from "./add-shift";
+import { Auth0Provider } from "@auth0/auth0-react";
+import EditShift from "./edit-shift";
+import Home from "./home";
+import Landing from "./landing";
+import React from "react";
+import Shifts from "./shifts";
 
 function App() {
   return (

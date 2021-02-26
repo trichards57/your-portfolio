@@ -3,14 +3,14 @@ import {
   Card,
   CardActions,
   CardContent,
-  makeStyles,
   Typography,
+  makeStyles,
 } from "@material-ui/core";
-import classNames from "classnames";
 import { format, parseISO } from "date-fns";
-import React from "react";
 import { Link } from "react-router-dom";
+import React from "react";
 import { ShiftSummary } from "../model/shift";
+import classNames from "classnames";
 
 const useStyles = makeStyles({
   date: {

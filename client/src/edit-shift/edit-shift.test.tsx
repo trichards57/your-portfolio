@@ -1,15 +1,16 @@
-import { useAuth0 } from "@auth0/auth0-react";
 import { fireEvent, render, waitFor } from "@testing-library/react";
-import { rest } from "msw";
-import { setupServer } from "msw/node";
-import ReactDOM from "react-dom";
-import { useHistory } from "react-router-dom";
 import { EditShift } from ".";
 import { NewShift } from "../model/shift";
+import ReactDOM from "react-dom";
+import { rest } from "msw";
+import { setupServer } from "msw/node";
+import { useAuth0 } from "@auth0/auth0-react";
+import { useHistory } from "react-router-dom";
 
 jest.mock("@auth0/auth0-react");
 jest.mock("react-router-dom", () => ({
   useHistory: jest.fn(),
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   useParams<T>() {
     return { id: testId };
   },

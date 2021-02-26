@@ -1,23 +1,24 @@
-import { useAuth0, withAuthenticationRequired } from "@auth0/auth0-react";
 import {
   Button,
   FormControl,
   FormControlLabel,
   Grid,
   InputLabel,
-  makeStyles,
   MenuItem,
   Paper,
   Select,
   Switch,
   TextField,
   Typography,
+  makeStyles,
 } from "@material-ui/core";
-import { Save as SaveIcon } from "@material-ui/icons";
-import React, { useEffect, useState } from "react";
-import { useHistory, useLocation } from "react-router-dom";
 import { NewJob, Outcome } from "../model/job";
+import { useAuth0, withAuthenticationRequired } from "@auth0/auth0-react";
+import { useEffect, useState } from "react";
+import { useHistory, useLocation } from "react-router-dom";
 import Nav from "../nav";
+import React from "react";
+import { Save as SaveIcon } from "@material-ui/icons";
 
 const useStyles = makeStyles((theme) => ({
   root: {

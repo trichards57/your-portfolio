@@ -1,6 +1,6 @@
+import LoadingCard from "./loading-card";
 import React from "react";
 import ReactDOM from "react-dom";
-import LoadingCard from "./loading-card";
 import renderer from "react-test-renderer";
 
 it("renders without crashing", () => {

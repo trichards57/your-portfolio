@@ -1,4 +1,10 @@
 import {
+  PostAdd as AddShiftIcon,
+  Home as HomeIcon,
+  Menu as MenuIcon,
+  CalendarViewDay as ShiftsIcon
+} from "@material-ui/icons";
+import {
   AppBar,
   CssBaseline,
   Divider,
@@ -6,19 +12,13 @@ import {
   Hidden,
   IconButton,
   List,
-  makeStyles,
   Toolbar,
   Typography,
+  makeStyles,
   useTheme,
 } from "@material-ui/core";
-import {
-  Home as HomeIcon,
-  Menu as MenuIcon,
-  PostAdd as AddShiftIcon,
-  CalendarViewDay as ShiftsIcon
-} from "@material-ui/icons";
-import React from "react";
 import NavItem from "./nav-item";
+import React from "react";
 
 const drawerWidth = 240;
 

@@ -1,22 +1,22 @@
-import { useAuth0, withAuthenticationRequired } from "@auth0/auth0-react";
 import {
   Button,
   FormControl,
   Grid,
   InputLabel,
-  makeStyles,
   MenuItem,
   Paper,
   Select,
   TextField,
   Typography,
+  makeStyles,
 } from "@material-ui/core";
-import { Save as SaveIcon } from "@material-ui/icons";
-import { formatISO, isValid, parseISO } from "date-fns";
-import React, { useEffect, useState } from "react";
-import { useHistory } from "react-router-dom";
 import { NewShift, RoleType } from "../model/shift";
+import React, { useEffect, useState } from "react";
+import { formatISO, isValid, parseISO } from "date-fns";
+import { useAuth0, withAuthenticationRequired } from "@auth0/auth0-react";
 import Nav from "../nav";
+import { Save as SaveIcon } from "@material-ui/icons";
+import { useHistory } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
   root: {

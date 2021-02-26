@@ -1,6 +1,6 @@
 import { ListItem, ListItemIcon, ListItemText } from "@material-ui/core";
-import React from "react";
 import { Link } from "react-router-dom";
+import React from "react";
 
 function NavItem(props: { name: string; href: string; icon: React.ReactNode }) {
   const { icon, href, name } = props;

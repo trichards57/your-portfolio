@@ -1,10 +1,12 @@
-import { setupServer } from "msw/node";
-import { rest } from "msw";
 import { forwardRef as mockForwardRef } from "react";
+
+// eslint-disable-next-line sort-imports
+import { render, waitFor } from "@testing-library/react";
 import { Home } from ".";
 import ReactDOM from "react-dom";
+import { rest } from "msw";
+import { setupServer } from "msw/node";
 import { useAuth0 } from "@auth0/auth0-react";
-import { render, waitFor } from "@testing-library/react";
 import { useHistory } from "react-router-dom";
 
 jest.mock("@auth0/auth0-react");

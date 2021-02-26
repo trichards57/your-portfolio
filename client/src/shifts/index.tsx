@@ -1,11 +1,11 @@
-import { useAuth0, withAuthenticationRequired } from "@auth0/auth0-react";
 import { Grid, Typography } from "@material-ui/core";
 import React, { useEffect, useState } from "react";
+import { useAuth0, withAuthenticationRequired } from "@auth0/auth0-react";
+import LoadingCard from "../shared/loading-card";
 import Nav from "../nav";
+import { Pagination } from "@material-ui/lab";
 import ShiftCard from "../shared/shift-card";
 import { ShiftSummary } from "../model/shift";
-import LoadingCard from "../shared/loading-card";
-import { Pagination } from "@material-ui/lab";
 
 const PAGE_SIZE = 6;
 

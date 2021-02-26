@@ -1,9 +1,9 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import ShiftCard from "./shift-card";
-import renderer from "react-test-renderer";
-import { ShiftSummary } from "../model/shift";
 import { BrowserRouter as Router } from "react-router-dom";
+import ShiftCard from "./shift-card";
+import { ShiftSummary } from "../model/shift";
+import renderer from "react-test-renderer";
 
 const defaultShift: ShiftSummary = {
   date: "2021-10-01",

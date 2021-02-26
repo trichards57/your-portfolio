@@ -1,6 +1,6 @@
-import { Card, CardContent, makeStyles, Typography } from "@material-ui/core";
-import { Skeleton } from "@material-ui/lab";
+import { Card, CardContent, Typography, makeStyles } from "@material-ui/core";
 import React from "react";
+import { Skeleton } from "@material-ui/lab";
 
 const useStyles = makeStyles({
   date: {
