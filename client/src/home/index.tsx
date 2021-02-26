@@ -1,5 +1,5 @@
 import { useAuth0, withAuthenticationRequired } from "@auth0/auth0-react";
-import { Grid, Typography } from "@material-ui/core";
+import { Grid, makeStyles, Typography } from "@material-ui/core";
 import React, { ReactNode, useEffect, useState } from "react";
 import Nav from "../nav";
 import ShiftCard from "../shared/shift-card";
@@ -8,7 +8,15 @@ import LoadingCard from "../shared/loading-card";
 import { useHistory } from "react-router-dom";
 import { Alert } from "@material-ui/lab";
 
+const useStyles = makeStyles((theme) => ({
+  alert: {
+    marginTop: theme.spacing(1),
+    marginBottom: theme.spacing(1),
+  },
+}));
+
 export function Home() {
+  const classes = useStyles();
   const history = useHistory();
   const [shifts, setShifts] = useState<ShiftSummary[]>([]);
   const [isLoading, setIsLoading] = useState(false);
@@ -69,7 +77,7 @@ export function Home() {
   if (isLoading) content = loadingCards;
   else if (error)
     content = (
-      <Alert severity="error">
+      <Alert severity="error" className={classes.alert}>
         There was a problem speaking to the server. Try refreshing, or come back
         a little later.
       </Alert>
