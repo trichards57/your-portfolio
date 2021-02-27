@@ -63,6 +63,10 @@ it("renders without crashing", () => {
 it("renders correctly", async () => {
   const res = render(<AddShiftBase />);
 
+  fireEvent.change(res.getByLabelText("Date", { exact: false }), {
+    target: { value: testUpdate.date },
+  });
+
   expect(res.asFragment()).toMatchSnapshot();
 });
 

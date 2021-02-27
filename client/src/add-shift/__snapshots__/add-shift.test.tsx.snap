@@ -95,7 +95,7 @@ exports[`renders correctly 1`] = `
                     id="date"
                     required=""
                     type="date"
-                    value="2021-02-26"
+                    value="2021-01-02"
                   />
                 </div>
               </div>
