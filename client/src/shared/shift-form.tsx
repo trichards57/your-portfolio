@@ -49,26 +49,27 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function ShiftForm({
-  isLoading,
-  shiftDate,
-  setShiftDate,
-  dateValid,
-  duration,
-  durationValid,
-  setDuration,
-  eventName,
-  eventNameValid,
-  setEventName,
-  location,
-  setLocation,
-  role,
-  setRole,
-  crewMate,
-  setCrewMate,
-  submit,
-  canSubmit,
-}: ShiftFormProps) {
+export default function ShiftForm(props: ShiftFormProps) {
+  const {
+    isLoading,
+    shiftDate,
+    setShiftDate,
+    dateValid,
+    duration,
+    durationValid,
+    setDuration,
+    eventName,
+    eventNameValid,
+    setEventName,
+    location,
+    setLocation,
+    role,
+    setRole,
+    crewMate,
+    setCrewMate,
+    submit,
+    canSubmit,
+  } = props;
   const classes = useStyles();
   const [eventNameChanged, setEventNameChanged] = useState(false);
 
