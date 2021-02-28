@@ -1,0 +1,466 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<DocumentFragment>
+  <div
+    class="makeStyles-root-20"
+  >
+    <header
+      class="MuiPaper-root MuiAppBar-root MuiAppBar-positionFixed MuiAppBar-colorPrimary makeStyles-appBar-22 mui-fixed MuiPaper-elevation4"
+    >
+      <div
+        class="MuiToolbar-root MuiToolbar-regular MuiToolbar-gutters"
+      >
+        <button
+          aria-label="open drawer"
+          class="MuiButtonBase-root MuiIconButton-root makeStyles-menuButton-23 MuiIconButton-colorInherit MuiIconButton-edgeStart"
+          tabindex="0"
+          type="button"
+        >
+          <span
+            class="MuiIconButton-label"
+          >
+            <svg
+              aria-hidden="true"
+              class="MuiSvgIcon-root"
+              focusable="false"
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"
+              />
+            </svg>
+          </span>
+          <span
+            class="MuiTouchRipple-root"
+          />
+        </button>
+        <h6
+          class="MuiTypography-root MuiTypography-h6 MuiTypography-noWrap"
+        >
+          Your Portfolio
+        </h6>
+      </div>
+    </header>
+    <nav
+      aria-label="mailbox folders"
+      class="makeStyles-drawer-21"
+    />
+    <main
+      class="makeStyles-content-26"
+    >
+      <div
+        class="makeStyles-toolbar-24"
+      />
+      <div
+        class="MuiPaper-root makeStyles-root-17 MuiPaper-elevation1 MuiPaper-rounded"
+      >
+        <h2
+          class="MuiTypography-root MuiTypography-h5 MuiTypography-gutterBottom"
+        >
+          Add Job
+        </h2>
+        <form
+          novalidate=""
+        >
+          <div
+            class="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-2"
+          >
+            <div
+              class="MuiGrid-root MuiGrid-item MuiGrid-grid-sm-12 MuiGrid-grid-md-2"
+            >
+              <div
+                class="MuiFormControl-root MuiTextField-root makeStyles-item-28"
+              >
+                <label
+                  class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-filled"
+                  data-shrink="false"
+                  for="age"
+                  id="age-label"
+                >
+                  Age
+                </label>
+                <div
+                  class="MuiInputBase-root MuiFilledInput-root MuiFilledInput-underline MuiInputBase-formControl"
+                >
+                  <input
+                    aria-invalid="false"
+                    class="MuiInputBase-input MuiFilledInput-input"
+                    id="age"
+                    type="number"
+                    value=""
+                  />
+                </div>
+              </div>
+            </div>
+            <div
+              class="MuiGrid-root MuiGrid-item MuiGrid-grid-sm-12 MuiGrid-grid-md-4"
+            >
+              <div
+                class="MuiFormControl-root makeStyles-item-28"
+              >
+                <label
+                  class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-filled MuiFormLabel-filled"
+                  data-shrink="true"
+                  for="gender"
+                  id="gender-label"
+                >
+                  Gender
+                </label>
+                <div
+                  class="MuiInputBase-root MuiFilledInput-root MuiFilledInput-underline MuiInputBase-formControl"
+                >
+                  <select
+                    aria-invalid="false"
+                    class="MuiSelect-root MuiSelect-select MuiSelect-filled MuiInputBase-input MuiFilledInput-input"
+                    id="gender"
+                  >
+                    <option>
+                      Not Set
+                    </option>
+                    <option
+                      value="Female"
+                    >
+                      Female
+                    </option>
+                    <option
+                      value="Male"
+                    >
+                      Male
+                    </option>
+                  </select>
+                  <svg
+                    aria-hidden="true"
+                    class="MuiSvgIcon-root MuiSelect-icon MuiSelect-iconFilled"
+                    focusable="false"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      d="M7 10l5 5 5-5z"
+                    />
+                  </svg>
+                </div>
+              </div>
+            </div>
+            <div
+              class="MuiGrid-root MuiGrid-item MuiGrid-grid-sm-12 MuiGrid-grid-md-4"
+            >
+              <div
+                class="MuiFormControl-root makeStyles-item-28"
+              >
+                <label
+                  class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-filled MuiFormLabel-filled"
+                  data-shrink="true"
+                  for="category"
+                  id="category-label"
+                >
+                  Category
+                </label>
+                <div
+                  class="MuiInputBase-root MuiFilledInput-root MuiFilledInput-underline MuiInputBase-formControl"
+                >
+                  <select
+                    aria-invalid="false"
+                    class="MuiSelect-root MuiSelect-select MuiSelect-filled MuiInputBase-input MuiFilledInput-input"
+                    id="category"
+                  >
+                    <option
+                      value="1"
+                    >
+                      Cat 1
+                    </option>
+                    <option
+                      value="2"
+                    >
+                      Cat 2
+                    </option>
+                    <option
+                      value="3"
+                    >
+                      Cat 3
+                    </option>
+                    <option
+                      value="4"
+                    >
+                      Cat 4
+                    </option>
+                    <option
+                      value="5"
+                    >
+                      Cat 5
+                    </option>
+                  </select>
+                  <svg
+                    aria-hidden="true"
+                    class="MuiSvgIcon-root MuiSelect-icon MuiSelect-iconFilled"
+                    focusable="false"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      d="M7 10l5 5 5-5z"
+                    />
+                  </svg>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div
+            class="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-2"
+          >
+            <div
+              class="MuiGrid-root MuiGrid-item MuiGrid-grid-sm-12 MuiGrid-grid-md-6"
+            >
+              <label
+                class="MuiFormControlLabel-root"
+              >
+                <span
+                  class="MuiSwitch-root"
+                >
+                  <span
+                    aria-disabled="false"
+                    class="MuiButtonBase-root MuiIconButton-root PrivateSwitchBase-root-29 MuiSwitch-switchBase MuiSwitch-colorSecondary"
+                  >
+                    <span
+                      class="MuiIconButton-label"
+                    >
+                      <input
+                        class="PrivateSwitchBase-input-32 MuiSwitch-input"
+                        type="checkbox"
+                        value=""
+                      />
+                      <span
+                        class="MuiSwitch-thumb"
+                      />
+                    </span>
+                    <span
+                      class="MuiTouchRipple-root"
+                    />
+                  </span>
+                  <span
+                    class="MuiSwitch-track"
+                  />
+                </span>
+                <span
+                  class="MuiTypography-root MuiFormControlLabel-label MuiTypography-body1"
+                >
+                  Drove to Patient
+                </span>
+              </label>
+            </div>
+            <div
+              class="MuiGrid-root MuiGrid-item MuiGrid-grid-sm-12 MuiGrid-grid-md-6"
+            >
+              <label
+                class="MuiFormControlLabel-root"
+              >
+                <span
+                  class="MuiSwitch-root"
+                >
+                  <span
+                    aria-disabled="false"
+                    class="MuiButtonBase-root MuiIconButton-root PrivateSwitchBase-root-29 MuiSwitch-switchBase MuiSwitch-colorSecondary"
+                  >
+                    <span
+                      class="MuiIconButton-label"
+                    >
+                      <input
+                        class="PrivateSwitchBase-input-32 MuiSwitch-input"
+                        type="checkbox"
+                        value=""
+                      />
+                      <span
+                        class="MuiSwitch-thumb"
+                      />
+                    </span>
+                    <span
+                      class="MuiTouchRipple-root"
+                    />
+                  </span>
+                  <span
+                    class="MuiSwitch-track"
+                  />
+                </span>
+                <span
+                  class="MuiTypography-root MuiFormControlLabel-label MuiTypography-body1"
+                >
+                  Used Blue Lights
+                </span>
+              </label>
+            </div>
+            <div
+              class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12"
+            >
+              <div
+                class="MuiFormControl-root MuiTextField-root makeStyles-item-28"
+              >
+                <label
+                  class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-filled"
+                  data-shrink="false"
+                  for="notes"
+                  id="notes-label"
+                >
+                  Notes
+                </label>
+                <div
+                  class="MuiInputBase-root MuiFilledInput-root MuiFilledInput-underline MuiInputBase-formControl MuiInputBase-multiline MuiFilledInput-multiline"
+                >
+                  <textarea
+                    aria-invalid="false"
+                    class="MuiInputBase-input MuiFilledInput-input MuiInputBase-inputMultiline MuiFilledInput-inputMultiline"
+                    id="notes"
+                    rows="6"
+                  />
+                </div>
+              </div>
+            </div>
+            <div
+              class="MuiGrid-root MuiGrid-item MuiGrid-grid-sm-12 MuiGrid-grid-md-6"
+            >
+              <div
+                class="MuiFormControl-root makeStyles-item-28"
+              >
+                <label
+                  class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-filled MuiFormLabel-filled Mui-required Mui-required"
+                  data-shrink="true"
+                  for="outcome"
+                  id="outcome-label"
+                >
+                  Outcome
+                  <span
+                    aria-hidden="true"
+                    class="MuiFormLabel-asterisk MuiInputLabel-asterisk"
+                  >
+                     *
+                  </span>
+                </label>
+                <div
+                  class="MuiInputBase-root MuiFilledInput-root MuiFilledInput-underline MuiInputBase-formControl"
+                >
+                  <select
+                    aria-invalid="false"
+                    class="MuiSelect-root MuiSelect-select MuiSelect-filled MuiInputBase-input MuiFilledInput-input"
+                    id="outcome"
+                    required=""
+                  >
+                    <option
+                      value="StoodDown"
+                    >
+                      Stood Down
+                    </option>
+                    <option
+                      value="Conveyed"
+                    >
+                      Conveyed
+                    </option>
+                    <option
+                      value="DischargedOnScene"
+                    >
+                      Discharge on Scene
+                    </option>
+                    <option
+                      value="NotFound"
+                    >
+                      Not Found
+                    </option>
+                    <option
+                      value="Other"
+                    >
+                      Other
+                    </option>
+                  </select>
+                  <svg
+                    aria-hidden="true"
+                    class="MuiSvgIcon-root MuiSelect-icon MuiSelect-iconFilled"
+                    focusable="false"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      d="M7 10l5 5 5-5z"
+                    />
+                  </svg>
+                </div>
+              </div>
+            </div>
+            <div
+              class="MuiGrid-root MuiGrid-item MuiGrid-grid-sm-12 MuiGrid-grid-md-6"
+            >
+              <label
+                class="MuiFormControlLabel-root"
+              >
+                <span
+                  class="MuiSwitch-root"
+                >
+                  <span
+                    aria-disabled="false"
+                    class="MuiButtonBase-root MuiIconButton-root PrivateSwitchBase-root-29 MuiSwitch-switchBase MuiSwitch-colorSecondary"
+                  >
+                    <span
+                      class="MuiIconButton-label"
+                    >
+                      <input
+                        class="PrivateSwitchBase-input-32 MuiSwitch-input"
+                        type="checkbox"
+                        value=""
+                      />
+                      <span
+                        class="MuiSwitch-thumb"
+                      />
+                    </span>
+                    <span
+                      class="MuiTouchRipple-root"
+                    />
+                  </span>
+                  <span
+                    class="MuiSwitch-track"
+                  />
+                </span>
+                <span
+                  class="MuiTypography-root MuiFormControlLabel-label MuiTypography-body1"
+                >
+                  Mark for Reflection
+                </span>
+              </label>
+            </div>
+            <div
+              class="MuiGrid-root MuiGrid-container MuiGrid-item MuiGrid-justify-xs-flex-end MuiGrid-grid-xs-12"
+            >
+              <div
+                class="MuiGrid-root MuiGrid-item"
+              >
+                <button
+                  class="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary"
+                  tabindex="0"
+                  type="button"
+                >
+                  <span
+                    class="MuiButton-label"
+                  >
+                    <span
+                      class="MuiButton-startIcon MuiButton-iconSizeMedium"
+                    >
+                      <svg
+                        aria-hidden="true"
+                        class="MuiSvgIcon-root"
+                        focusable="false"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          d="M17 3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V7l-4-4zm-5 16c-1.66 0-3-1.34-3-3s1.34-3 3-3 3 1.34 3 3-1.34 3-3 3zm3-10H5V5h10v4z"
+                        />
+                      </svg>
+                    </span>
+                    Save
+                  </span>
+                  <span
+                    class="MuiTouchRipple-root"
+                  />
+                </button>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </main>
+  </div>
+</DocumentFragment>
+`;
