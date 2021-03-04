@@ -71,6 +71,15 @@ function ShiftCard({ shift }: { shift: ShiftSummary }) {
         >
           Add Job
         </Button>
+        {shift.loggedCalls > 0 && (
+          <Button
+            variant="contained"
+            size="small"
+            {...{ component: Link, to: `/jobs?shiftId=${shift.id}` }}
+          >
+            Show Jobs
+          </Button>
+        )}
       </CardActions>
     </Card>
   );

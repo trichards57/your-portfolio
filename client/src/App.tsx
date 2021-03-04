@@ -7,6 +7,7 @@ import EditShift from "./edit-shift";
 import Home from "./home";
 import Landing from "./landing";
 import Shifts from "./shifts";
+import Jobs from "./jobs";
 
 function App() {
   return (
@@ -22,6 +23,9 @@ function App() {
           </Route>
           <Route path="/shifts">
             <Shifts />
+          </Route>
+          <Route path="/jobs">
+            <Jobs />
           </Route>
           <Route path="/addShift">
             <AddShift />

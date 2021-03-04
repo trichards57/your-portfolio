@@ -59,7 +59,7 @@ export function HomeBase() {
   }, [getAccessTokenSilently, history]);
 
   const shiftCards = shifts
-    .sort((a, b) => a.date.localeCompare(b.date))
+    .sort((a, b) => b.date.localeCompare(a.date))
     .map((s) => (
       <Grid item key={s.id} xs={6} sm={6} lg={3}>
         <ShiftCard shift={s} />
