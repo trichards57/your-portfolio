@@ -116,6 +116,7 @@ export function AddJobBase() {
           setOutcome={setOutcome}
           setReflectionFlag={setReflectionFlag}
           submit={submit}
+          isLoading={false}
         />
       </Paper>
     </Nav>
