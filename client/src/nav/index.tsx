@@ -27,20 +27,20 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
   },
   drawer: {
-    [theme.breakpoints.up("sm")]: {
+    [theme.breakpoints.up("md")]: {
       width: drawerWidth,
       flexShrink: 0,
     },
   },
   appBar: {
-    [theme.breakpoints.up("sm")]: {
+    [theme.breakpoints.up("md")]: {
       width: `calc(100% - ${drawerWidth}px)`,
       marginLeft: drawerWidth,
     },
   },
   menuButton: {
     marginRight: theme.spacing(2),
-    [theme.breakpoints.up("sm")]: {
+    [theme.breakpoints.up("md")]: {
       display: "none",
     },
   },
@@ -97,7 +97,7 @@ function Nav(props: { children: React.ReactNode }) {
         </Toolbar>
       </AppBar>
       <nav className={classes.drawer} aria-label="mailbox folders">
-        <Hidden smUp>
+        <Hidden mdUp>
           <Drawer
             variant="temporary"
             anchor={theme.direction === "rtl" ? "right" : "left"}
@@ -113,7 +113,7 @@ function Nav(props: { children: React.ReactNode }) {
             {drawer}
           </Drawer>
         </Hidden>
-        <Hidden xsDown>
+        <Hidden smDown>
           <Drawer
             classes={{
               paper: classes.drawerPaper,
