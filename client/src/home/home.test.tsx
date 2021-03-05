@@ -9,7 +9,6 @@ import { HomeBase } from ".";
 
 jest.mock("@auth0/auth0-react");
 jest.mock("react-router-dom", () => ({
-  // eslint-disable-next-line react/jsx-props-no-spreading
   Link: mockForwardRef((p: any, ref) => <div ref={ref} {...p} />),
   useHistory: jest.fn(),
 }));
