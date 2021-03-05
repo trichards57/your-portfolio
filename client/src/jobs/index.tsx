@@ -1,5 +1,9 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import {
   Button,
+  Hidden,
+  IconButton,
+  makeStyles,
   Paper,
   Table,
   TableBody,
@@ -18,21 +22,32 @@ import {
   Create as EditIcon,
   Assignment as ReflectionIcon,
 } from "@material-ui/icons";
+import { Alert, Skeleton } from "@material-ui/lab";
 import Nav from "../nav";
 import { JobSummary } from "../model/job";
 
+const useStyles = makeStyles((theme) => ({
+  alert: {
+    marginTop: theme.spacing(1),
+    marginBottom: theme.spacing(1),
+  },
+}));
+
 function Jobs() {
+  const classes = useStyles();
   const routerLocation = useLocation();
   const shiftId = new URLSearchParams(routerLocation.search).get("shiftId");
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [jobs, setJobs] = useState<JobSummary[]>([]);
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [isLoading, setIsLoading] = useState(false);
+  const [errorLoading, setErrorLoading] = useState(false);
 
   const { getAccessTokenSilently } = useAuth0();
 
   useEffect(() => {
     setIsLoading(true);
+    setErrorLoading(false);
 
     async function loadData() {
       const token = await getAccessTokenSilently({
@@ -50,6 +65,8 @@ function Jobs() {
         const newJobs = (await response.json()) as JobSummary[];
 
         setJobs(newJobs);
+      } else {
+        setErrorLoading(true);
       }
 
       setIsLoading(false);
@@ -63,6 +80,12 @@ function Jobs() {
       <Typography component="h2" variant="h5">
         Jobs
       </Typography>
+      {errorLoading && (
+        <Alert severity="error" className={classes.alert}>
+          There was a problem speaking to the server. Try refreshing, or come
+          back a little later.
+        </Alert>
+      )}
       <TableContainer component={Paper}>
         <Table>
           <TableHead>
@@ -70,28 +93,122 @@ function Jobs() {
               <TableCell>Job Number</TableCell>
               <TableCell>Age</TableCell>
               <TableCell>Gender</TableCell>
-              <TableCell>Category</TableCell>
-              <TableCell>Marked for Reflection</TableCell>
-              <TableCell>Reflection Written</TableCell>
+              <Hidden smDown>
+                <TableCell>Category</TableCell>
+              </Hidden>
+              <Hidden mdDown>
+                <TableCell>Marked for Reflection</TableCell>
+                <TableCell>Reflection Written</TableCell>
+              </Hidden>
               <TableCell />
             </TableRow>
           </TableHead>
           <TableBody>
-            {jobs.map((j, i) => (
-              <TableRow>
-                <TableCell>{i + 1}</TableCell>
-                <TableCell>{j.age ?? ""}</TableCell>
-                <TableCell>{j.gender ?? ""}</TableCell>
-                <TableCell>Cat {j.category}</TableCell>
-                <TableCell>{j.reflectionFlag && <TickIcon />}</TableCell>
-                <TableCell />
-                <TableCell>
-                  <Button startIcon={<EditIcon />}>Edit</Button>
-                  <Button startIcon={<ReflectionIcon />}>Reflection</Button>
-                  <Button startIcon={<DeleteIcon />}>Delete</Button>
-                </TableCell>
-              </TableRow>
-            ))}
+            {isLoading && (
+              <>
+                <TableRow>
+                  <TableCell>
+                    <Skeleton />
+                  </TableCell>
+                  <TableCell>
+                    <Skeleton />
+                  </TableCell>
+                  <TableCell>
+                    <Skeleton />
+                  </TableCell>
+                  <Hidden smDown>
+                    <TableCell>
+                      <Skeleton />
+                    </TableCell>
+                  </Hidden>
+                  <Hidden mdDown>
+                    <TableCell>
+                      <Skeleton />
+                    </TableCell>
+                    <TableCell>
+                      <Skeleton />
+                    </TableCell>
+                  </Hidden>
+                  <TableCell />
+                </TableRow>
+                <TableRow>
+                  <TableCell>
+                    <Skeleton />
+                  </TableCell>
+                  <TableCell>
+                    <Skeleton />
+                  </TableCell>
+                  <TableCell>
+                    <Skeleton />
+                  </TableCell>
+                  <TableCell>
+                    <Skeleton />
+                  </TableCell>
+                  <TableCell>
+                    <Skeleton />
+                  </TableCell>
+                  <TableCell>
+                    <Skeleton />
+                  </TableCell>
+                  <TableCell />
+                </TableRow>
+                <TableRow>
+                  <TableCell>
+                    <Skeleton />
+                  </TableCell>
+                  <TableCell>
+                    <Skeleton />
+                  </TableCell>
+                  <TableCell>
+                    <Skeleton />
+                  </TableCell>
+                  <TableCell>
+                    <Skeleton />
+                  </TableCell>
+                  <TableCell>
+                    <Skeleton />
+                  </TableCell>
+                  <TableCell>
+                    <Skeleton />
+                  </TableCell>
+                  <TableCell />
+                </TableRow>
+              </>
+            )}
+            {!isLoading &&
+              !errorLoading &&
+              jobs.map((j, i) => (
+                <TableRow>
+                  <TableCell>{i + 1}</TableCell>
+                  <TableCell>{j.age ?? ""}</TableCell>
+                  <TableCell>{j.gender ?? ""}</TableCell>
+                  <Hidden smDown>
+                    <TableCell>Cat {j.category}</TableCell>
+                  </Hidden>
+                  <Hidden mdDown>
+                    <TableCell>{j.reflectionFlag && <TickIcon />}</TableCell>
+                    <TableCell />
+                  </Hidden>
+                  <TableCell>
+                    <Hidden mdDown>
+                      <Button startIcon={<EditIcon />}>Edit</Button>
+                      <Button startIcon={<ReflectionIcon />}>Reflection</Button>
+                      <Button startIcon={<DeleteIcon />}>Delete</Button>
+                    </Hidden>
+                    <Hidden lgUp>
+                      <IconButton aria-label="Edit">
+                        <EditIcon />
+                      </IconButton>
+                      <IconButton aria-label="reflection">
+                        <ReflectionIcon />
+                      </IconButton>
+                      <IconButton aria-label="delete">
+                        <DeleteIcon />
+                      </IconButton>
+                    </Hidden>
+                  </TableCell>
+                </TableRow>
+              ))}
           </TableBody>
         </Table>
       </TableContainer>
