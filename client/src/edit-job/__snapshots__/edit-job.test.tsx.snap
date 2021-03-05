@@ -3,17 +3,17 @@
 exports[`displays an error if the request fails 1`] = `
 <DocumentFragment>
   <div
-    class="makeStyles-root-93"
+    class="makeStyles-root-84"
   >
     <header
-      class="MuiPaper-root MuiAppBar-root MuiAppBar-positionFixed MuiAppBar-colorPrimary makeStyles-appBar-95 mui-fixed MuiPaper-elevation4"
+      class="MuiPaper-root MuiAppBar-root MuiAppBar-positionFixed MuiAppBar-colorPrimary makeStyles-appBar-86 mui-fixed MuiPaper-elevation4"
     >
       <div
         class="MuiToolbar-root MuiToolbar-regular MuiToolbar-gutters"
       >
         <button
           aria-label="open drawer"
-          class="MuiButtonBase-root MuiIconButton-root makeStyles-menuButton-96 MuiIconButton-colorInherit MuiIconButton-edgeStart"
+          class="MuiButtonBase-root MuiIconButton-root makeStyles-menuButton-87 MuiIconButton-colorInherit MuiIconButton-edgeStart"
           tabindex="0"
           type="button"
         >
@@ -44,16 +44,16 @@ exports[`displays an error if the request fails 1`] = `
     </header>
     <nav
       aria-label="mailbox folders"
-      class="makeStyles-drawer-94"
+      class="makeStyles-drawer-85"
     />
     <main
-      class="makeStyles-content-99"
+      class="makeStyles-content-90"
     >
       <div
-        class="makeStyles-toolbar-97"
+        class="makeStyles-toolbar-88"
       />
       <div
-        class="MuiPaper-root makeStyles-root-90 MuiPaper-elevation1 MuiPaper-rounded"
+        class="MuiPaper-root makeStyles-formRoot-82 MuiPaper-elevation1 MuiPaper-rounded"
       >
         <h2
           class="MuiTypography-root MuiTypography-h5 MuiTypography-gutterBottom"
@@ -61,7 +61,7 @@ exports[`displays an error if the request fails 1`] = `
           Add Job
         </h2>
         <div
-          class="MuiPaper-root MuiAlert-root MuiAlert-standardError makeStyles-alert-92 MuiPaper-elevation0"
+          class="MuiPaper-root MuiAlert-root MuiAlert-standardError makeStyles-alert-80 MuiPaper-elevation0"
           role="alert"
         >
           <div
@@ -94,21 +94,21 @@ exports[`displays an error if the request fails 1`] = `
               class="MuiGrid-root MuiGrid-item MuiGrid-grid-sm-12 MuiGrid-grid-md-2"
             >
               <span
-                class="MuiSkeleton-root MuiSkeleton-text makeStyles-skeleton-102 MuiSkeleton-pulse"
+                class="MuiSkeleton-root MuiSkeleton-text makeStyles-formItemSkeleton-81 MuiSkeleton-pulse"
               />
             </div>
             <div
               class="MuiGrid-root MuiGrid-item MuiGrid-grid-sm-12 MuiGrid-grid-md-4"
             >
               <span
-                class="MuiSkeleton-root MuiSkeleton-text makeStyles-skeleton-102 MuiSkeleton-pulse"
+                class="MuiSkeleton-root MuiSkeleton-text makeStyles-formItemSkeleton-81 MuiSkeleton-pulse"
               />
             </div>
             <div
               class="MuiGrid-root MuiGrid-item MuiGrid-grid-sm-12 MuiGrid-grid-md-4"
             >
               <span
-                class="MuiSkeleton-root MuiSkeleton-text makeStyles-skeleton-102 MuiSkeleton-pulse"
+                class="MuiSkeleton-root MuiSkeleton-text makeStyles-formItemSkeleton-81 MuiSkeleton-pulse"
               />
             </div>
           </div>
@@ -119,35 +119,35 @@ exports[`displays an error if the request fails 1`] = `
               class="MuiGrid-root MuiGrid-item MuiGrid-grid-sm-12 MuiGrid-grid-md-6"
             >
               <span
-                class="MuiSkeleton-root MuiSkeleton-text makeStyles-skeleton-102 MuiSkeleton-pulse"
+                class="MuiSkeleton-root MuiSkeleton-text makeStyles-formItemSkeleton-81 MuiSkeleton-pulse"
               />
             </div>
             <div
               class="MuiGrid-root MuiGrid-item MuiGrid-grid-sm-12 MuiGrid-grid-md-6"
             >
               <span
-                class="MuiSkeleton-root MuiSkeleton-text makeStyles-skeleton-102 MuiSkeleton-pulse"
+                class="MuiSkeleton-root MuiSkeleton-text makeStyles-formItemSkeleton-81 MuiSkeleton-pulse"
               />
             </div>
             <div
               class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12"
             >
               <span
-                class="MuiSkeleton-root MuiSkeleton-text makeStyles-skeleton-102 MuiSkeleton-pulse"
+                class="MuiSkeleton-root MuiSkeleton-text makeStyles-formItemSkeleton-81 MuiSkeleton-pulse"
               />
             </div>
             <div
               class="MuiGrid-root MuiGrid-item MuiGrid-grid-sm-12 MuiGrid-grid-md-6"
             >
               <span
-                class="MuiSkeleton-root MuiSkeleton-text makeStyles-skeleton-102 MuiSkeleton-pulse"
+                class="MuiSkeleton-root MuiSkeleton-text makeStyles-formItemSkeleton-81 MuiSkeleton-pulse"
               />
             </div>
             <div
               class="MuiGrid-root MuiGrid-item MuiGrid-grid-sm-12 MuiGrid-grid-md-6"
             >
               <span
-                class="MuiSkeleton-root MuiSkeleton-text makeStyles-skeleton-102 MuiSkeleton-pulse"
+                class="MuiSkeleton-root MuiSkeleton-text makeStyles-formItemSkeleton-81 MuiSkeleton-pulse"
               />
             </div>
             <div
@@ -197,17 +197,17 @@ exports[`displays an error if the request fails 1`] = `
 exports[`renders loading correctly 1`] = `
 <DocumentFragment>
   <div
-    class="makeStyles-root-21"
+    class="makeStyles-root-20"
   >
     <header
-      class="MuiPaper-root MuiAppBar-root MuiAppBar-positionFixed MuiAppBar-colorPrimary makeStyles-appBar-23 mui-fixed MuiPaper-elevation4"
+      class="MuiPaper-root MuiAppBar-root MuiAppBar-positionFixed MuiAppBar-colorPrimary makeStyles-appBar-22 mui-fixed MuiPaper-elevation4"
     >
       <div
         class="MuiToolbar-root MuiToolbar-regular MuiToolbar-gutters"
       >
         <button
           aria-label="open drawer"
-          class="MuiButtonBase-root MuiIconButton-root makeStyles-menuButton-24 MuiIconButton-colorInherit MuiIconButton-edgeStart"
+          class="MuiButtonBase-root MuiIconButton-root makeStyles-menuButton-23 MuiIconButton-colorInherit MuiIconButton-edgeStart"
           tabindex="0"
           type="button"
         >
@@ -238,16 +238,16 @@ exports[`renders loading correctly 1`] = `
     </header>
     <nav
       aria-label="mailbox folders"
-      class="makeStyles-drawer-22"
+      class="makeStyles-drawer-21"
     />
     <main
-      class="makeStyles-content-27"
+      class="makeStyles-content-26"
     >
       <div
-        class="makeStyles-toolbar-25"
+        class="makeStyles-toolbar-24"
       />
       <div
-        class="MuiPaper-root makeStyles-root-18 MuiPaper-elevation1 MuiPaper-rounded"
+        class="MuiPaper-root makeStyles-formRoot-18 MuiPaper-elevation1 MuiPaper-rounded"
       >
         <h2
           class="MuiTypography-root MuiTypography-h5 MuiTypography-gutterBottom"
@@ -264,21 +264,21 @@ exports[`renders loading correctly 1`] = `
               class="MuiGrid-root MuiGrid-item MuiGrid-grid-sm-12 MuiGrid-grid-md-2"
             >
               <span
-                class="MuiSkeleton-root MuiSkeleton-text makeStyles-skeleton-30 MuiSkeleton-pulse"
+                class="MuiSkeleton-root MuiSkeleton-text makeStyles-formItemSkeleton-17 MuiSkeleton-pulse"
               />
             </div>
             <div
               class="MuiGrid-root MuiGrid-item MuiGrid-grid-sm-12 MuiGrid-grid-md-4"
             >
               <span
-                class="MuiSkeleton-root MuiSkeleton-text makeStyles-skeleton-30 MuiSkeleton-pulse"
+                class="MuiSkeleton-root MuiSkeleton-text makeStyles-formItemSkeleton-17 MuiSkeleton-pulse"
               />
             </div>
             <div
               class="MuiGrid-root MuiGrid-item MuiGrid-grid-sm-12 MuiGrid-grid-md-4"
             >
               <span
-                class="MuiSkeleton-root MuiSkeleton-text makeStyles-skeleton-30 MuiSkeleton-pulse"
+                class="MuiSkeleton-root MuiSkeleton-text makeStyles-formItemSkeleton-17 MuiSkeleton-pulse"
               />
             </div>
           </div>
@@ -289,35 +289,35 @@ exports[`renders loading correctly 1`] = `
               class="MuiGrid-root MuiGrid-item MuiGrid-grid-sm-12 MuiGrid-grid-md-6"
             >
               <span
-                class="MuiSkeleton-root MuiSkeleton-text makeStyles-skeleton-30 MuiSkeleton-pulse"
+                class="MuiSkeleton-root MuiSkeleton-text makeStyles-formItemSkeleton-17 MuiSkeleton-pulse"
               />
             </div>
             <div
               class="MuiGrid-root MuiGrid-item MuiGrid-grid-sm-12 MuiGrid-grid-md-6"
             >
               <span
-                class="MuiSkeleton-root MuiSkeleton-text makeStyles-skeleton-30 MuiSkeleton-pulse"
+                class="MuiSkeleton-root MuiSkeleton-text makeStyles-formItemSkeleton-17 MuiSkeleton-pulse"
               />
             </div>
             <div
               class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12"
             >
               <span
-                class="MuiSkeleton-root MuiSkeleton-text makeStyles-skeleton-30 MuiSkeleton-pulse"
+                class="MuiSkeleton-root MuiSkeleton-text makeStyles-formItemSkeleton-17 MuiSkeleton-pulse"
               />
             </div>
             <div
               class="MuiGrid-root MuiGrid-item MuiGrid-grid-sm-12 MuiGrid-grid-md-6"
             >
               <span
-                class="MuiSkeleton-root MuiSkeleton-text makeStyles-skeleton-30 MuiSkeleton-pulse"
+                class="MuiSkeleton-root MuiSkeleton-text makeStyles-formItemSkeleton-17 MuiSkeleton-pulse"
               />
             </div>
             <div
               class="MuiGrid-root MuiGrid-item MuiGrid-grid-sm-12 MuiGrid-grid-md-6"
             >
               <span
-                class="MuiSkeleton-root MuiSkeleton-text makeStyles-skeleton-30 MuiSkeleton-pulse"
+                class="MuiSkeleton-root MuiSkeleton-text makeStyles-formItemSkeleton-17 MuiSkeleton-pulse"
               />
             </div>
             <div
@@ -367,17 +367,17 @@ exports[`renders loading correctly 1`] = `
 exports[`renders successful load correctly 1`] = `
 <DocumentFragment>
   <div
-    class="makeStyles-root-38"
+    class="makeStyles-root-35"
   >
     <header
-      class="MuiPaper-root MuiAppBar-root MuiAppBar-positionFixed MuiAppBar-colorPrimary makeStyles-appBar-40 mui-fixed MuiPaper-elevation4"
+      class="MuiPaper-root MuiAppBar-root MuiAppBar-positionFixed MuiAppBar-colorPrimary makeStyles-appBar-37 mui-fixed MuiPaper-elevation4"
     >
       <div
         class="MuiToolbar-root MuiToolbar-regular MuiToolbar-gutters"
       >
         <button
           aria-label="open drawer"
-          class="MuiButtonBase-root MuiIconButton-root makeStyles-menuButton-41 MuiIconButton-colorInherit MuiIconButton-edgeStart"
+          class="MuiButtonBase-root MuiIconButton-root makeStyles-menuButton-38 MuiIconButton-colorInherit MuiIconButton-edgeStart"
           tabindex="0"
           type="button"
         >
@@ -408,16 +408,16 @@ exports[`renders successful load correctly 1`] = `
     </header>
     <nav
       aria-label="mailbox folders"
-      class="makeStyles-drawer-39"
+      class="makeStyles-drawer-36"
     />
     <main
-      class="makeStyles-content-44"
+      class="makeStyles-content-41"
     >
       <div
-        class="makeStyles-toolbar-42"
+        class="makeStyles-toolbar-39"
       />
       <div
-        class="MuiPaper-root makeStyles-root-35 MuiPaper-elevation1 MuiPaper-rounded"
+        class="MuiPaper-root makeStyles-formRoot-33 MuiPaper-elevation1 MuiPaper-rounded"
       >
         <h2
           class="MuiTypography-root MuiTypography-h5 MuiTypography-gutterBottom"
@@ -434,7 +434,7 @@ exports[`renders successful load correctly 1`] = `
               class="MuiGrid-root MuiGrid-item MuiGrid-grid-sm-12 MuiGrid-grid-md-2"
             >
               <div
-                class="MuiFormControl-root MuiTextField-root makeStyles-item-46"
+                class="MuiFormControl-root MuiTextField-root makeStyles-formItem-34"
               >
                 <label
                   class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-filled MuiFormLabel-filled"
@@ -461,7 +461,7 @@ exports[`renders successful load correctly 1`] = `
               class="MuiGrid-root MuiGrid-item MuiGrid-grid-sm-12 MuiGrid-grid-md-4"
             >
               <div
-                class="MuiFormControl-root makeStyles-item-46"
+                class="MuiFormControl-root makeStyles-formItem-34"
               >
                 <label
                   class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-filled MuiFormLabel-filled"
@@ -510,7 +510,7 @@ exports[`renders successful load correctly 1`] = `
               class="MuiGrid-root MuiGrid-item MuiGrid-grid-sm-12 MuiGrid-grid-md-4"
             >
               <div
-                class="MuiFormControl-root makeStyles-item-46"
+                class="MuiFormControl-root makeStyles-formItem-34"
               >
                 <label
                   class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-filled MuiFormLabel-filled"
@@ -582,13 +582,13 @@ exports[`renders successful load correctly 1`] = `
                 >
                   <span
                     aria-disabled="false"
-                    class="MuiButtonBase-root MuiIconButton-root PrivateSwitchBase-root-52 MuiSwitch-switchBase MuiSwitch-colorSecondary"
+                    class="MuiButtonBase-root MuiIconButton-root PrivateSwitchBase-root-46 MuiSwitch-switchBase MuiSwitch-colorSecondary"
                   >
                     <span
                       class="MuiIconButton-label"
                     >
                       <input
-                        class="PrivateSwitchBase-input-55 MuiSwitch-input"
+                        class="PrivateSwitchBase-input-49 MuiSwitch-input"
                         type="checkbox"
                         value=""
                       />
@@ -622,13 +622,13 @@ exports[`renders successful load correctly 1`] = `
                 >
                   <span
                     aria-disabled="false"
-                    class="MuiButtonBase-root MuiIconButton-root PrivateSwitchBase-root-52 MuiSwitch-switchBase MuiSwitch-colorSecondary"
+                    class="MuiButtonBase-root MuiIconButton-root PrivateSwitchBase-root-46 MuiSwitch-switchBase MuiSwitch-colorSecondary"
                   >
                     <span
                       class="MuiIconButton-label"
                     >
                       <input
-                        class="PrivateSwitchBase-input-55 MuiSwitch-input"
+                        class="PrivateSwitchBase-input-49 MuiSwitch-input"
                         type="checkbox"
                         value=""
                       />
@@ -655,7 +655,7 @@ exports[`renders successful load correctly 1`] = `
               class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12"
             >
               <div
-                class="MuiFormControl-root MuiTextField-root makeStyles-item-46"
+                class="MuiFormControl-root MuiTextField-root makeStyles-formItem-34"
               >
                 <label
                   class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-filled MuiFormLabel-filled"
@@ -683,7 +683,7 @@ exports[`renders successful load correctly 1`] = `
               class="MuiGrid-root MuiGrid-item MuiGrid-grid-sm-12 MuiGrid-grid-md-6"
             >
               <div
-                class="MuiFormControl-root makeStyles-item-46"
+                class="MuiFormControl-root makeStyles-formItem-34"
               >
                 <label
                   class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-filled MuiFormLabel-filled Mui-required Mui-required"
@@ -758,13 +758,13 @@ exports[`renders successful load correctly 1`] = `
                 >
                   <span
                     aria-disabled="false"
-                    class="MuiButtonBase-root MuiIconButton-root PrivateSwitchBase-root-52 MuiSwitch-switchBase MuiSwitch-colorSecondary"
+                    class="MuiButtonBase-root MuiIconButton-root PrivateSwitchBase-root-46 MuiSwitch-switchBase MuiSwitch-colorSecondary"
                   >
                     <span
                       class="MuiIconButton-label"
                     >
                       <input
-                        class="PrivateSwitchBase-input-55 MuiSwitch-input"
+                        class="PrivateSwitchBase-input-49 MuiSwitch-input"
                         type="checkbox"
                         value=""
                       />

@@ -3,17 +3,17 @@
 exports[`renders correctly 1`] = `
 <DocumentFragment>
   <div
-    class="makeStyles-root-21"
+    class="makeStyles-root-20"
   >
     <header
-      class="MuiPaper-root MuiAppBar-root MuiAppBar-positionFixed MuiAppBar-colorPrimary makeStyles-appBar-23 mui-fixed MuiPaper-elevation4"
+      class="MuiPaper-root MuiAppBar-root MuiAppBar-positionFixed MuiAppBar-colorPrimary makeStyles-appBar-22 mui-fixed MuiPaper-elevation4"
     >
       <div
         class="MuiToolbar-root MuiToolbar-regular MuiToolbar-gutters"
       >
         <button
           aria-label="open drawer"
-          class="MuiButtonBase-root MuiIconButton-root makeStyles-menuButton-24 MuiIconButton-colorInherit MuiIconButton-edgeStart"
+          class="MuiButtonBase-root MuiIconButton-root makeStyles-menuButton-23 MuiIconButton-colorInherit MuiIconButton-edgeStart"
           tabindex="0"
           type="button"
         >
@@ -44,16 +44,16 @@ exports[`renders correctly 1`] = `
     </header>
     <nav
       aria-label="mailbox folders"
-      class="makeStyles-drawer-22"
+      class="makeStyles-drawer-21"
     />
     <main
-      class="makeStyles-content-27"
+      class="makeStyles-content-26"
     >
       <div
-        class="makeStyles-toolbar-25"
+        class="makeStyles-toolbar-24"
       />
       <div
-        class="MuiPaper-root makeStyles-root-18 MuiPaper-elevation1 MuiPaper-rounded"
+        class="MuiPaper-root makeStyles-formRoot-18 MuiPaper-elevation1 MuiPaper-rounded"
       >
         <h2
           class="MuiTypography-root MuiTypography-h5 MuiTypography-gutterBottom"
@@ -70,7 +70,7 @@ exports[`renders correctly 1`] = `
               class="MuiGrid-root MuiGrid-item MuiGrid-grid-sm-12 MuiGrid-grid-md-2"
             >
               <div
-                class="MuiFormControl-root MuiTextField-root makeStyles-item-29"
+                class="MuiFormControl-root MuiTextField-root makeStyles-formItem-19"
               >
                 <label
                   class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-filled"
@@ -97,7 +97,7 @@ exports[`renders correctly 1`] = `
               class="MuiGrid-root MuiGrid-item MuiGrid-grid-sm-12 MuiGrid-grid-md-4"
             >
               <div
-                class="MuiFormControl-root makeStyles-item-29"
+                class="MuiFormControl-root makeStyles-formItem-19"
               >
                 <label
                   class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-filled MuiFormLabel-filled"
@@ -146,7 +146,7 @@ exports[`renders correctly 1`] = `
               class="MuiGrid-root MuiGrid-item MuiGrid-grid-sm-12 MuiGrid-grid-md-4"
             >
               <div
-                class="MuiFormControl-root makeStyles-item-29"
+                class="MuiFormControl-root makeStyles-formItem-19"
               >
                 <label
                   class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-filled MuiFormLabel-filled"
@@ -218,13 +218,13 @@ exports[`renders correctly 1`] = `
                 >
                   <span
                     aria-disabled="false"
-                    class="MuiButtonBase-root MuiIconButton-root PrivateSwitchBase-root-31 MuiSwitch-switchBase MuiSwitch-colorSecondary"
+                    class="MuiButtonBase-root MuiIconButton-root PrivateSwitchBase-root-27 MuiSwitch-switchBase MuiSwitch-colorSecondary"
                   >
                     <span
                       class="MuiIconButton-label"
                     >
                       <input
-                        class="PrivateSwitchBase-input-34 MuiSwitch-input"
+                        class="PrivateSwitchBase-input-30 MuiSwitch-input"
                         type="checkbox"
                         value=""
                       />
@@ -258,13 +258,13 @@ exports[`renders correctly 1`] = `
                 >
                   <span
                     aria-disabled="false"
-                    class="MuiButtonBase-root MuiIconButton-root PrivateSwitchBase-root-31 MuiSwitch-switchBase MuiSwitch-colorSecondary"
+                    class="MuiButtonBase-root MuiIconButton-root PrivateSwitchBase-root-27 MuiSwitch-switchBase MuiSwitch-colorSecondary"
                   >
                     <span
                       class="MuiIconButton-label"
                     >
                       <input
-                        class="PrivateSwitchBase-input-34 MuiSwitch-input"
+                        class="PrivateSwitchBase-input-30 MuiSwitch-input"
                         type="checkbox"
                         value=""
                       />
@@ -291,7 +291,7 @@ exports[`renders correctly 1`] = `
               class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12"
             >
               <div
-                class="MuiFormControl-root MuiTextField-root makeStyles-item-29"
+                class="MuiFormControl-root MuiTextField-root makeStyles-formItem-19"
               >
                 <label
                   class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-filled"
@@ -317,7 +317,7 @@ exports[`renders correctly 1`] = `
               class="MuiGrid-root MuiGrid-item MuiGrid-grid-sm-12 MuiGrid-grid-md-6"
             >
               <div
-                class="MuiFormControl-root makeStyles-item-29"
+                class="MuiFormControl-root makeStyles-formItem-19"
               >
                 <label
                   class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-filled MuiFormLabel-filled Mui-required Mui-required"
@@ -392,13 +392,13 @@ exports[`renders correctly 1`] = `
                 >
                   <span
                     aria-disabled="false"
-                    class="MuiButtonBase-root MuiIconButton-root PrivateSwitchBase-root-31 MuiSwitch-switchBase MuiSwitch-colorSecondary"
+                    class="MuiButtonBase-root MuiIconButton-root PrivateSwitchBase-root-27 MuiSwitch-switchBase MuiSwitch-colorSecondary"
                   >
                     <span
                       class="MuiIconButton-label"
                     >
                       <input
-                        class="PrivateSwitchBase-input-34 MuiSwitch-input"
+                        class="PrivateSwitchBase-input-30 MuiSwitch-input"
                         type="checkbox"
                         value=""
                       />

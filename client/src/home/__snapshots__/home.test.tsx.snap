@@ -3,17 +3,17 @@
 exports[`renders loading correctly 1`] = `
 <DocumentFragment>
   <div
-    class="makeStyles-root-13"
+    class="makeStyles-root-19"
   >
     <header
-      class="MuiPaper-root MuiAppBar-root MuiAppBar-positionFixed MuiAppBar-colorPrimary makeStyles-appBar-15 mui-fixed MuiPaper-elevation4"
+      class="MuiPaper-root MuiAppBar-root MuiAppBar-positionFixed MuiAppBar-colorPrimary makeStyles-appBar-21 mui-fixed MuiPaper-elevation4"
     >
       <div
         class="MuiToolbar-root MuiToolbar-regular MuiToolbar-gutters"
       >
         <button
           aria-label="open drawer"
-          class="MuiButtonBase-root MuiIconButton-root makeStyles-menuButton-16 MuiIconButton-colorInherit MuiIconButton-edgeStart"
+          class="MuiButtonBase-root MuiIconButton-root makeStyles-menuButton-22 MuiIconButton-colorInherit MuiIconButton-edgeStart"
           tabindex="0"
           type="button"
         >
@@ -44,13 +44,13 @@ exports[`renders loading correctly 1`] = `
     </header>
     <nav
       aria-label="mailbox folders"
-      class="makeStyles-drawer-14"
+      class="makeStyles-drawer-20"
     />
     <main
-      class="makeStyles-content-19"
+      class="makeStyles-content-25"
     >
       <div
-        class="makeStyles-toolbar-17"
+        class="makeStyles-toolbar-23"
       />
       <h2
         class="MuiTypography-root MuiTypography-h5"
@@ -70,21 +70,21 @@ exports[`renders loading correctly 1`] = `
               class="MuiCardContent-root"
             >
               <p
-                class="MuiTypography-root makeStyles-date-20 MuiTypography-body1 MuiTypography-gutterBottom"
+                class="MuiTypography-root makeStyles-date-26 MuiTypography-body1 MuiTypography-gutterBottom"
               >
                 <span
                   class="MuiSkeleton-root MuiSkeleton-text MuiSkeleton-pulse"
                 />
               </p>
               <h2
-                class="MuiTypography-root makeStyles-trimText-21 MuiTypography-h5"
+                class="MuiTypography-root makeStyles-trimText-27 MuiTypography-h5"
               >
                 <span
                   class="MuiSkeleton-root MuiSkeleton-text MuiSkeleton-pulse"
                 />
               </h2>
               <p
-                class="MuiTypography-root makeStyles-location-22 MuiTypography-body1 MuiTypography-colorTextSecondary"
+                class="MuiTypography-root makeStyles-location-28 MuiTypography-body1 MuiTypography-colorTextSecondary"
               >
                 <span
                   class="MuiSkeleton-root MuiSkeleton-text MuiSkeleton-pulse"
@@ -117,21 +117,21 @@ exports[`renders loading correctly 1`] = `
               class="MuiCardContent-root"
             >
               <p
-                class="MuiTypography-root makeStyles-date-20 MuiTypography-body1 MuiTypography-gutterBottom"
+                class="MuiTypography-root makeStyles-date-26 MuiTypography-body1 MuiTypography-gutterBottom"
               >
                 <span
                   class="MuiSkeleton-root MuiSkeleton-text MuiSkeleton-pulse"
                 />
               </p>
               <h2
-                class="MuiTypography-root makeStyles-trimText-21 MuiTypography-h5"
+                class="MuiTypography-root makeStyles-trimText-27 MuiTypography-h5"
               >
                 <span
                   class="MuiSkeleton-root MuiSkeleton-text MuiSkeleton-pulse"
                 />
               </h2>
               <p
-                class="MuiTypography-root makeStyles-location-22 MuiTypography-body1 MuiTypography-colorTextSecondary"
+                class="MuiTypography-root makeStyles-location-28 MuiTypography-body1 MuiTypography-colorTextSecondary"
               >
                 <span
                   class="MuiSkeleton-root MuiSkeleton-text MuiSkeleton-pulse"
@@ -164,21 +164,21 @@ exports[`renders loading correctly 1`] = `
               class="MuiCardContent-root"
             >
               <p
-                class="MuiTypography-root makeStyles-date-20 MuiTypography-body1 MuiTypography-gutterBottom"
+                class="MuiTypography-root makeStyles-date-26 MuiTypography-body1 MuiTypography-gutterBottom"
               >
                 <span
                   class="MuiSkeleton-root MuiSkeleton-text MuiSkeleton-pulse"
                 />
               </p>
               <h2
-                class="MuiTypography-root makeStyles-trimText-21 MuiTypography-h5"
+                class="MuiTypography-root makeStyles-trimText-27 MuiTypography-h5"
               >
                 <span
                   class="MuiSkeleton-root MuiSkeleton-text MuiSkeleton-pulse"
                 />
               </h2>
               <p
-                class="MuiTypography-root makeStyles-location-22 MuiTypography-body1 MuiTypography-colorTextSecondary"
+                class="MuiTypography-root makeStyles-location-28 MuiTypography-body1 MuiTypography-colorTextSecondary"
               >
                 <span
                   class="MuiSkeleton-root MuiSkeleton-text MuiSkeleton-pulse"
@@ -211,21 +211,21 @@ exports[`renders loading correctly 1`] = `
               class="MuiCardContent-root"
             >
               <p
-                class="MuiTypography-root makeStyles-date-20 MuiTypography-body1 MuiTypography-gutterBottom"
+                class="MuiTypography-root makeStyles-date-26 MuiTypography-body1 MuiTypography-gutterBottom"
               >
                 <span
                   class="MuiSkeleton-root MuiSkeleton-text MuiSkeleton-pulse"
                 />
               </p>
               <h2
-                class="MuiTypography-root makeStyles-trimText-21 MuiTypography-h5"
+                class="MuiTypography-root makeStyles-trimText-27 MuiTypography-h5"
               >
                 <span
                   class="MuiSkeleton-root MuiSkeleton-text MuiSkeleton-pulse"
                 />
               </h2>
               <p
-                class="MuiTypography-root makeStyles-location-22 MuiTypography-body1 MuiTypography-colorTextSecondary"
+                class="MuiTypography-root makeStyles-location-28 MuiTypography-body1 MuiTypography-colorTextSecondary"
               >
                 <span
                   class="MuiSkeleton-root MuiSkeleton-text MuiSkeleton-pulse"
@@ -257,17 +257,17 @@ exports[`renders loading correctly 1`] = `
 exports[`renders successful load correctly 1`] = `
 <DocumentFragment>
   <div
-    class="makeStyles-root-24"
+    class="makeStyles-root-33"
   >
     <header
-      class="MuiPaper-root MuiAppBar-root MuiAppBar-positionFixed MuiAppBar-colorPrimary makeStyles-appBar-26 mui-fixed MuiPaper-elevation4"
+      class="MuiPaper-root MuiAppBar-root MuiAppBar-positionFixed MuiAppBar-colorPrimary makeStyles-appBar-35 mui-fixed MuiPaper-elevation4"
     >
       <div
         class="MuiToolbar-root MuiToolbar-regular MuiToolbar-gutters"
       >
         <button
           aria-label="open drawer"
-          class="MuiButtonBase-root MuiIconButton-root makeStyles-menuButton-27 MuiIconButton-colorInherit MuiIconButton-edgeStart"
+          class="MuiButtonBase-root MuiIconButton-root makeStyles-menuButton-36 MuiIconButton-colorInherit MuiIconButton-edgeStart"
           tabindex="0"
           type="button"
         >
@@ -298,13 +298,13 @@ exports[`renders successful load correctly 1`] = `
     </header>
     <nav
       aria-label="mailbox folders"
-      class="makeStyles-drawer-25"
+      class="makeStyles-drawer-34"
     />
     <main
-      class="makeStyles-content-30"
+      class="makeStyles-content-39"
     >
       <div
-        class="makeStyles-toolbar-28"
+        class="makeStyles-toolbar-37"
       />
       <h2
         class="MuiTypography-root MuiTypography-h5"
@@ -324,17 +324,193 @@ exports[`renders successful load correctly 1`] = `
               class="MuiCardContent-root"
             >
               <p
-                class="MuiTypography-root makeStyles-date-34 makeStyles-trimText-35 MuiTypography-body1 MuiTypography-colorTextSecondary MuiTypography-gutterBottom"
+                class="MuiTypography-root makeStyles-date-43 makeStyles-trimText-44 MuiTypography-body1 MuiTypography-colorTextSecondary MuiTypography-gutterBottom"
+              >
+                2 February 2020
+              </p>
+              <h2
+                class="MuiTypography-root makeStyles-trimText-44 MuiTypography-h5"
+              >
+                Test Shift 2
+              </h2>
+              <p
+                class="MuiTypography-root makeStyles-location-45 makeStyles-trimText-44 MuiTypography-body1 MuiTypography-colorTextSecondary"
+              >
+                Test Location 2
+              </p>
+              <p
+                class="MuiTypography-root MuiTypography-body2"
+              >
+                Role: AFA
+              </p>
+              <p
+                class="MuiTypography-root MuiTypography-body2"
+              >
+                Logged Calls: 4
+              </p>
+            </div>
+            <div
+              class="MuiCardActions-root MuiCardActions-spacing"
+            >
+              <div
+                aria-disabled="false"
+                class="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedSizeSmall MuiButton-sizeSmall"
+                role="button"
+                tabindex="0"
+                to="/editShift/abcfef"
+              >
+                <span
+                  class="MuiButton-label"
+                >
+                  Edit
+                </span>
+                <span
+                  class="MuiTouchRipple-root"
+                />
+              </div>
+              <div
+                aria-disabled="false"
+                class="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-containedSizeSmall MuiButton-sizeSmall"
+                role="button"
+                tabindex="0"
+                to="/addJob?shift=abcfef"
+              >
+                <span
+                  class="MuiButton-label"
+                >
+                  Add Job
+                </span>
+                <span
+                  class="MuiTouchRipple-root"
+                />
+              </div>
+              <div
+                aria-disabled="false"
+                class="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedSizeSmall MuiButton-sizeSmall"
+                role="button"
+                tabindex="0"
+                to="/jobs?shiftId=abcfef"
+              >
+                <span
+                  class="MuiButton-label"
+                >
+                  Show Jobs
+                </span>
+                <span
+                  class="MuiTouchRipple-root"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-6 MuiGrid-grid-sm-6 MuiGrid-grid-lg-3"
+        >
+          <div
+            class="MuiPaper-root MuiCard-root MuiPaper-elevation1 MuiPaper-rounded"
+          >
+            <div
+              class="MuiCardContent-root"
+            >
+              <p
+                class="MuiTypography-root makeStyles-date-43 makeStyles-trimText-44 MuiTypography-body1 MuiTypography-colorTextSecondary MuiTypography-gutterBottom"
+              >
+                3 January 2020
+              </p>
+              <h2
+                class="MuiTypography-root makeStyles-trimText-44 MuiTypography-h5"
+              >
+                Test Shift 3
+              </h2>
+              <p
+                class="MuiTypography-root makeStyles-location-45 makeStyles-trimText-44 MuiTypography-body1 MuiTypography-colorTextSecondary"
+              />
+              <p
+                class="MuiTypography-root MuiTypography-body2"
+              >
+                Role: CRU
+              </p>
+              <p
+                class="MuiTypography-root MuiTypography-body2"
+              >
+                Logged Calls: 4
+              </p>
+            </div>
+            <div
+              class="MuiCardActions-root MuiCardActions-spacing"
+            >
+              <div
+                aria-disabled="false"
+                class="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedSizeSmall MuiButton-sizeSmall"
+                role="button"
+                tabindex="0"
+                to="/editShift/abcgef"
+              >
+                <span
+                  class="MuiButton-label"
+                >
+                  Edit
+                </span>
+                <span
+                  class="MuiTouchRipple-root"
+                />
+              </div>
+              <div
+                aria-disabled="false"
+                class="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-containedSizeSmall MuiButton-sizeSmall"
+                role="button"
+                tabindex="0"
+                to="/addJob?shift=abcgef"
+              >
+                <span
+                  class="MuiButton-label"
+                >
+                  Add Job
+                </span>
+                <span
+                  class="MuiTouchRipple-root"
+                />
+              </div>
+              <div
+                aria-disabled="false"
+                class="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedSizeSmall MuiButton-sizeSmall"
+                role="button"
+                tabindex="0"
+                to="/jobs?shiftId=abcgef"
+              >
+                <span
+                  class="MuiButton-label"
+                >
+                  Show Jobs
+                </span>
+                <span
+                  class="MuiTouchRipple-root"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-6 MuiGrid-grid-sm-6 MuiGrid-grid-lg-3"
+        >
+          <div
+            class="MuiPaper-root MuiCard-root MuiPaper-elevation1 MuiPaper-rounded"
+          >
+            <div
+              class="MuiCardContent-root"
+            >
+              <p
+                class="MuiTypography-root makeStyles-date-43 makeStyles-trimText-44 MuiTypography-body1 MuiTypography-colorTextSecondary MuiTypography-gutterBottom"
               >
                 1 January 2020
               </p>
               <h2
-                class="MuiTypography-root makeStyles-trimText-35 MuiTypography-h5"
+                class="MuiTypography-root makeStyles-trimText-44 MuiTypography-h5"
               >
                 Test Shift 1
               </h2>
               <p
-                class="MuiTypography-root makeStyles-location-36 makeStyles-trimText-35 MuiTypography-body1 MuiTypography-colorTextSecondary"
+                class="MuiTypography-root makeStyles-location-45 makeStyles-trimText-44 MuiTypography-body1 MuiTypography-colorTextSecondary"
               >
                 Test Location 1
               </p>
@@ -384,145 +560,17 @@ exports[`renders successful load correctly 1`] = `
                   class="MuiTouchRipple-root"
                 />
               </div>
-            </div>
-          </div>
-        </div>
-        <div
-          class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-6 MuiGrid-grid-sm-6 MuiGrid-grid-lg-3"
-        >
-          <div
-            class="MuiPaper-root MuiCard-root MuiPaper-elevation1 MuiPaper-rounded"
-          >
-            <div
-              class="MuiCardContent-root"
-            >
-              <p
-                class="MuiTypography-root makeStyles-date-34 makeStyles-trimText-35 MuiTypography-body1 MuiTypography-colorTextSecondary MuiTypography-gutterBottom"
-              >
-                3 January 2020
-              </p>
-              <h2
-                class="MuiTypography-root makeStyles-trimText-35 MuiTypography-h5"
-              >
-                Test Shift 3
-              </h2>
-              <p
-                class="MuiTypography-root makeStyles-location-36 makeStyles-trimText-35 MuiTypography-body1 MuiTypography-colorTextSecondary"
-              />
-              <p
-                class="MuiTypography-root MuiTypography-body2"
-              >
-                Role: CRU
-              </p>
-              <p
-                class="MuiTypography-root MuiTypography-body2"
-              >
-                Logged Calls: 4
-              </p>
-            </div>
-            <div
-              class="MuiCardActions-root MuiCardActions-spacing"
-            >
               <div
                 aria-disabled="false"
                 class="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedSizeSmall MuiButton-sizeSmall"
                 role="button"
                 tabindex="0"
-                to="/editShift/abcgef"
+                to="/jobs?shiftId=abcdef"
               >
                 <span
                   class="MuiButton-label"
                 >
-                  Edit
-                </span>
-                <span
-                  class="MuiTouchRipple-root"
-                />
-              </div>
-              <div
-                aria-disabled="false"
-                class="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-containedSizeSmall MuiButton-sizeSmall"
-                role="button"
-                tabindex="0"
-                to="/addJob?shift=abcgef"
-              >
-                <span
-                  class="MuiButton-label"
-                >
-                  Add Job
-                </span>
-                <span
-                  class="MuiTouchRipple-root"
-                />
-              </div>
-            </div>
-          </div>
-        </div>
-        <div
-          class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-6 MuiGrid-grid-sm-6 MuiGrid-grid-lg-3"
-        >
-          <div
-            class="MuiPaper-root MuiCard-root MuiPaper-elevation1 MuiPaper-rounded"
-          >
-            <div
-              class="MuiCardContent-root"
-            >
-              <p
-                class="MuiTypography-root makeStyles-date-34 makeStyles-trimText-35 MuiTypography-body1 MuiTypography-colorTextSecondary MuiTypography-gutterBottom"
-              >
-                2 February 2020
-              </p>
-              <h2
-                class="MuiTypography-root makeStyles-trimText-35 MuiTypography-h5"
-              >
-                Test Shift 2
-              </h2>
-              <p
-                class="MuiTypography-root makeStyles-location-36 makeStyles-trimText-35 MuiTypography-body1 MuiTypography-colorTextSecondary"
-              >
-                Test Location 2
-              </p>
-              <p
-                class="MuiTypography-root MuiTypography-body2"
-              >
-                Role: AFA
-              </p>
-              <p
-                class="MuiTypography-root MuiTypography-body2"
-              >
-                Logged Calls: 4
-              </p>
-            </div>
-            <div
-              class="MuiCardActions-root MuiCardActions-spacing"
-            >
-              <div
-                aria-disabled="false"
-                class="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedSizeSmall MuiButton-sizeSmall"
-                role="button"
-                tabindex="0"
-                to="/editShift/abcfef"
-              >
-                <span
-                  class="MuiButton-label"
-                >
-                  Edit
-                </span>
-                <span
-                  class="MuiTouchRipple-root"
-                />
-              </div>
-              <div
-                aria-disabled="false"
-                class="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-containedSizeSmall MuiButton-sizeSmall"
-                role="button"
-                tabindex="0"
-                to="/addJob?shift=abcfef"
-              >
-                <span
-                  class="MuiButton-label"
-                >
-                  Add Job
+                  Show Jobs
                 </span>
                 <span
                   class="MuiTouchRipple-root"
