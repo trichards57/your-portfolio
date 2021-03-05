@@ -5,12 +5,12 @@ import {
   InputLabel,
   Select,
   TextField,
-  makeStyles,
 } from "@material-ui/core";
 import React, { useState } from "react";
 import { Save as SaveIcon } from "@material-ui/icons";
 import { Skeleton } from "@material-ui/lab";
 import { RoleType } from "../model/shift";
+import useSharedStyles from "./shared-styles";
 
 interface ShiftFormProps {
   canSubmit: boolean;
@@ -33,22 +33,6 @@ interface ShiftFormProps {
   submit(): void;
 }
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    padding: theme.spacing(4),
-  },
-  item: {
-    width: "100%",
-  },
-  skeleton: {
-    height: "72px",
-  },
-  alert: {
-    marginTop: theme.spacing(1),
-    marginBottom: theme.spacing(1),
-  },
-}));
-
 export default function ShiftForm(props: ShiftFormProps) {
   const {
     isLoading,
@@ -70,7 +54,7 @@ export default function ShiftForm(props: ShiftFormProps) {
     submit,
     canSubmit,
   } = props;
-  const classes = useStyles();
+  const sharedClasses = useSharedStyles();
   const [eventNameChanged, setEventNameChanged] = useState(false);
 
   return (
@@ -78,7 +62,7 @@ export default function ShiftForm(props: ShiftFormProps) {
       <Grid container spacing={2}>
         <Grid item xs={6} sm={8} md={3} lg={2}>
           {isLoading ? (
-            <Skeleton className={classes.skeleton} />
+            <Skeleton className={sharedClasses.formItemSkeleton} />
           ) : (
             <TextField
               label="Date"
@@ -87,7 +71,7 @@ export default function ShiftForm(props: ShiftFormProps) {
               InputLabelProps={{
                 shrink: true,
               }}
-              className={classes.item}
+              className={sharedClasses.formItem}
               value={shiftDate}
               onChange={(c) => setShiftDate(c.target.value)}
               required
@@ -99,13 +83,13 @@ export default function ShiftForm(props: ShiftFormProps) {
         </Grid>
         <Grid item xs={6} sm={4} md={2}>
           {isLoading ? (
-            <Skeleton className={classes.skeleton} />
+            <Skeleton className={sharedClasses.formItemSkeleton} />
           ) : (
             <TextField
               label="Hours"
               type="number"
               id="hours"
-              className={classes.item}
+              className={sharedClasses.formItem}
               value={duration.toString()}
               onChange={(c) => setDuration(parseFloat(c.currentTarget.value))}
               error={!durationValid}
@@ -119,12 +103,12 @@ export default function ShiftForm(props: ShiftFormProps) {
         </Grid>
         <Grid item xs={12} md={7} lg={8}>
           {isLoading ? (
-            <Skeleton className={classes.skeleton} />
+            <Skeleton className={sharedClasses.formItemSkeleton} />
           ) : (
             <TextField
               label="Event"
               id="event"
-              className={classes.item}
+              className={sharedClasses.formItem}
               value={eventName}
               onChange={(c) => {
                 setEventName(c.currentTarget.value);
@@ -143,12 +127,12 @@ export default function ShiftForm(props: ShiftFormProps) {
         </Grid>
         <Grid item xs={12}>
           {isLoading ? (
-            <Skeleton className={classes.skeleton} />
+            <Skeleton className={sharedClasses.formItemSkeleton} />
           ) : (
             <TextField
               label="Location"
               id="location"
-              className={classes.item}
+              className={sharedClasses.formItem}
               value={location}
               onChange={(c) => setLocation(c.currentTarget.value)}
               variant="filled"
@@ -157,9 +141,13 @@ export default function ShiftForm(props: ShiftFormProps) {
         </Grid>
         <Grid item xs={12} md={4} lg={2}>
           {isLoading ? (
-            <Skeleton className={classes.skeleton} />
+            <Skeleton className={sharedClasses.formItemSkeleton} />
           ) : (
-            <FormControl className={classes.item} required variant="filled">
+            <FormControl
+              className={sharedClasses.formItem}
+              required
+              variant="filled"
+            >
               <InputLabel htmlFor="role" id="role-label">
                 Role
               </InputLabel>
@@ -179,12 +167,12 @@ export default function ShiftForm(props: ShiftFormProps) {
         </Grid>
         <Grid item xs={12} md={8} lg={10}>
           {isLoading ? (
-            <Skeleton className={classes.skeleton} />
+            <Skeleton className={sharedClasses.formItemSkeleton} />
           ) : (
             <TextField
               label="Crew Mate"
               id="crew-mate"
-              className={classes.item}
+              className={sharedClasses.formItem}
               value={crewMate}
               onChange={(c) => setCrewMate(c.currentTarget.value)}
               variant="filled"

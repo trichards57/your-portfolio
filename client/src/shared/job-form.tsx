@@ -4,7 +4,6 @@ import {
   FormControlLabel,
   Grid,
   InputLabel,
-  makeStyles,
   Select,
   Switch,
   TextField,
@@ -13,6 +12,7 @@ import React from "react";
 import { Save as SaveIcon } from "@material-ui/icons";
 import { Skeleton } from "@material-ui/lab";
 import { Outcome } from "../model/job";
+import useSharedStyles from "./shared-styles";
 
 interface JobFormProps {
   age: number | undefined;
@@ -35,18 +35,6 @@ interface JobFormProps {
   setReflectionFlag(value: boolean): void;
   submit(): void;
 }
-
-const useStyles = makeStyles((theme) => ({
-  root: {
-    padding: theme.spacing(4),
-  },
-  item: {
-    width: "100%",
-  },
-  skeleton: {
-    height: "72px",
-  },
-}));
 
 export default function JobForm(props: JobFormProps) {
   const {
@@ -71,20 +59,20 @@ export default function JobForm(props: JobFormProps) {
     submit,
   } = props;
 
-  const classes = useStyles();
+  const sharedClasses = useSharedStyles();
 
   return (
     <form noValidate>
       <Grid container spacing={2}>
         <Grid item sm={12} md={2}>
           {isLoading ? (
-            <Skeleton className={classes.skeleton} />
+            <Skeleton className={sharedClasses.formItemSkeleton} />
           ) : (
             <TextField
               label="Age"
               type="number"
               id="age"
-              className={classes.item}
+              className={sharedClasses.formItem}
               value={age?.toString() ?? ""}
               onChange={(c) => {
                 const val = parseInt(c.currentTarget.value, 10);
@@ -97,9 +85,9 @@ export default function JobForm(props: JobFormProps) {
         </Grid>
         <Grid item sm={12} md={4}>
           {isLoading ? (
-            <Skeleton className={classes.skeleton} />
+            <Skeleton className={sharedClasses.formItemSkeleton} />
           ) : (
-            <FormControl className={classes.item} variant="filled">
+            <FormControl className={sharedClasses.formItem} variant="filled">
               <InputLabel htmlFor="gender" id="gender-label">
                 Gender
               </InputLabel>
@@ -121,9 +109,9 @@ export default function JobForm(props: JobFormProps) {
         </Grid>
         <Grid item sm={12} md={4}>
           {isLoading ? (
-            <Skeleton className={classes.skeleton} />
+            <Skeleton className={sharedClasses.formItemSkeleton} />
           ) : (
-            <FormControl className={classes.item} variant="filled">
+            <FormControl className={sharedClasses.formItem} variant="filled">
               <InputLabel htmlFor="category" id="category-label">
                 Category
               </InputLabel>
@@ -151,7 +139,7 @@ export default function JobForm(props: JobFormProps) {
       <Grid container spacing={2}>
         <Grid item sm={12} md={6}>
           {isLoading ? (
-            <Skeleton className={classes.skeleton} />
+            <Skeleton className={sharedClasses.formItemSkeleton} />
           ) : (
             <FormControlLabel
               control={
@@ -166,7 +154,7 @@ export default function JobForm(props: JobFormProps) {
         </Grid>
         <Grid item sm={12} md={6}>
           {isLoading ? (
-            <Skeleton className={classes.skeleton} />
+            <Skeleton className={sharedClasses.formItemSkeleton} />
           ) : (
             <FormControlLabel
               control={
@@ -181,12 +169,12 @@ export default function JobForm(props: JobFormProps) {
         </Grid>
         <Grid item xs={12}>
           {isLoading ? (
-            <Skeleton className={classes.skeleton} />
+            <Skeleton className={sharedClasses.formItemSkeleton} />
           ) : (
             <TextField
               label="Notes"
               multiline
-              className={classes.item}
+              className={sharedClasses.formItem}
               value={notes}
               onChange={(c) => {
                 setNotes(c.currentTarget.value);
@@ -199,9 +187,13 @@ export default function JobForm(props: JobFormProps) {
         </Grid>
         <Grid item sm={12} md={6}>
           {isLoading ? (
-            <Skeleton className={classes.skeleton} />
+            <Skeleton className={sharedClasses.formItemSkeleton} />
           ) : (
-            <FormControl className={classes.item} required variant="filled">
+            <FormControl
+              className={sharedClasses.formItem}
+              required
+              variant="filled"
+            >
               <InputLabel htmlFor="outcome" id="outcome-label">
                 Outcome
               </InputLabel>
@@ -223,7 +215,7 @@ export default function JobForm(props: JobFormProps) {
         </Grid>
         <Grid item sm={12} md={6}>
           {isLoading ? (
-            <Skeleton className={classes.skeleton} />
+            <Skeleton className={sharedClasses.formItemSkeleton} />
           ) : (
             <FormControlLabel
               control={

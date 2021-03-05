@@ -1,5 +1,5 @@
 import { Alert } from "@material-ui/lab";
-import { Paper, Typography, makeStyles } from "@material-ui/core";
+import { Paper, Typography } from "@material-ui/core";
 import React, { useEffect, useState } from "react";
 import { formatISO, isValid, parseISO } from "date-fns";
 import { useAuth0, withAuthenticationRequired } from "@auth0/auth0-react";
@@ -8,27 +8,12 @@ import { NewShift, RoleType } from "../model/shift";
 import Nav from "../nav";
 import { ServerAudience } from "../shared/constants";
 import ShiftForm from "../shared/shift-form";
-
-const useStyles = makeStyles((theme) => ({
-  root: {
-    padding: theme.spacing(4),
-  },
-  item: {
-    width: "100%",
-  },
-  skeleton: {
-    height: "72px",
-  },
-  alert: {
-    marginTop: theme.spacing(1),
-    marginBottom: theme.spacing(1),
-  },
-}));
+import useSharedStyles from "../shared/shared-styles";
 
 export function EditShiftBase() {
   const { id } = useParams<{ id: string }>();
 
-  const classes = useStyles();
+  const sharedClasses = useSharedStyles();
   const history = useHistory();
 
   const [shiftDate, setShiftDate] = useState(
@@ -142,18 +127,18 @@ export function EditShiftBase() {
 
   return (
     <Nav>
-      <Paper className={classes.root}>
+      <Paper className={sharedClasses.formRoot}>
         <Typography component="h2" variant="h5" gutterBottom>
           Edit Shift
         </Typography>
         {errorSaving && (
-          <Alert severity="error" className={classes.alert}>
+          <Alert severity="error" className={sharedClasses.alert}>
             There was an problem speaking to the server. Please try again, or
             retry later.
           </Alert>
         )}
         {errorLoading && (
-          <Alert severity="error" className={classes.alert}>
+          <Alert severity="error" className={sharedClasses.alert}>
             There was a problem speaking to the server. Try refreshing, or come
             back a little later.
           </Alert>

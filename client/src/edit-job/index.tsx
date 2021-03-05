@@ -1,4 +1,4 @@
-import { Paper, Typography, makeStyles } from "@material-ui/core";
+import { Paper, Typography } from "@material-ui/core";
 import { useAuth0, withAuthenticationRequired } from "@auth0/auth0-react";
 import React, { useEffect, useState } from "react";
 import { useHistory, useParams } from "react-router-dom";
@@ -6,24 +6,12 @@ import { Alert } from "@material-ui/lab";
 import Nav from "../nav";
 import { NewJob, Outcome } from "../model/job";
 import JobForm from "../shared/job-form";
-
-const useStyles = makeStyles((theme) => ({
-  root: {
-    padding: theme.spacing(4),
-  },
-  item: {
-    width: "100%",
-  },
-  alert: {
-    marginTop: theme.spacing(1),
-    marginBottom: theme.spacing(1),
-  },
-}));
+import useSharedStyles from "../shared/shared-styles";
 
 export function EditJobBase() {
   const { id } = useParams<{ id: string }>();
 
-  const classes = useStyles();
+  const sharedClasses = useSharedStyles();
   const history = useHistory();
 
   const [age, setAge] = useState<number | undefined>(undefined);
@@ -134,18 +122,18 @@ export function EditJobBase() {
 
   return (
     <Nav>
-      <Paper className={classes.root}>
+      <Paper className={sharedClasses.formRoot}>
         <Typography component="h2" variant="h5" gutterBottom>
           Add Job
         </Typography>
         {errorSaving && (
-          <Alert severity="error" className={classes.alert}>
+          <Alert severity="error" className={sharedClasses.alert}>
             There was an problem speaking to the server. Please try again, or
             retry later.
           </Alert>
         )}
         {errorLoading && (
-          <Alert severity="error" className={classes.alert}>
+          <Alert severity="error" className={sharedClasses.alert}>
             There was a problem speaking to the server. Try refreshing, or come
             back a little later.
           </Alert>

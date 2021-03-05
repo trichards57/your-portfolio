@@ -1,4 +1,4 @@
-import { Paper, Typography, makeStyles } from "@material-ui/core";
+import { Paper, Typography } from "@material-ui/core";
 import React, { useEffect, useState } from "react";
 import { formatISO, isValid, parseISO } from "date-fns";
 import { useAuth0, withAuthenticationRequired } from "@auth0/auth0-react";
@@ -7,22 +7,10 @@ import { Alert } from "@material-ui/lab";
 import Nav from "../nav";
 import { NewShift, RoleType } from "../model/shift";
 import ShiftForm from "../shared/shift-form";
-
-const useStyles = makeStyles((theme) => ({
-  root: {
-    padding: theme.spacing(4),
-  },
-  item: {
-    width: "100%",
-  },
-  alert: {
-    marginTop: theme.spacing(1),
-    marginBottom: theme.spacing(1),
-  },
-}));
+import useSharedStyles from "../shared/shared-styles";
 
 export function AddShiftBase() {
-  const classes = useStyles();
+  const sharedClasses = useSharedStyles();
   const history = useHistory();
 
   const [shiftDate, setShiftDate] = useState(
@@ -92,12 +80,12 @@ export function AddShiftBase() {
 
   return (
     <Nav>
-      <Paper className={classes.root}>
+      <Paper className={sharedClasses.formRoot}>
         <Typography component="h2" variant="h5" gutterBottom>
           Add Shift
         </Typography>
         {errorSaving && (
-          <Alert severity="error" className={classes.alert}>
+          <Alert severity="error" className={sharedClasses.alert}>
             There was an problem speaking to the server. Please try again, or
             retry later.
           </Alert>

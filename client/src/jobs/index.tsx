@@ -1,9 +1,7 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import {
   Button,
   Hidden,
   IconButton,
-  makeStyles,
   Paper,
   Table,
   TableBody,
@@ -25,21 +23,13 @@ import {
 import { Alert, Skeleton } from "@material-ui/lab";
 import Nav from "../nav";
 import { JobSummary } from "../model/job";
-
-const useStyles = makeStyles((theme) => ({
-  alert: {
-    marginTop: theme.spacing(1),
-    marginBottom: theme.spacing(1),
-  },
-}));
+import useSharedStyles from "../shared/shared-styles";
 
 function Jobs() {
-  const classes = useStyles();
+  const sharedClasses = useSharedStyles();
   const routerLocation = useLocation();
   const shiftId = new URLSearchParams(routerLocation.search).get("shiftId");
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [jobs, setJobs] = useState<JobSummary[]>([]);
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [isLoading, setIsLoading] = useState(false);
   const [errorLoading, setErrorLoading] = useState(false);
 
@@ -81,7 +71,7 @@ function Jobs() {
         Jobs
       </Typography>
       {errorLoading && (
-        <Alert severity="error" className={classes.alert}>
+        <Alert severity="error" className={sharedClasses.alert}>
           There was a problem speaking to the server. Try refreshing, or come
           back a little later.
         </Alert>
