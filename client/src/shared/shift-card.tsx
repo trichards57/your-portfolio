@@ -6,6 +6,7 @@ import {
   Typography,
   makeStyles,
 } from "@material-ui/core";
+import { Skeleton } from "@material-ui/lab";
 import { format, parseISO } from "date-fns";
 import { Link } from "react-router-dom";
 import React from "react";
@@ -25,6 +26,32 @@ const useStyles = makeStyles({
     marginBottom: 12,
   },
 });
+
+function LoadingCard() {
+  const classes = useStyles();
+
+  return (
+    <Card>
+      <CardContent>
+        <Typography className={classes.date} gutterBottom>
+          <Skeleton />
+        </Typography>
+        <Typography className={classes.trimText} variant="h5" component="h2">
+          <Skeleton />
+        </Typography>
+        <Typography className={classes.location} color="textSecondary">
+          <Skeleton />
+        </Typography>
+        <Typography variant="body2" component="p">
+          <Skeleton />
+        </Typography>
+        <Typography variant="body2" component="p">
+          <Skeleton />
+        </Typography>
+      </CardContent>
+    </Card>
+  );
+}
 
 function ShiftCard({ shift }: { shift: ShiftSummary }) {
   const classes = useStyles();
@@ -85,4 +112,11 @@ function ShiftCard({ shift }: { shift: ShiftSummary }) {
   );
 }
 
-export default ShiftCard;
+function IsLoadingCard(props: { shift?: ShiftSummary }) {
+  const { shift } = props;
+
+  if (!shift) return <LoadingCard />;
+  return <ShiftCard shift={shift} />;
+}
+
+export default IsLoadingCard;

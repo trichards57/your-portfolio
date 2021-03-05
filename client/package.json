@@ -67,7 +67,8 @@
             "order": "alphabetically"
           }
         }
-      ]
+      ],
+      "react/require-default-props": "off"
     }
   },
   "browserslist": {

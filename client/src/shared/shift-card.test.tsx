@@ -40,3 +40,15 @@ it("renders correctly", () => {
 
   expect(tree).toMatchSnapshot();
 });
+
+it("renders loading correctly", () => {
+  const tree = renderer
+    .create(
+      <Router>
+        <ShiftCard />
+      </Router>
+    )
+    .toJSON();
+
+  expect(tree).toMatchSnapshot();
+});

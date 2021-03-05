@@ -324,17 +324,17 @@ exports[`renders successful load correctly 1`] = `
               class="MuiCardContent-root"
             >
               <p
-                class="MuiTypography-root makeStyles-date-43 makeStyles-trimText-44 MuiTypography-body1 MuiTypography-colorTextSecondary MuiTypography-gutterBottom"
+                class="MuiTypography-root makeStyles-date-40 makeStyles-trimText-41 MuiTypography-body1 MuiTypography-colorTextSecondary MuiTypography-gutterBottom"
               >
                 2 February 2020
               </p>
               <h2
-                class="MuiTypography-root makeStyles-trimText-44 MuiTypography-h5"
+                class="MuiTypography-root makeStyles-trimText-41 MuiTypography-h5"
               >
                 Test Shift 2
               </h2>
               <p
-                class="MuiTypography-root makeStyles-location-45 makeStyles-trimText-44 MuiTypography-body1 MuiTypography-colorTextSecondary"
+                class="MuiTypography-root makeStyles-location-42 makeStyles-trimText-41 MuiTypography-body1 MuiTypography-colorTextSecondary"
               >
                 Test Location 2
               </p>
@@ -413,17 +413,17 @@ exports[`renders successful load correctly 1`] = `
               class="MuiCardContent-root"
             >
               <p
-                class="MuiTypography-root makeStyles-date-43 makeStyles-trimText-44 MuiTypography-body1 MuiTypography-colorTextSecondary MuiTypography-gutterBottom"
+                class="MuiTypography-root makeStyles-date-40 makeStyles-trimText-41 MuiTypography-body1 MuiTypography-colorTextSecondary MuiTypography-gutterBottom"
               >
                 3 January 2020
               </p>
               <h2
-                class="MuiTypography-root makeStyles-trimText-44 MuiTypography-h5"
+                class="MuiTypography-root makeStyles-trimText-41 MuiTypography-h5"
               >
                 Test Shift 3
               </h2>
               <p
-                class="MuiTypography-root makeStyles-location-45 makeStyles-trimText-44 MuiTypography-body1 MuiTypography-colorTextSecondary"
+                class="MuiTypography-root makeStyles-location-42 makeStyles-trimText-41 MuiTypography-body1 MuiTypography-colorTextSecondary"
               />
               <p
                 class="MuiTypography-root MuiTypography-body2"
@@ -500,17 +500,17 @@ exports[`renders successful load correctly 1`] = `
               class="MuiCardContent-root"
             >
               <p
-                class="MuiTypography-root makeStyles-date-43 makeStyles-trimText-44 MuiTypography-body1 MuiTypography-colorTextSecondary MuiTypography-gutterBottom"
+                class="MuiTypography-root makeStyles-date-40 makeStyles-trimText-41 MuiTypography-body1 MuiTypography-colorTextSecondary MuiTypography-gutterBottom"
               >
                 1 January 2020
               </p>
               <h2
-                class="MuiTypography-root makeStyles-trimText-44 MuiTypography-h5"
+                class="MuiTypography-root makeStyles-trimText-41 MuiTypography-h5"
               >
                 Test Shift 1
               </h2>
               <p
-                class="MuiTypography-root makeStyles-location-45 makeStyles-trimText-44 MuiTypography-body1 MuiTypography-colorTextSecondary"
+                class="MuiTypography-root makeStyles-location-42 makeStyles-trimText-41 MuiTypography-body1 MuiTypography-colorTextSecondary"
               >
                 Test Location 1
               </p>

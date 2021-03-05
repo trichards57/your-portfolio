@@ -2,7 +2,6 @@ import { Grid, Typography } from "@material-ui/core";
 import React, { useEffect, useState } from "react";
 import { useAuth0, withAuthenticationRequired } from "@auth0/auth0-react";
 import { Pagination } from "@material-ui/lab";
-import LoadingCard from "../shared/loading-card";
 import Nav from "../nav";
 import ShiftCard from "../shared/shift-card";
 import { ShiftSummary } from "../model/shift";
@@ -65,7 +64,7 @@ function Shifts() {
   const loadingCards = [{}, {}, {}, {}].map((s, i) => (
     // eslint-disable-next-line react/no-array-index-key
     <Grid item key={i} xs={6} sm={6} lg={3}>
-      <LoadingCard />
+      <ShiftCard />
     </Grid>
   ));
 

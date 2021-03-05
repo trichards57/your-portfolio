@@ -116,3 +116,79 @@ exports[`renders correctly 1`] = `
   </div>
 </div>
 `;
+
+exports[`renders loading correctly 1`] = `
+<div
+  className="MuiPaper-root MuiCard-root MuiPaper-elevation1 MuiPaper-rounded"
+>
+  <div
+    className="MuiCardContent-root"
+  >
+    <p
+      className="MuiTypography-root makeStyles-date-4 MuiTypography-body1 MuiTypography-gutterBottom"
+    >
+      <span
+        className="MuiSkeleton-root MuiSkeleton-text MuiSkeleton-pulse"
+        style={
+          Object {
+            "height": undefined,
+            "width": undefined,
+          }
+        }
+      />
+    </p>
+    <h2
+      className="MuiTypography-root makeStyles-trimText-5 MuiTypography-h5"
+    >
+      <span
+        className="MuiSkeleton-root MuiSkeleton-text MuiSkeleton-pulse"
+        style={
+          Object {
+            "height": undefined,
+            "width": undefined,
+          }
+        }
+      />
+    </h2>
+    <p
+      className="MuiTypography-root makeStyles-location-6 MuiTypography-body1 MuiTypography-colorTextSecondary"
+    >
+      <span
+        className="MuiSkeleton-root MuiSkeleton-text MuiSkeleton-pulse"
+        style={
+          Object {
+            "height": undefined,
+            "width": undefined,
+          }
+        }
+      />
+    </p>
+    <p
+      className="MuiTypography-root MuiTypography-body2"
+    >
+      <span
+        className="MuiSkeleton-root MuiSkeleton-text MuiSkeleton-pulse"
+        style={
+          Object {
+            "height": undefined,
+            "width": undefined,
+          }
+        }
+      />
+    </p>
+    <p
+      className="MuiTypography-root MuiTypography-body2"
+    >
+      <span
+        className="MuiSkeleton-root MuiSkeleton-text MuiSkeleton-pulse"
+        style={
+          Object {
+            "height": undefined,
+            "width": undefined,
+          }
+        }
+      />
+    </p>
+  </div>
+</div>
+`;
