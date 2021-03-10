@@ -41,8 +41,12 @@ export function HomeBase() {
         if (abortController.signal.aborted) return;
 
         setShifts(newShifts);
-      } else if (response.status === 401) history.push("/");
-      else setError(true);
+      } else if (response.status === 401) {
+        history.push("/");
+      } else {
+        if (abortController.signal.aborted) return;
+         setError(true);
+      }
 
       setIsLoading(false);
     }

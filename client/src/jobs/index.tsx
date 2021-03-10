@@ -13,7 +13,7 @@ import {
 } from "@material-ui/core";
 import React, { useEffect, useState } from "react";
 import { useAuth0, withAuthenticationRequired } from "@auth0/auth0-react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useHistory, useLocation } from "react-router-dom";
 import {
   CheckCircleOutlined as TickIcon,
   Delete as DeleteIcon,
@@ -115,8 +115,9 @@ function GridRow(props: { i?: number; job?: JobSummary }) {
   );
 }
 
-function Jobs() {
+export function JobsBase() {
   const sharedClasses = useSharedStyles();
+  const history = useHistory();
   const routerLocation = useLocation();
   const shiftId = new URLSearchParams(routerLocation.search).get("shiftId");
   const [jobs, setJobs] = useState<JobSummary[]>([]);
@@ -129,6 +130,8 @@ function Jobs() {
     setIsLoading(true);
     setErrorLoading(false);
 
+    const abortController = new AbortController();
+
     async function loadData() {
       const token = await getAccessTokenSilently({
         audience: "https://tr-toolbox.me.uk/your-portfolio",
@@ -139,13 +142,19 @@ function Jobs() {
         headers: {
           Authorization: `Bearer ${token}`,
         },
+        signal: abortController.signal,
       });
 
       if (response.ok) {
         const newJobs = (await response.json()) as JobSummary[];
 
+        if (abortController.signal.aborted) return;
+
         setJobs(newJobs);
+      } else if (response.status === 401) {
+        history.push("/");
       } else {
+        if (abortController.signal.aborted) return;
         setErrorLoading(true);
       }
 
@@ -153,7 +162,8 @@ function Jobs() {
     }
 
     loadData();
-  }, [getAccessTokenSilently, shiftId]);
+    return () => abortController.abort();
+  }, [getAccessTokenSilently, shiftId, history]);
 
   return (
     <Nav>
@@ -187,4 +197,4 @@ function Jobs() {
   );
 }
 
-export default withAuthenticationRequired(Jobs);
+export default withAuthenticationRequired(JobsBase);
