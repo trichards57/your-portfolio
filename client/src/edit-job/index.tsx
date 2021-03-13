@@ -7,13 +7,12 @@ import Nav from "../nav";
 import { NewJob, Outcome } from "../model/job";
 import JobForm from "../shared/job-form";
 import useSharedStyles from "../shared/shared-styles";
+import useLoadedData from "../shared/load-data";
 
 export function EditJobBase() {
   const { id } = useParams<{ id: string }>();
-
   const sharedClasses = useSharedStyles();
   const history = useHistory();
-
   const [age, setAge] = useState<number | undefined>(undefined);
   const [blueLights, setBlueLights] = useState(false);
   const [category, setCategory] = useState(3);
@@ -28,58 +27,29 @@ export function EditJobBase() {
   const [canSubmit, setCanSubmit] = useState(false);
   const [saveRunning, setSaveRunning] = useState(false);
   const [errorSaving, setErrorSaving] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
-  const [errorLoading, setErrorLoading] = useState(false);
   const { getAccessTokenSilently } = useAuth0();
 
   useEffect(() => {
     setCanSubmit(!saveRunning);
   }, [saveRunning]);
 
+  const { data, errorLoading, isLoading } = useLoadedData<NewJob>(
+    `/api/GetJob?id=${id}`
+  );
+
   useEffect(() => {
-    setIsLoading(true);
-
-    const abortController = new AbortController();
-
-    async function loadData() {
-      const token = await getAccessTokenSilently({
-        audience: "https://tr-toolbox.me.uk/your-portfolio",
-      });
-      const uri = `/api/GetJob?id=${id}`;
-
-      const response = await fetch(uri, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-        signal: abortController.signal,
-      });
-
-      if (!response.ok) {
-        if (response.status === 401) history.push("/");
-        else if (response.status === 404) history.push("/home");
-        else setErrorLoading(true);
-        return;
-      }
-
-      const job = (await response.json()) as NewJob;
-
-      if (abortController.signal.aborted) return;
-
-      setAge(job.age);
-      setBlueLights(job.blueLights);
-      setCategory(job.category);
-      setDrove(job.drove);
-      setGender(job.gender);
-      setNotes(job.notes);
-      setOutcome(job.outcome);
-      setReflectionFlag(job.reflectionFlag);
-      setShift(job.shift);
-
-      setIsLoading(false);
+    if (data) {
+      setAge(data.age);
+      setBlueLights(data.blueLights);
+      setCategory(data.category);
+      setDrove(data.drove);
+      setGender(data.gender);
+      setNotes(data.notes);
+      setOutcome(data.outcome);
+      setReflectionFlag(data.reflectionFlag);
+      setShift(data.shift);
     }
-    loadData();
-    return () => abortController.abort();
-  }, [getAccessTokenSilently, history, id]);
+  }, [data]);
 
   async function submit() {
     if (!canSubmit) return;
@@ -157,7 +127,7 @@ export function EditJobBase() {
           setOutcome={setOutcome}
           setReflectionFlag={setReflectionFlag}
           submit={submit}
-          isLoading={isLoading}
+          isLoading={isLoading || errorLoading}
         />
       </Paper>
     </Nav>

@@ -9,6 +9,7 @@ import Nav from "../nav";
 import { ServerAudience } from "../shared/constants";
 import ShiftForm from "../shared/shift-form";
 import useSharedStyles from "../shared/shared-styles";
+import useLoadedData from "../shared/load-data";
 
 export function EditShiftBase() {
   const { id } = useParams<{ id: string }>();
@@ -28,8 +29,6 @@ export function EditShiftBase() {
   const [role, setRole] = useState<RoleType>("EAC");
   const [crewMate, setCrewMate] = useState("");
   const [canSubmit, setCanSubmit] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
-  const [errorLoading, setErrorLoading] = useState(false);
   const [saveRunning, setSaveRunning] = useState(false);
   const [errorSaving, setErrorSaving] = useState(false);
 
@@ -48,46 +47,20 @@ export function EditShiftBase() {
     setCanSubmit(dateValid && durationValid && eventNameValid && !saveRunning);
   }, [dateValid, durationValid, eventNameValid, saveRunning]);
 
+  const { data, errorLoading, isLoading } = useLoadedData<NewShift>(
+    `/api/GetShift?id=${id}`
+  );
+
   useEffect(() => {
-    setIsLoading(true);
-
-    const abortController = new AbortController();
-
-    async function loadData() {
-      const token = await getAccessTokenSilently({
-        audience: "https://tr-toolbox.me.uk/your-portfolio",
-      });
-      const uri = `/api/GetShift?id=${id}`;
-
-      const response = await fetch(uri, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-        signal: abortController.signal,
-      });
-
-      if (!response.ok) {
-        if (response.status === 401) history.push("/");
-        else if (response.status === 404) history.push("/home");
-        else setErrorLoading(true);
-        return;
-      }
-
-      const shift = (await response.json()) as NewShift;
-
-      if (abortController.signal.aborted) return;
-
-      setShiftDate(shift.date.split("T")[0]);
-      setDuration(shift.duration);
-      setEventName(shift.event);
-      setLocation(shift.location || "");
-      setRole(shift.role);
-      setCrewMate(shift.crewMate || "");
-      setIsLoading(false);
+    if (data) {
+      setShiftDate(data.date.split("T")[0]);
+      setDuration(data.duration);
+      setEventName(data.event);
+      setLocation(data.location || "");
+      setRole(data.role);
+      setCrewMate(data.crewMate || "");
     }
-    loadData();
-    return () => abortController.abort();
-  }, [getAccessTokenSilently, history, id]);
+  }, [data]);
 
   async function submit() {
     if (!canSubmit) return;
@@ -152,7 +125,7 @@ export function EditShiftBase() {
           durationValid={durationValid}
           eventName={eventName}
           eventNameValid={eventNameValid}
-          isLoading={isLoading}
+          isLoading={isLoading || errorLoading}
           location={location}
           role={role}
           setDuration={setDuration}

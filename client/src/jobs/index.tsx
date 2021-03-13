@@ -11,9 +11,9 @@ import {
   TableRow,
   Typography,
 } from "@material-ui/core";
-import React, { useEffect, useState } from "react";
-import { useAuth0, withAuthenticationRequired } from "@auth0/auth0-react";
-import { Link, useHistory, useLocation } from "react-router-dom";
+import React from "react";
+import { withAuthenticationRequired } from "@auth0/auth0-react";
+import { Link, useLocation } from "react-router-dom";
 import {
   CheckCircleOutlined as TickIcon,
   Delete as DeleteIcon,
@@ -24,6 +24,7 @@ import { Alert, Skeleton } from "@material-ui/lab";
 import Nav from "../nav";
 import { JobSummary } from "../model/job";
 import useSharedStyles from "../shared/shared-styles";
+import useLoadedData from "../shared/load-data";
 
 function GridHeader() {
   return (
@@ -117,53 +118,12 @@ function GridRow(props: { i?: number; job?: JobSummary }) {
 
 export function JobsBase() {
   const sharedClasses = useSharedStyles();
-  const history = useHistory();
   const routerLocation = useLocation();
   const shiftId = new URLSearchParams(routerLocation.search).get("shiftId");
-  const [jobs, setJobs] = useState<JobSummary[]>([]);
-  const [isLoading, setIsLoading] = useState(false);
-  const [errorLoading, setErrorLoading] = useState(false);
 
-  const { getAccessTokenSilently } = useAuth0();
-
-  useEffect(() => {
-    setIsLoading(true);
-    setErrorLoading(false);
-
-    const abortController = new AbortController();
-
-    async function loadData() {
-      const token = await getAccessTokenSilently({
-        audience: "https://tr-toolbox.me.uk/your-portfolio",
-      });
-      const uri = `/api/GetJobs?shiftId=${shiftId}`;
-
-      const response = await fetch(uri, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-        signal: abortController.signal,
-      });
-
-      if (response.ok) {
-        const newJobs = (await response.json()) as JobSummary[];
-
-        if (abortController.signal.aborted) return;
-
-        setJobs(newJobs);
-      } else if (response.status === 401) {
-        history.push("/");
-      } else {
-        if (abortController.signal.aborted) return;
-        setErrorLoading(true);
-      }
-
-      setIsLoading(false);
-    }
-
-    loadData();
-    return () => abortController.abort();
-  }, [getAccessTokenSilently, shiftId, history]);
+  const { data: jobs, errorLoading, isLoading } = useLoadedData<JobSummary[]>(
+    `/api/GetJobs?shiftId=${shiftId}`
+  );
 
   return (
     <Nav>
@@ -189,6 +149,7 @@ export function JobsBase() {
             )}
             {!isLoading &&
               !errorLoading &&
+              jobs &&
               jobs.map((j, i) => <GridRow job={j} key={j.id} i={i + 1} />)}
           </TableBody>
         </Table>
