@@ -55,7 +55,7 @@ exports[`loads a new page if pagination clicked 1`] = `
       <h2
         class="MuiTypography-root MuiTypography-h5"
       >
-        Recent Shifts
+        Shifts
       </h2>
       <div
         class="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-2"
@@ -694,6 +694,682 @@ exports[`loads a new page if pagination clicked 1`] = `
 </DocumentFragment>
 `;
 
+exports[`loads all if switches 1`] = `
+<DocumentFragment>
+  <div
+    class="makeStyles-root-159"
+  >
+    <header
+      class="MuiPaper-root MuiAppBar-root MuiAppBar-positionFixed MuiAppBar-colorPrimary makeStyles-appBar-161 mui-fixed MuiPaper-elevation4"
+    >
+      <div
+        class="MuiToolbar-root MuiToolbar-regular MuiToolbar-gutters"
+      >
+        <button
+          aria-label="open drawer"
+          class="MuiButtonBase-root MuiIconButton-root makeStyles-menuButton-162 MuiIconButton-colorInherit MuiIconButton-edgeStart"
+          tabindex="0"
+          type="button"
+        >
+          <span
+            class="MuiIconButton-label"
+          >
+            <svg
+              aria-hidden="true"
+              class="MuiSvgIcon-root"
+              focusable="false"
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"
+              />
+            </svg>
+          </span>
+          <span
+            class="MuiTouchRipple-root"
+          />
+        </button>
+        <h6
+          class="MuiTypography-root MuiTypography-h6 MuiTypography-noWrap"
+        >
+          Your Portfolio
+        </h6>
+      </div>
+    </header>
+    <nav
+      aria-label="mailbox folders"
+      class="makeStyles-drawer-160"
+    />
+    <main
+      class="makeStyles-content-165"
+    >
+      <div
+        class="makeStyles-toolbar-163"
+      />
+      <h2
+        class="MuiTypography-root MuiTypography-h5"
+      >
+        Shifts
+      </h2>
+      <div
+        class="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-2"
+      >
+        <div
+          class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-6 MuiGrid-grid-sm-6 MuiGrid-grid-lg-3"
+        >
+          <div
+            class="MuiPaper-root MuiCard-root MuiPaper-elevation1 MuiPaper-rounded"
+          >
+            <div
+              class="MuiCardContent-root"
+            >
+              <p
+                class="MuiTypography-root makeStyles-date-166 makeStyles-trimText-167 MuiTypography-body1 MuiTypography-colorTextSecondary MuiTypography-gutterBottom"
+              >
+                6 January 2020
+              </p>
+              <h2
+                class="MuiTypography-root makeStyles-trimText-167 MuiTypography-h5"
+              >
+                Test Shift 5
+              </h2>
+              <p
+                class="MuiTypography-root makeStyles-location-168 makeStyles-trimText-167 MuiTypography-body1 MuiTypography-colorTextSecondary"
+              >
+                Test Location 5
+              </p>
+              <p
+                class="MuiTypography-root MuiTypography-body2"
+              >
+                Role: EAC
+              </p>
+              <p
+                class="MuiTypography-root MuiTypography-body2"
+              >
+                Logged Calls: 0
+              </p>
+            </div>
+            <div
+              class="MuiCardActions-root MuiCardActions-spacing"
+            >
+              <div
+                aria-disabled="false"
+                class="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedSizeSmall MuiButton-sizeSmall"
+                role="button"
+                tabindex="0"
+                to="/editShift/abcd05"
+              >
+                <span
+                  class="MuiButton-label"
+                >
+                  Edit
+                </span>
+                <span
+                  class="MuiTouchRipple-root"
+                />
+              </div>
+              <div
+                aria-disabled="false"
+                class="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-containedSizeSmall MuiButton-sizeSmall"
+                role="button"
+                tabindex="0"
+                to="/addJob?shift=abcd05"
+              >
+                <span
+                  class="MuiButton-label"
+                >
+                  Add Job
+                </span>
+                <span
+                  class="MuiTouchRipple-root"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-6 MuiGrid-grid-sm-6 MuiGrid-grid-lg-3"
+        >
+          <div
+            class="MuiPaper-root MuiCard-root MuiPaper-elevation1 MuiPaper-rounded"
+          >
+            <div
+              class="MuiCardContent-root"
+            >
+              <p
+                class="MuiTypography-root makeStyles-date-166 makeStyles-trimText-167 MuiTypography-body1 MuiTypography-colorTextSecondary MuiTypography-gutterBottom"
+              >
+                5 January 2020
+              </p>
+              <h2
+                class="MuiTypography-root makeStyles-trimText-167 MuiTypography-h5"
+              >
+                Test Shift 4
+              </h2>
+              <p
+                class="MuiTypography-root makeStyles-location-168 makeStyles-trimText-167 MuiTypography-body1 MuiTypography-colorTextSecondary"
+              >
+                Test Location 4
+              </p>
+              <p
+                class="MuiTypography-root MuiTypography-body2"
+              >
+                Role: EAC
+              </p>
+              <p
+                class="MuiTypography-root MuiTypography-body2"
+              >
+                Logged Calls: 4
+              </p>
+            </div>
+            <div
+              class="MuiCardActions-root MuiCardActions-spacing"
+            >
+              <div
+                aria-disabled="false"
+                class="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedSizeSmall MuiButton-sizeSmall"
+                role="button"
+                tabindex="0"
+                to="/editShift/abcd04"
+              >
+                <span
+                  class="MuiButton-label"
+                >
+                  Edit
+                </span>
+                <span
+                  class="MuiTouchRipple-root"
+                />
+              </div>
+              <div
+                aria-disabled="false"
+                class="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-containedSizeSmall MuiButton-sizeSmall"
+                role="button"
+                tabindex="0"
+                to="/addJob?shift=abcd04"
+              >
+                <span
+                  class="MuiButton-label"
+                >
+                  Add Job
+                </span>
+                <span
+                  class="MuiTouchRipple-root"
+                />
+              </div>
+              <div
+                aria-disabled="false"
+                class="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedSizeSmall MuiButton-sizeSmall"
+                role="button"
+                tabindex="0"
+                to="/jobs?shiftId=abcd04"
+              >
+                <span
+                  class="MuiButton-label"
+                >
+                  Show Jobs
+                </span>
+                <span
+                  class="MuiTouchRipple-root"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-6 MuiGrid-grid-sm-6 MuiGrid-grid-lg-3"
+        >
+          <div
+            class="MuiPaper-root MuiCard-root MuiPaper-elevation1 MuiPaper-rounded"
+          >
+            <div
+              class="MuiCardContent-root"
+            >
+              <p
+                class="MuiTypography-root makeStyles-date-166 makeStyles-trimText-167 MuiTypography-body1 MuiTypography-colorTextSecondary MuiTypography-gutterBottom"
+              >
+                4 January 2020
+              </p>
+              <h2
+                class="MuiTypography-root makeStyles-trimText-167 MuiTypography-h5"
+              >
+                Test Shift 3
+              </h2>
+              <p
+                class="MuiTypography-root makeStyles-location-168 makeStyles-trimText-167 MuiTypography-body1 MuiTypography-colorTextSecondary"
+              >
+                Test Location 3
+              </p>
+              <p
+                class="MuiTypography-root MuiTypography-body2"
+              >
+                Role: EAC
+              </p>
+              <p
+                class="MuiTypography-root MuiTypography-body2"
+              >
+                Logged Calls: 3
+              </p>
+            </div>
+            <div
+              class="MuiCardActions-root MuiCardActions-spacing"
+            >
+              <div
+                aria-disabled="false"
+                class="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedSizeSmall MuiButton-sizeSmall"
+                role="button"
+                tabindex="0"
+                to="/editShift/abcd03"
+              >
+                <span
+                  class="MuiButton-label"
+                >
+                  Edit
+                </span>
+                <span
+                  class="MuiTouchRipple-root"
+                />
+              </div>
+              <div
+                aria-disabled="false"
+                class="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-containedSizeSmall MuiButton-sizeSmall"
+                role="button"
+                tabindex="0"
+                to="/addJob?shift=abcd03"
+              >
+                <span
+                  class="MuiButton-label"
+                >
+                  Add Job
+                </span>
+                <span
+                  class="MuiTouchRipple-root"
+                />
+              </div>
+              <div
+                aria-disabled="false"
+                class="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedSizeSmall MuiButton-sizeSmall"
+                role="button"
+                tabindex="0"
+                to="/jobs?shiftId=abcd03"
+              >
+                <span
+                  class="MuiButton-label"
+                >
+                  Show Jobs
+                </span>
+                <span
+                  class="MuiTouchRipple-root"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-6 MuiGrid-grid-sm-6 MuiGrid-grid-lg-3"
+        >
+          <div
+            class="MuiPaper-root MuiCard-root MuiPaper-elevation1 MuiPaper-rounded"
+          >
+            <div
+              class="MuiCardContent-root"
+            >
+              <p
+                class="MuiTypography-root makeStyles-date-166 makeStyles-trimText-167 MuiTypography-body1 MuiTypography-colorTextSecondary MuiTypography-gutterBottom"
+              >
+                3 January 2020
+              </p>
+              <h2
+                class="MuiTypography-root makeStyles-trimText-167 MuiTypography-h5"
+              >
+                Test Shift 2
+              </h2>
+              <p
+                class="MuiTypography-root makeStyles-location-168 makeStyles-trimText-167 MuiTypography-body1 MuiTypography-colorTextSecondary"
+              >
+                Test Location 2
+              </p>
+              <p
+                class="MuiTypography-root MuiTypography-body2"
+              >
+                Role: EAC
+              </p>
+              <p
+                class="MuiTypography-root MuiTypography-body2"
+              >
+                Logged Calls: 2
+              </p>
+            </div>
+            <div
+              class="MuiCardActions-root MuiCardActions-spacing"
+            >
+              <div
+                aria-disabled="false"
+                class="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedSizeSmall MuiButton-sizeSmall"
+                role="button"
+                tabindex="0"
+                to="/editShift/abcd02"
+              >
+                <span
+                  class="MuiButton-label"
+                >
+                  Edit
+                </span>
+                <span
+                  class="MuiTouchRipple-root"
+                />
+              </div>
+              <div
+                aria-disabled="false"
+                class="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-containedSizeSmall MuiButton-sizeSmall"
+                role="button"
+                tabindex="0"
+                to="/addJob?shift=abcd02"
+              >
+                <span
+                  class="MuiButton-label"
+                >
+                  Add Job
+                </span>
+                <span
+                  class="MuiTouchRipple-root"
+                />
+              </div>
+              <div
+                aria-disabled="false"
+                class="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedSizeSmall MuiButton-sizeSmall"
+                role="button"
+                tabindex="0"
+                to="/jobs?shiftId=abcd02"
+              >
+                <span
+                  class="MuiButton-label"
+                >
+                  Show Jobs
+                </span>
+                <span
+                  class="MuiTouchRipple-root"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-6 MuiGrid-grid-sm-6 MuiGrid-grid-lg-3"
+        >
+          <div
+            class="MuiPaper-root MuiCard-root MuiPaper-elevation1 MuiPaper-rounded"
+          >
+            <div
+              class="MuiCardContent-root"
+            >
+              <p
+                class="MuiTypography-root makeStyles-date-166 makeStyles-trimText-167 MuiTypography-body1 MuiTypography-colorTextSecondary MuiTypography-gutterBottom"
+              >
+                2 January 2020
+              </p>
+              <h2
+                class="MuiTypography-root makeStyles-trimText-167 MuiTypography-h5"
+              >
+                Test Shift 1
+              </h2>
+              <p
+                class="MuiTypography-root makeStyles-location-168 makeStyles-trimText-167 MuiTypography-body1 MuiTypography-colorTextSecondary"
+              >
+                Test Location 1
+              </p>
+              <p
+                class="MuiTypography-root MuiTypography-body2"
+              >
+                Role: EAC
+              </p>
+              <p
+                class="MuiTypography-root MuiTypography-body2"
+              >
+                Logged Calls: 1
+              </p>
+            </div>
+            <div
+              class="MuiCardActions-root MuiCardActions-spacing"
+            >
+              <div
+                aria-disabled="false"
+                class="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedSizeSmall MuiButton-sizeSmall"
+                role="button"
+                tabindex="0"
+                to="/editShift/abcd01"
+              >
+                <span
+                  class="MuiButton-label"
+                >
+                  Edit
+                </span>
+                <span
+                  class="MuiTouchRipple-root"
+                />
+              </div>
+              <div
+                aria-disabled="false"
+                class="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-containedSizeSmall MuiButton-sizeSmall"
+                role="button"
+                tabindex="0"
+                to="/addJob?shift=abcd01"
+              >
+                <span
+                  class="MuiButton-label"
+                >
+                  Add Job
+                </span>
+                <span
+                  class="MuiTouchRipple-root"
+                />
+              </div>
+              <div
+                aria-disabled="false"
+                class="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedSizeSmall MuiButton-sizeSmall"
+                role="button"
+                tabindex="0"
+                to="/jobs?shiftId=abcd01"
+              >
+                <span
+                  class="MuiButton-label"
+                >
+                  Show Jobs
+                </span>
+                <span
+                  class="MuiTouchRipple-root"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-6 MuiGrid-grid-sm-6 MuiGrid-grid-lg-3"
+        >
+          <div
+            class="MuiPaper-root MuiCard-root MuiPaper-elevation1 MuiPaper-rounded"
+          >
+            <div
+              class="MuiCardContent-root"
+            >
+              <p
+                class="MuiTypography-root makeStyles-date-166 makeStyles-trimText-167 MuiTypography-body1 MuiTypography-colorTextSecondary MuiTypography-gutterBottom"
+              >
+                1 January 2020
+              </p>
+              <h2
+                class="MuiTypography-root makeStyles-trimText-167 MuiTypography-h5"
+              >
+                Test Shift 0
+              </h2>
+              <p
+                class="MuiTypography-root makeStyles-location-168 makeStyles-trimText-167 MuiTypography-body1 MuiTypography-colorTextSecondary"
+              >
+                Test Location 0
+              </p>
+              <p
+                class="MuiTypography-root MuiTypography-body2"
+              >
+                Role: EAC
+              </p>
+              <p
+                class="MuiTypography-root MuiTypography-body2"
+              >
+                Logged Calls: 0
+              </p>
+            </div>
+            <div
+              class="MuiCardActions-root MuiCardActions-spacing"
+            >
+              <div
+                aria-disabled="false"
+                class="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedSizeSmall MuiButton-sizeSmall"
+                role="button"
+                tabindex="0"
+                to="/editShift/abcd00"
+              >
+                <span
+                  class="MuiButton-label"
+                >
+                  Edit
+                </span>
+                <span
+                  class="MuiTouchRipple-root"
+                />
+              </div>
+              <div
+                aria-disabled="false"
+                class="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-containedSizeSmall MuiButton-sizeSmall"
+                role="button"
+                tabindex="0"
+                to="/addJob?shift=abcd00"
+              >
+                <span
+                  class="MuiButton-label"
+                >
+                  Add Job
+                </span>
+                <span
+                  class="MuiTouchRipple-root"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12"
+        >
+          <nav
+            aria-label="pagination navigation"
+            class="MuiPagination-root"
+          >
+            <ul
+              class="MuiPagination-ul"
+            >
+              <li>
+                <button
+                  aria-label="Go to previous page"
+                  class="MuiButtonBase-root MuiPaginationItem-root MuiPaginationItem-page Mui-disabled Mui-disabled"
+                  disabled=""
+                  tabindex="-1"
+                  type="button"
+                >
+                  <svg
+                    aria-hidden="true"
+                    class="MuiSvgIcon-root MuiPaginationItem-icon"
+                    focusable="false"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"
+                    />
+                  </svg>
+                </button>
+              </li>
+              <li>
+                <button
+                  aria-current="true"
+                  aria-label="page 1"
+                  class="MuiButtonBase-root MuiPaginationItem-root MuiPaginationItem-page Mui-selected"
+                  tabindex="0"
+                  type="button"
+                >
+                  1
+                  <span
+                    class="MuiTouchRipple-root"
+                  />
+                </button>
+              </li>
+              <li>
+                <button
+                  aria-label="Go to page 2"
+                  class="MuiButtonBase-root MuiPaginationItem-root MuiPaginationItem-page"
+                  tabindex="0"
+                  type="button"
+                >
+                  2
+                  <span
+                    class="MuiTouchRipple-root"
+                  />
+                </button>
+              </li>
+              <li>
+                <button
+                  aria-label="Go to page 3"
+                  class="MuiButtonBase-root MuiPaginationItem-root MuiPaginationItem-page"
+                  tabindex="0"
+                  type="button"
+                >
+                  3
+                  <span
+                    class="MuiTouchRipple-root"
+                  />
+                </button>
+              </li>
+              <li>
+                <button
+                  aria-label="Go to page 4"
+                  class="MuiButtonBase-root MuiPaginationItem-root MuiPaginationItem-page"
+                  tabindex="0"
+                  type="button"
+                >
+                  4
+                  <span
+                    class="MuiTouchRipple-root"
+                  />
+                </button>
+              </li>
+              <li>
+                <button
+                  aria-label="Go to next page"
+                  class="MuiButtonBase-root MuiPaginationItem-root MuiPaginationItem-page"
+                  tabindex="0"
+                  type="button"
+                >
+                  <svg
+                    aria-hidden="true"
+                    class="MuiSvgIcon-root MuiPaginationItem-icon"
+                    focusable="false"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"
+                    />
+                  </svg>
+                  <span
+                    class="MuiTouchRipple-root"
+                  />
+                </button>
+              </li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </main>
+  </div>
+</DocumentFragment>
+`;
+
 exports[`renders loading all correctly 1`] = `
 <DocumentFragment>
   <div
@@ -749,7 +1425,7 @@ exports[`renders loading all correctly 1`] = `
       <h2
         class="MuiTypography-root MuiTypography-h5"
       >
-        Recent Shifts
+        Shifts
       </h2>
       <div
         class="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-2"
@@ -1257,7 +1933,7 @@ exports[`renders successful load all correctly 1`] = `
       <h2
         class="MuiTypography-root MuiTypography-h5"
       >
-        Recent Shifts
+        Shifts
       </h2>
       <div
         class="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-2"

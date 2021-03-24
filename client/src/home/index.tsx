@@ -58,7 +58,7 @@ export function HomeBase({ all }: HomeParams) {
   return (
     <Nav>
       <Typography component="h2" variant="h5">
-        Recent Shifts
+        {all ? "Shifts" : "Recent Shifts"}
       </Typography>
       <Grid container spacing={2}>
         {content}

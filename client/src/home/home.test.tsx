@@ -219,3 +219,15 @@ it("loads a new page if pagination clicked", async () => {
 
   expect(res.asFragment()).toMatchSnapshot();
 });
+
+it("loads all if switches", async () => {
+  const res = render(<HomeBase />);
+
+  await res.findByText("Test Shift 1");
+
+  res.rerender(<HomeBase all />);
+
+  await res.findByText("Test Shift 1");
+
+  expect(res.asFragment()).toMatchSnapshot();
+});
