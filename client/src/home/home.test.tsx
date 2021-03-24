@@ -78,11 +78,11 @@ const server = setupServer(
       const page = parseInt(pageString, 10);
       const count = parseInt(countString, 10);
 
-      console.log(page);
+      const data = testAllData.slice(page * count, (page + 1) * count);
 
       return res(
         ctx.set("x-total-count", testAllData.length.toString()),
-        ctx.json(testAllData.slice(page * count, count))
+        ctx.json(data)
       );
     }
 
@@ -204,7 +204,7 @@ it("displays an error if request alls fails", async () => {
   });
 });
 
-fit("loads a new page if pagination clicked", async () => {
+it("loads a new page if pagination clicked", async () => {
   const res = render(<HomeBase all />);
 
   await res.findByText("Test Shift 1");
