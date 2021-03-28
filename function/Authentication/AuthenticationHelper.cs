@@ -2,7 +2,6 @@
 using Microsoft.IdentityModel.Protocols.OpenIdConnect;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
-using System.Net.Http.Headers;
 using System.Security.Claims;
 using System.Threading;
 using System.Threading.Tasks;
@@ -13,8 +12,6 @@ namespace PortfolioServer.Authentication
     {
         bool IsValid { get; }
         string UserId { get; }
-
-        Task<ClaimsPrincipal> DecodeToken(AuthenticationHeaderValue value);
 
         Task<ClaimsPrincipal> DecodeToken(string value);
     }
@@ -38,14 +35,6 @@ namespace PortfolioServer.Authentication
 
         public bool IsValid { get; private set; }
         public string UserId { get; private set; }
-
-        public async Task<ClaimsPrincipal> DecodeToken(AuthenticationHeaderValue value)
-        {
-            if (value?.Scheme != "Bearer")
-                return null;
-
-            return await DecodeToken(value.Parameter);
-        }
 
         public async Task<ClaimsPrincipal> DecodeToken(string value)
         {
