@@ -5,13 +5,12 @@ using Microsoft.AspNetCore.Http.Internal;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging.Abstractions;
 using Moq;
-using PortfolioServer.Authentication;
 using PortfolioServer.Jobs;
 using PortfolioServer.Model;
 using PortfolioServer.ResponseModel;
 using PortfolioServer.Services;
+using PortfolioServer.Test.Helpers;
 using System.Linq;
-using System.Security.Claims;
 using System.Threading.Tasks;
 using Xunit;
 
@@ -23,16 +22,12 @@ namespace PortfolioServer.Test.Jobs
         public async Task ReturnsBadRequestIfNoShiftId()
         {
             var shiftService = new Mock<IShiftService>(MockBehavior.Strict).Object;
-            var authenticationHelperMock = new Mock<IAuthenticationHelper>(MockBehavior.Strict);
-            var testClaims = new ClaimsIdentity("TestAuth");
-            authenticationHelperMock.Setup(h => h.DecodeToken("GoodHeader")).ReturnsAsync(new ClaimsPrincipal(testClaims));
-            var authenticationHelper = authenticationHelperMock.Object;
             var logger = NullLogger.Instance;
 
-            var function = new GetJobs(shiftService, authenticationHelper);
+            var function = new GetJobs(shiftService, AuthenticationHelperMock.GetAuthenticationHelper());
 
             var request = new DefaultHttpRequest(new DefaultHttpContext());
-            request.Headers.Add("Authorization", "GoodHeader");
+            request.Headers.Add("Authorization", AuthenticationHelperMock.GoodHeader);
 
             var result = await function.Run(request, logger);
 
@@ -48,21 +43,15 @@ namespace PortfolioServer.Test.Jobs
             var expectedJobs = Enumerable.Empty<JobSummary>();
 
             var shiftServiceMock = new Mock<IShiftService>(MockBehavior.Strict);
-            shiftServiceMock.Setup(s => s.GetShift("UserId", testShift.Id)).Returns(Task.FromResult<Shift>(testShift));
+            shiftServiceMock.Setup(s => s.GetShift(AuthenticationHelperMock.GoodUserId, testShift.Id)).Returns(Task.FromResult(testShift));
             var shiftService = shiftServiceMock.Object;
-
-            var authenticationHelperMock = new Mock<IAuthenticationHelper>(MockBehavior.Strict);
-            var testClaims = new ClaimsIdentity("TestAuth");
-            testClaims.AddClaim(new Claim(ClaimTypes.Name, "UserId"));
-            authenticationHelperMock.Setup(h => h.DecodeToken("GoodHeader")).ReturnsAsync(new ClaimsPrincipal(testClaims));
-            var authenticationHelper = authenticationHelperMock.Object;
 
             var logger = NullLogger.Instance;
 
-            var function = new GetJobs(shiftService, authenticationHelper);
+            var function = new GetJobs(shiftService, AuthenticationHelperMock.GetAuthenticationHelper());
 
             var request = new DefaultHttpRequest(new DefaultHttpContext());
-            request.Headers.Add("Authorization", "GoodHeader");
+            request.Headers.Add("Authorization", AuthenticationHelperMock.GoodHeader);
             request.QueryString = new QueryString($"?shiftId={testShift.Id}");
 
             var result = await function.Run(request, logger);
@@ -85,21 +74,15 @@ namespace PortfolioServer.Test.Jobs
             });
 
             var shiftServiceMock = new Mock<IShiftService>(MockBehavior.Strict);
-            shiftServiceMock.Setup(s => s.GetShift("UserId", testShift.Id)).Returns(Task.FromResult<Shift>(testShift));
+            shiftServiceMock.Setup(s => s.GetShift(AuthenticationHelperMock.GoodUserId, testShift.Id)).Returns(Task.FromResult<Shift>(testShift));
             var shiftService = shiftServiceMock.Object;
-
-            var authenticationHelperMock = new Mock<IAuthenticationHelper>(MockBehavior.Strict);
-            var testClaims = new ClaimsIdentity("TestAuth");
-            testClaims.AddClaim(new Claim(ClaimTypes.Name, "UserId"));
-            authenticationHelperMock.Setup(h => h.DecodeToken("GoodHeader")).ReturnsAsync(new ClaimsPrincipal(testClaims));
-            var authenticationHelper = authenticationHelperMock.Object;
 
             var logger = NullLogger.Instance;
 
-            var function = new GetJobs(shiftService, authenticationHelper);
+            var function = new GetJobs(shiftService, AuthenticationHelperMock.GetAuthenticationHelper());
 
             var request = new DefaultHttpRequest(new DefaultHttpContext());
-            request.Headers.Add("Authorization", "GoodHeader");
+            request.Headers.Add("Authorization", AuthenticationHelperMock.GoodHeader);
             request.QueryString = new QueryString($"?shiftId={testShift.Id}");
 
             var result = await function.Run(request, logger);
@@ -115,21 +98,15 @@ namespace PortfolioServer.Test.Jobs
             var testShift = fixture.Create<Shift>();
 
             var shiftServiceMock = new Mock<IShiftService>(MockBehavior.Strict);
-            shiftServiceMock.Setup(s => s.GetShift("UserId", testShift.Id)).Returns(Task.FromResult<Shift>(null));
+            shiftServiceMock.Setup(s => s.GetShift(AuthenticationHelperMock.GoodUserId, testShift.Id)).Returns(Task.FromResult<Shift>(null));
             var shiftService = shiftServiceMock.Object;
-
-            var authenticationHelperMock = new Mock<IAuthenticationHelper>(MockBehavior.Strict);
-            var testClaims = new ClaimsIdentity("TestAuth");
-            testClaims.AddClaim(new Claim(ClaimTypes.Name, "UserId"));
-            authenticationHelperMock.Setup(h => h.DecodeToken("GoodHeader")).ReturnsAsync(new ClaimsPrincipal(testClaims));
-            var authenticationHelper = authenticationHelperMock.Object;
 
             var logger = NullLogger.Instance;
 
-            var function = new GetJobs(shiftService, authenticationHelper);
+            var function = new GetJobs(shiftService, AuthenticationHelperMock.GetAuthenticationHelper());
 
             var request = new DefaultHttpRequest(new DefaultHttpContext());
-            request.Headers.Add("Authorization", "GoodHeader");
+            request.Headers.Add("Authorization", AuthenticationHelperMock.GoodHeader);
             request.QueryString = new QueryString($"?shiftId={testShift.Id}");
 
             var result = await function.Run(request, logger);
@@ -141,16 +118,13 @@ namespace PortfolioServer.Test.Jobs
         public async Task ReturnsUnauthorisedWithBadClaims()
         {
             var shiftService = new Mock<IShiftService>(MockBehavior.Strict).Object;
-            var authenticationHelperMock = new Mock<IAuthenticationHelper>(MockBehavior.Strict);
-            var testClaims = new ClaimsIdentity();
-            authenticationHelperMock.Setup(h => h.DecodeToken("BadHeader")).ReturnsAsync(new ClaimsPrincipal(testClaims));
-            var authenticationHelper = authenticationHelperMock.Object;
+
             var logger = NullLogger.Instance;
 
-            var function = new GetJobs(shiftService, authenticationHelper);
+            var function = new GetJobs(shiftService, AuthenticationHelperMock.GetAuthenticationHelper());
 
             var request = new DefaultHttpRequest(new DefaultHttpContext());
-            request.Headers.Add("Authorization", "BadHeader");
+            request.Headers.Add("Authorization", AuthenticationHelperMock.BadHeader);
 
             var result = await function.Run(request, logger);
 
@@ -161,12 +135,9 @@ namespace PortfolioServer.Test.Jobs
         public async Task ReturnsUnauthorisedWithNoClaims()
         {
             var shiftService = new Mock<IShiftService>(MockBehavior.Strict).Object;
-            var authenticationHelperMock = new Mock<IAuthenticationHelper>(MockBehavior.Strict);
-            authenticationHelperMock.Setup(h => h.DecodeToken(null)).Returns(Task.FromResult<ClaimsPrincipal>(null));
-            var authenticationHelper = authenticationHelperMock.Object;
             var logger = NullLogger.Instance;
 
-            var function = new GetJobs(shiftService, authenticationHelper);
+            var function = new GetJobs(shiftService, AuthenticationHelperMock.GetAuthenticationHelper());
 
             var request = new DefaultHttpRequest(new DefaultHttpContext());
 
