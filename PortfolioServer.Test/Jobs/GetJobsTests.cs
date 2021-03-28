@@ -22,14 +22,13 @@ namespace PortfolioServer.Test.Jobs
         public async Task ReturnsBadRequestIfNoShiftId()
         {
             var shiftService = new Mock<IShiftService>(MockBehavior.Strict).Object;
-            var logger = NullLogger.Instance;
 
             var function = new GetJobs(shiftService, AuthenticationHelperMock.GetAuthenticationHelper());
 
             var request = new DefaultHttpRequest(new DefaultHttpContext());
             request.Headers.Add("Authorization", AuthenticationHelperMock.GoodHeader);
 
-            var result = await function.Run(request, logger);
+            var result = await function.Run(request, NullLogger.Instance);
 
             result.Should().BeOfType<BadRequestResult>();
         }
@@ -46,15 +45,13 @@ namespace PortfolioServer.Test.Jobs
             shiftServiceMock.Setup(s => s.GetShift(AuthenticationHelperMock.GoodUserId, testShift.Id)).Returns(Task.FromResult(testShift));
             var shiftService = shiftServiceMock.Object;
 
-            var logger = NullLogger.Instance;
-
             var function = new GetJobs(shiftService, AuthenticationHelperMock.GetAuthenticationHelper());
 
             var request = new DefaultHttpRequest(new DefaultHttpContext());
             request.Headers.Add("Authorization", AuthenticationHelperMock.GoodHeader);
             request.QueryString = new QueryString($"?shiftId={testShift.Id}");
 
-            var result = await function.Run(request, logger);
+            var result = await function.Run(request, NullLogger.Instance);
 
             result.Should().BeOfType<OkObjectResult>()
                 .Which.Value.Should().BeEquivalentTo(expectedJobs);
@@ -77,15 +74,13 @@ namespace PortfolioServer.Test.Jobs
             shiftServiceMock.Setup(s => s.GetShift(AuthenticationHelperMock.GoodUserId, testShift.Id)).Returns(Task.FromResult<Shift>(testShift));
             var shiftService = shiftServiceMock.Object;
 
-            var logger = NullLogger.Instance;
-
             var function = new GetJobs(shiftService, AuthenticationHelperMock.GetAuthenticationHelper());
 
             var request = new DefaultHttpRequest(new DefaultHttpContext());
             request.Headers.Add("Authorization", AuthenticationHelperMock.GoodHeader);
             request.QueryString = new QueryString($"?shiftId={testShift.Id}");
 
-            var result = await function.Run(request, logger);
+            var result = await function.Run(request, NullLogger.Instance);
 
             result.Should().BeOfType<OkObjectResult>()
                 .Which.Value.Should().BeEquivalentTo(expectedJobs);
@@ -101,15 +96,13 @@ namespace PortfolioServer.Test.Jobs
             shiftServiceMock.Setup(s => s.GetShift(AuthenticationHelperMock.GoodUserId, testShift.Id)).Returns(Task.FromResult<Shift>(null));
             var shiftService = shiftServiceMock.Object;
 
-            var logger = NullLogger.Instance;
-
             var function = new GetJobs(shiftService, AuthenticationHelperMock.GetAuthenticationHelper());
 
             var request = new DefaultHttpRequest(new DefaultHttpContext());
             request.Headers.Add("Authorization", AuthenticationHelperMock.GoodHeader);
             request.QueryString = new QueryString($"?shiftId={testShift.Id}");
 
-            var result = await function.Run(request, logger);
+            var result = await function.Run(request, NullLogger.Instance);
 
             result.Should().BeOfType<NotFoundResult>();
         }
@@ -119,14 +112,12 @@ namespace PortfolioServer.Test.Jobs
         {
             var shiftService = new Mock<IShiftService>(MockBehavior.Strict).Object;
 
-            var logger = NullLogger.Instance;
-
             var function = new GetJobs(shiftService, AuthenticationHelperMock.GetAuthenticationHelper());
 
             var request = new DefaultHttpRequest(new DefaultHttpContext());
             request.Headers.Add("Authorization", AuthenticationHelperMock.BadHeader);
 
-            var result = await function.Run(request, logger);
+            var result = await function.Run(request, NullLogger.Instance);
 
             result.Should().BeOfType<UnauthorizedResult>();
         }
@@ -135,13 +126,12 @@ namespace PortfolioServer.Test.Jobs
         public async Task ReturnsUnauthorisedWithNoClaims()
         {
             var shiftService = new Mock<IShiftService>(MockBehavior.Strict).Object;
-            var logger = NullLogger.Instance;
 
             var function = new GetJobs(shiftService, AuthenticationHelperMock.GetAuthenticationHelper());
 
             var request = new DefaultHttpRequest(new DefaultHttpContext());
 
-            var result = await function.Run(request, logger);
+            var result = await function.Run(request, NullLogger.Instance);
 
             result.Should().BeOfType<UnauthorizedResult>();
         }

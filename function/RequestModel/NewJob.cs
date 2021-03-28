@@ -32,6 +32,23 @@ namespace PortfolioServer.RequestModel
 
         [JsonProperty("shift")]
         public string Shift { get; set; }
+
+        public override bool Equals(object obj)
+        {
+            if (obj is NewJob job)
+            {
+                return Age == job.Age
+                    && BlueLights == job.BlueLights
+                    && Category == job.Category
+                    && Drove == job.Drove
+                    && Gender == job.Gender
+                    && Notes == job.Notes
+                    && Outcome == job.Outcome
+                    && ReflectionFlag == job.ReflectionFlag
+                    && Shift == job.Shift;
+            }
+            return false;
+        }
     }
 
     internal class NewJobValidator : AbstractValidator<NewJob>

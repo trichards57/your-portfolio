@@ -57,9 +57,11 @@ namespace PortfolioServer.Jobs
                 return new BadRequestResult();
             }
 
-            await _shiftService.AddJob(claims.Identity.Name, newJob);
+            var storeRes = await _shiftService.AddJob(claims.Identity.Name, newJob);
 
-            return new OkResult();
+            if (storeRes)
+                return new OkResult();
+            return new BadRequestResult();
         }
     }
 }
