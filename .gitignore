@@ -1,0 +1,6 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/PortfolioServer.Test/coverage-history
+/PortfolioServer.Test/coveragereport

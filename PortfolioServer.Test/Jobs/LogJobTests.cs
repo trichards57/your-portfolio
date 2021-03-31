@@ -81,9 +81,31 @@ namespace PortfolioServer.Test.Jobs
         {
             var fixture = new Fixture();
 
+            var body = JsonConvert.SerializeObject("{ invalidjson }");
+            var bodyArray = Encoding.UTF8.GetBytes(body);
+            var bodyStream = new MemoryStream(bodyArray);
+
+            var shiftService = new Mock<IShiftService>(MockBehavior.Strict).Object;
+
+            var function = new LogJob(shiftService, AuthenticationHelperMock.GetAuthenticationHelper());
+
+            var request = new DefaultHttpRequest(new DefaultHttpContext());
+            request.Headers.Add("Authorization", AuthenticationHelperMock.GoodHeader);
+            request.Body = bodyStream;
+
+            var result = await function.Run(request, NullLogger.Instance);
+
+            result.Should().BeOfType<BadRequestResult>();
+        }
+
+        [Fact]
+        public async Task ReturnsBadRequestWithInvalidJson()
+        {
+            var fixture = new Fixture();
+
             var testShift = fixture.Build<NewJob>()
-                .With(j => j.Age, 1)
-                .With(j => j.Category, 6)
+                .With(j => j.Age, -1)
+                .With(j => j.Category, 1)
                 .Create();
 
             var body = JsonConvert.SerializeObject(testShift);
