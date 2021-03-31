@@ -5,7 +5,7 @@ using System;
 
 namespace PortfolioServer.ResponseModel
 {
-    internal class ShiftSummary
+    public class ShiftSummary
     {
         [JsonProperty("crewMate")]
         public string CrewMate { get; set; }
