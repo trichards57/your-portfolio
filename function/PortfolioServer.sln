@@ -5,7 +5,12 @@ VisualStudioVersion = 16.0.30907.101
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PortfolioServer", "PortfolioServer.csproj", "{706DDD01-A409-4E44-BF13-8EED9B542151}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PortfolioServer.Test", "..\PortfolioServer.Test\PortfolioServer.Test.csproj", "{AA6C3AC9-C842-4198-A6A5-4927080A942E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PortfolioServer.Test", "..\PortfolioServer.Test\PortfolioServer.Test.csproj", "{AA6C3AC9-C842-4198-A6A5-4927080A942E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{8164A44B-3F34-4CEE-9186-4F23F34E3195}"
+	ProjectSection(SolutionItems) = preProject
+		..\run-tests.ps1 = ..\run-tests.ps1
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
