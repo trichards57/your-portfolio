@@ -66,7 +66,7 @@ namespace PortfolioServer.Services
 
             await _container.ReplaceItemAsync(shift, shift.Id, new PartitionKey(userId), new ItemRequestOptions
             {
-                EnableContentResponseOnWrite = true
+                EnableContentResponseOnWrite = false
             });
 
             return true;
@@ -143,14 +143,6 @@ namespace PortfolioServer.Services
             return null;
         }
 
-        public async Task Initialise()
-        {
-            if (_database == null)
-                _database = await _client.CreateDatabaseIfNotExistsAsync(_databaseId);
-            if (_container == null)
-                _container = await _database.CreateContainerIfNotExistsAsync(_containerId, "/userId");
-        }
-
         public async Task UpdateShift(string userId, Shift shift)
         {
             if (string.IsNullOrWhiteSpace(userId))
@@ -161,10 +153,22 @@ namespace PortfolioServer.Services
 
             await Initialise();
 
-            await _container.ReplaceItemAsync(shift, shift.Id, new PartitionKey(userId), new ItemRequestOptions
+            try
             {
-                EnableContentResponseOnWrite = true
-            });
+                await _container.ReplaceItemAsync(shift, shift.Id, new PartitionKey(userId), new ItemRequestOptions
+                {
+                    EnableContentResponseOnWrite = false
+                });
+            }
+            catch (CosmosException ex) when (ex.StatusCode == System.Net.HttpStatusCode.BadRequest) { }
+        }
+
+        private async Task Initialise()
+        {
+            if (_database == null)
+                _database = await _client.CreateDatabaseIfNotExistsAsync(_databaseId);
+            if (_container == null)
+                _container = await _database.CreateContainerIfNotExistsAsync(_containerId, "/userId");
         }
     }
 }
