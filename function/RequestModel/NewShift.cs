@@ -6,7 +6,7 @@ using System;
 
 namespace PortfolioServer.RequestModel
 {
-    public class NewShift
+    public class NewShift : IEquatable<NewShift>
     {
         [JsonProperty("crewMate")]
         public string CrewMate { get; set; }
@@ -28,11 +28,23 @@ namespace PortfolioServer.RequestModel
 
         public override bool Equals(object obj)
         {
-            if (!(obj is NewShift shift))
-                return false;
+            return Equals(obj as NewShift);
+        }
 
-            return CrewMate == shift.CrewMate && Date == shift.Date && Duration == shift.Duration
-                && Event == shift.Event && Location == shift.Location && Role == shift.Role;
+        public bool Equals(NewShift other)
+        {
+            return other != null &&
+                   CrewMate == other.CrewMate &&
+                   Date == other.Date &&
+                   Duration.Equals(other.Duration) &&
+                   Event == other.Event &&
+                   Location == other.Location &&
+                   Role == other.Role;
+        }
+
+        public override int GetHashCode()
+        {
+            return HashCode.Combine(CrewMate, Date, Duration, Event, Location, Role);
         }
     }
 

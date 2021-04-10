@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace PortfolioServer.Model
 {
-    public class Shift
+    public class Shift : IEquatable<Shift>
     {
         [JsonProperty("crewMate")]
         public string CrewMate { get; set; }
@@ -37,13 +37,39 @@ namespace PortfolioServer.Model
         [JsonProperty("userId")]
         public string UserId { get; set; }
 
+        public bool Equals(Shift other)
+        {
+            return other != null &&
+                   CrewMate == other.CrewMate &&
+                   Date == other.Date &&
+                   Deleted == other.Deleted &&
+                   Duration.Equals(other.Duration) &&
+                   Event == other.Event &&
+                   Id == other.Id &&
+                   Location == other.Location &&
+                   Role == other.Role &&
+                   UserId == other.UserId;
+        }
+
         public override bool Equals(object obj)
         {
-            if (!(obj is Shift shift))
-                return false;
+            return Equals(obj as Shift);
+        }
 
-            return CrewMate == shift.CrewMate && Date == shift.Date && Duration == shift.Duration
-                && Event == shift.Event && Location == shift.Location && Role == shift.Role && UserId == shift.UserId;
+        public override int GetHashCode()
+        {
+            var hash = new HashCode();
+            hash.Add(CrewMate);
+            hash.Add(Date);
+            hash.Add(Deleted);
+            hash.Add(Duration);
+            hash.Add(Event);
+            hash.Add(Id);
+            hash.Add(Jobs);
+            hash.Add(Location);
+            hash.Add(Role);
+            hash.Add(UserId);
+            return hash.ToHashCode();
         }
 
         public bool ShouldSerializeDeleted()

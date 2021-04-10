@@ -1,8 +1,9 @@
 ﻿using Newtonsoft.Json;
+using System;
 
 namespace PortfolioServer.Model
 {
-    public class Job
+    public class Job : IEquatable<Job>
     {
         [JsonProperty("age")]
         public int? Age { get; set; }
@@ -27,5 +28,28 @@ namespace PortfolioServer.Model
 
         [JsonProperty("reflectionFlag")]
         public bool ReflectionFlag { get; set; }
+
+        public override bool Equals(object obj)
+        {
+            return Equals(obj as Job);
+        }
+
+        public bool Equals(Job other)
+        {
+            return other != null &&
+                   Age == other.Age &&
+                   BlueLights == other.BlueLights &&
+                   Category == other.Category &&
+                   Drove == other.Drove &&
+                   Gender == other.Gender &&
+                   Notes == other.Notes &&
+                   Outcome == other.Outcome &&
+                   ReflectionFlag == other.ReflectionFlag;
+        }
+
+        public override int GetHashCode()
+        {
+            return HashCode.Combine(Age, BlueLights, Category, Drove, Gender, Notes, Outcome, ReflectionFlag);
+        }
     }
 }

@@ -1,10 +1,11 @@
 ﻿using FluentValidation;
 using Newtonsoft.Json;
 using PortfolioServer.Model;
+using System;
 
 namespace PortfolioServer.RequestModel
 {
-    public class NewJob
+    public class NewJob : IEquatable<NewJob>
     {
         [JsonProperty("age")]
         public int? Age { get; set; }
@@ -35,19 +36,36 @@ namespace PortfolioServer.RequestModel
 
         public override bool Equals(object obj)
         {
-            if (obj is NewJob job)
-            {
-                return Age == job.Age
-                    && BlueLights == job.BlueLights
-                    && Category == job.Category
-                    && Drove == job.Drove
-                    && Gender == job.Gender
-                    && Notes == job.Notes
-                    && Outcome == job.Outcome
-                    && ReflectionFlag == job.ReflectionFlag
-                    && Shift == job.Shift;
-            }
-            return false;
+            return Equals(obj as NewJob);
+        }
+
+        public bool Equals(NewJob other)
+        {
+            return other != null &&
+                   Age == other.Age &&
+                   BlueLights == other.BlueLights &&
+                   Category == other.Category &&
+                   Drove == other.Drove &&
+                   Gender == other.Gender &&
+                   Notes == other.Notes &&
+                   Outcome == other.Outcome &&
+                   ReflectionFlag == other.ReflectionFlag &&
+                   Shift == other.Shift;
+        }
+
+        public override int GetHashCode()
+        {
+            var hash = new HashCode();
+            hash.Add(Age);
+            hash.Add(BlueLights);
+            hash.Add(Category);
+            hash.Add(Drove);
+            hash.Add(Gender);
+            hash.Add(Notes);
+            hash.Add(Outcome);
+            hash.Add(ReflectionFlag);
+            hash.Add(Shift);
+            return hash.ToHashCode();
         }
     }
 
