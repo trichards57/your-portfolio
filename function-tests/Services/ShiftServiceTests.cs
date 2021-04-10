@@ -23,7 +23,7 @@ namespace PortfolioServer.Test.Services
         {
             _client = new CosmosClient(StandardEndPoint, StandardKey, new CosmosClientOptions
             {
-                ApplicationName = "ShiftsTests",
+                ApplicationName = "ShiftsTests"
             });
         }
 
@@ -35,6 +35,33 @@ namespace PortfolioServer.Test.Services
 
             var testJob = fixture.Create<NewJob>();
             var userId = fixture.Create<string>();
+
+            var res = await service.AddJob(userId, testJob);
+
+            res.Should().BeFalse();
+        }
+
+        [Fact]
+        public async Task AddJobReturnsFalseIfShiftIsDeleted()
+        {
+            IShiftService service = new ShiftService(_client, TestDb, TestContainer);
+            var fixture = new Fixture();
+
+            var userId = fixture.Create<string>();
+
+            var testShift = fixture.Build<Shift>()
+               .With(s => s.UserId, userId)
+               .With(s => s.Deleted, true)
+               .Without(s => s.Jobs)
+               .Create();
+            var testJob = fixture.Build<NewJob>()
+                .With(j => j.Shift, testShift.Id)
+                .Create();
+
+            await _client.CreateDatabaseIfNotExistsAsync(TestDb);
+            await _client.GetDatabase(TestDb).CreateContainerIfNotExistsAsync(TestContainer, "/userId");
+
+            await _client.GetContainer(TestDb, TestContainer).CreateItemAsync(testShift, new PartitionKey(userId));
 
             var res = await service.AddJob(userId, testJob);
 
@@ -70,8 +97,7 @@ namespace PortfolioServer.Test.Services
 
             await _client.CreateDatabaseIfNotExistsAsync(TestDb);
             await _client.GetDatabase(TestDb).CreateContainerIfNotExistsAsync(TestContainer, "/userId");
-
-            await _client.GetContainer(TestDb, TestContainer).CreateItemAsync(testShift, new PartitionKey(userId));
+            var a = await _client.GetContainer(TestDb, TestContainer).CreateItemAsync(testShift, new PartitionKey(userId));
 
             var res = await service.AddJob(userId, testJob);
 
@@ -190,6 +216,10 @@ namespace PortfolioServer.Test.Services
                 .With(s => s.UserId, userId)
                 .With(s => s.Deleted, false)
                 .CreateMany();
+            var deletedShifts = fixture.Build<Shift>()
+                .With(s => s.UserId, userId)
+                .With(s => s.Deleted, true)
+                .CreateMany();
             var otherShifts = fixture.Build<Shift>()
                 .With(s => s.Deleted, false)
                 .CreateMany();
@@ -198,6 +228,8 @@ namespace PortfolioServer.Test.Services
             await _client.GetDatabase(TestDb).CreateContainerIfNotExistsAsync(TestContainer, "/userId");
 
             foreach (var shift in usersShifts)
+                await _client.GetContainer(TestDb, TestContainer).CreateItemAsync(shift, new PartitionKey(shift.UserId));
+            foreach (var shift in deletedShifts)
                 await _client.GetContainer(TestDb, TestContainer).CreateItemAsync(shift, new PartitionKey(shift.UserId));
             foreach (var shift in otherShifts)
                 await _client.GetContainer(TestDb, TestContainer).CreateItemAsync(shift, new PartitionKey(shift.UserId));
@@ -235,6 +267,29 @@ namespace PortfolioServer.Test.Services
             var actual = await service.GetShift(expectedShift.UserId, expectedShift.Id);
 
             actual.Should().BeEquivalentTo(expectedShift);
+        }
+
+        [Fact]
+        public async Task GetShiftReturnsNullIfDeleted()
+        {
+            IShiftService service = new ShiftService(_client, TestDb, TestContainer);
+
+            var fixture = new Fixture();
+            var testShifts = fixture.Build<Shift>()
+                .With(s => s.Deleted, false)
+                .CreateMany();
+            var expectedShift = testShifts.Skip(1).Take(1).First();
+            expectedShift.Deleted = true;
+
+            await _client.CreateDatabaseIfNotExistsAsync(TestDb);
+            await _client.GetDatabase(TestDb).CreateContainerIfNotExistsAsync(TestContainer, "/userId");
+
+            foreach (var shift in testShifts)
+                await _client.GetContainer(TestDb, TestContainer).CreateItemAsync(shift, new PartitionKey(shift.UserId));
+
+            var actual = await service.GetShift(expectedShift.UserId, expectedShift.Id);
+
+            actual.Should().BeNull();
         }
 
         [Fact]
@@ -352,12 +407,41 @@ namespace PortfolioServer.Test.Services
             await _client.GetDatabase(TestDb).CreateContainerIfNotExistsAsync(TestContainer, "/userId");
             await _client.GetContainer(TestDb, TestContainer).CreateItemAsync(testOriginalShift, new PartitionKey(userId));
 
-            await service.UpdateShift(userId, testNewShift);
+            var res = await service.UpdateShift(userId, testNewShift);
 
             var shiftResponse = await _client.GetContainer(TestDb, TestContainer).ReadItemAsync<Shift>(testOriginalShift.Id, new PartitionKey(userId));
             var actualShift = shiftResponse.Resource;
 
             actualShift.Should().BeEquivalentTo(testNewShift);
+            res.Should().BeTrue();
+        }
+
+        [Fact]
+        public async Task UpdateShiftWithDeletedShiftDoesNotUpdateDatabase()
+        {
+            IShiftService service = new ShiftService(_client, TestDb, TestContainer);
+            var fixture = new Fixture();
+
+            var userId = fixture.Create<string>();
+            var testOriginalShift = fixture.Build<Shift>()
+                .With(s => s.Deleted, true)
+                .With(s => s.UserId, userId).Create();
+            var testNewShift = fixture.Build<Shift>()
+                .With(s => s.Deleted, false)
+                .With(s => s.Id, testOriginalShift.Id)
+                .With(s => s.UserId, userId).Create();
+
+            await _client.CreateDatabaseIfNotExistsAsync(TestDb);
+            await _client.GetDatabase(TestDb).CreateContainerIfNotExistsAsync(TestContainer, "/userId");
+            await _client.GetContainer(TestDb, TestContainer).CreateItemAsync(testOriginalShift, new PartitionKey(userId));
+
+            var res = await service.UpdateShift(userId, testNewShift);
+
+            var shiftResponse = await _client.GetContainer(TestDb, TestContainer).ReadItemAsync<Shift>(testOriginalShift.Id, new PartitionKey(userId));
+            var actualShift = shiftResponse.Resource;
+
+            actualShift.Should().BeEquivalentTo(testOriginalShift);
+            res.Should().BeFalse();
         }
 
         [Fact]
@@ -378,12 +462,13 @@ namespace PortfolioServer.Test.Services
             await _client.GetDatabase(TestDb).CreateContainerIfNotExistsAsync(TestContainer, "/userId");
             await _client.GetContainer(TestDb, TestContainer).CreateItemAsync(testOriginalShift, new PartitionKey(userId));
 
-            await service.UpdateShift(userId, testNewShift);
+            var res = await service.UpdateShift(userId, testNewShift);
 
             var shiftResponse = await _client.GetContainer(TestDb, TestContainer).ReadItemAsync<Shift>(testOriginalShift.Id, new PartitionKey(userId));
             var actualShift = shiftResponse.Resource;
 
             actualShift.Should().BeEquivalentTo(testOriginalShift);
+            res.Should().BeFalse();
         }
     }
 }

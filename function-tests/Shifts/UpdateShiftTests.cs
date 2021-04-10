@@ -202,7 +202,7 @@ namespace PortfolioServer.Test.Shifts
 
             var shiftServiceMock = new Mock<IShiftService>(MockBehavior.Strict);
             shiftServiceMock.Setup(s => s.GetShift(AuthenticationHelperMock.GoodUserId, testOriginalShift.Id)).ReturnsAsync(testOriginalShift);
-            shiftServiceMock.Setup(s => s.UpdateShift(AuthenticationHelperMock.GoodUserId, It.Is<Shift>(u => updatedShift.Equals(u)))).Returns(Task.CompletedTask);
+            shiftServiceMock.Setup(s => s.UpdateShift(AuthenticationHelperMock.GoodUserId, It.Is<Shift>(u => updatedShift.Equals(u)))).ReturnsAsync(true);
             var shiftService = shiftServiceMock.Object;
 
             var function = new UpdateShift(shiftService, AuthenticationHelperMock.GetAuthenticationHelper());

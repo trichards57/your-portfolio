@@ -3,6 +3,7 @@ using PortfolioServer.Model;
 using PortfolioServer.RequestModel;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace PortfolioServer.Services
@@ -17,7 +18,7 @@ namespace PortfolioServer.Services
 
         Task<Shift> GetShift(string userId, string id);
 
-        Task UpdateShift(string userId, Shift shift);
+        Task<bool> UpdateShift(string userId, Shift shift);
     }
 
     public class ShiftService : IShiftService
@@ -59,7 +60,7 @@ namespace PortfolioServer.Services
 
             var shift = await GetShift(userId, job.Shift);
 
-            if (shift == null)
+            if (shift == null || shift.Deleted)
                 return false;
 
             shift.Jobs.Add(newJob);
@@ -118,7 +119,7 @@ namespace PortfolioServer.Services
                 result.AddRange(res);
             }
 
-            return result;
+            return result.Where(s => !s.Deleted);
         }
 
         public async Task<Shift> GetShift(string userId, string id)
@@ -135,15 +136,17 @@ namespace PortfolioServer.Services
             {
                 var item = (Shift)(await _container.ReadItemAsync<Shift>(id, new PartitionKey(userId)));
 
-                if (item?.UserId == userId)
-                    return item;
+                if (item.Deleted)
+                    return null;
+
+                return item;
             }
             catch (CosmosException ex) when (ex.StatusCode == System.Net.HttpStatusCode.NotFound) { }
 
             return null;
         }
 
-        public async Task UpdateShift(string userId, Shift shift)
+        public async Task<bool> UpdateShift(string userId, Shift shift)
         {
             if (string.IsNullOrWhiteSpace(userId))
                 throw new ArgumentException($"'{nameof(userId)}' cannot be null or whitespace", nameof(userId));
@@ -155,12 +158,23 @@ namespace PortfolioServer.Services
 
             try
             {
+                var oldShift = await GetShift(userId, shift.Id);
+
+                if (oldShift == null || oldShift.Deleted)
+                    return false;
+
                 await _container.ReplaceItemAsync(shift, shift.Id, new PartitionKey(userId), new ItemRequestOptions
                 {
                     EnableContentResponseOnWrite = false
                 });
+                return true;
             }
-            catch (CosmosException ex) when (ex.StatusCode == System.Net.HttpStatusCode.BadRequest) { }
+            catch (CosmosException ex)
+                when (ex.StatusCode == System.Net.HttpStatusCode.BadRequest
+                || ex.StatusCode == System.Net.HttpStatusCode.NotFound)
+            {
+                return false;
+            }
         }
 
         private async Task Initialise()
