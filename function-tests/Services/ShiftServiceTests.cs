@@ -30,7 +30,7 @@ namespace PortfolioServer.Test.Services
         [Fact]
         public async Task AddJobReturnsFalseIfShiftDoesNotExist()
         {
-            var service = new ShiftService(_client, TestDb, TestContainer);
+            IShiftService service = new ShiftService(_client, TestDb, TestContainer);
             var fixture = new Fixture();
 
             var testJob = fixture.Create<NewJob>();
@@ -44,7 +44,7 @@ namespace PortfolioServer.Test.Services
         [Fact]
         public async Task AddJobReturnsTrueIfJobAdded()
         {
-            var service = new ShiftService(_client, TestDb, TestContainer);
+            IShiftService service = new ShiftService(_client, TestDb, TestContainer);
             var fixture = new Fixture();
 
             var userId = fixture.Create<string>();
@@ -88,7 +88,7 @@ namespace PortfolioServer.Test.Services
         [Fact]
         public async Task AddJobThrowsOnEmptyUserId()
         {
-            var service = new ShiftService(_client, TestDb, TestContainer);
+            IShiftService service = new ShiftService(_client, TestDb, TestContainer);
             var fixture = new Fixture();
 
             var testJob = fixture.Create<NewJob>();
@@ -100,7 +100,7 @@ namespace PortfolioServer.Test.Services
         [Fact]
         public async Task AddJobThrowsOnNullJob()
         {
-            var service = new ShiftService(_client, TestDb, TestContainer);
+            IShiftService service = new ShiftService(_client, TestDb, TestContainer);
             var fixture = new Fixture();
 
             var userId = fixture.Create<string>();
@@ -112,7 +112,7 @@ namespace PortfolioServer.Test.Services
         [Fact]
         public async Task AddShiftAddsShift()
         {
-            var service = new ShiftService(_client, TestDb, TestContainer);
+            IShiftService service = new ShiftService(_client, TestDb, TestContainer);
             var fixture = new Fixture();
 
             var testShift = fixture.Create<NewShift>();
@@ -141,7 +141,7 @@ namespace PortfolioServer.Test.Services
         [Fact]
         public async Task AddShiftThrowsOnEmptyUserId()
         {
-            var service = new ShiftService(_client, TestDb, TestContainer);
+            IShiftService service = new ShiftService(_client, TestDb, TestContainer);
             var fixture = new Fixture();
 
             var testJob = fixture.Create<NewShift>();
@@ -153,7 +153,7 @@ namespace PortfolioServer.Test.Services
         [Fact]
         public async Task AddShiftThrowsOnNullShift()
         {
-            var service = new ShiftService(_client, TestDb, TestContainer);
+            IShiftService service = new ShiftService(_client, TestDb, TestContainer);
             var fixture = new Fixture();
 
             var userId = fixture.Create<string>();
@@ -179,7 +179,7 @@ namespace PortfolioServer.Test.Services
         [Fact]
         public async Task GetAllShiftsGetsAllUsersShifts()
         {
-            var service = new ShiftService(_client, TestDb, TestContainer);
+            IShiftService service = new ShiftService(_client, TestDb, TestContainer);
             var fixture = new Fixture();
 
             var userId = fixture.Create<string>();
@@ -204,7 +204,7 @@ namespace PortfolioServer.Test.Services
         [Fact]
         public async Task GetAllShiftsThrowsOnEmptyUser()
         {
-            var service = new ShiftService(_client, TestDb, TestContainer);
+            IShiftService service = new ShiftService(_client, TestDb, TestContainer);
 
             var func = new Func<Task>(() => service.GetAllShifts(string.Empty));
             await func.Should().ThrowAsync<ArgumentException>();
@@ -213,7 +213,7 @@ namespace PortfolioServer.Test.Services
         [Fact]
         public async Task GetShiftReturnsCorrectShift()
         {
-            var service = new ShiftService(_client, TestDb, TestContainer);
+            IShiftService service = new ShiftService(_client, TestDb, TestContainer);
 
             var fixture = new Fixture();
             var testShifts = fixture.CreateMany<Shift>();
@@ -233,7 +233,7 @@ namespace PortfolioServer.Test.Services
         [Fact]
         public async Task GetShiftReturnsNullIfNotFound()
         {
-            var service = new ShiftService(_client, TestDb, TestContainer);
+            IShiftService service = new ShiftService(_client, TestDb, TestContainer);
 
             var fixture = new Fixture();
             var testShifts = fixture.CreateMany<Shift>();
@@ -254,7 +254,7 @@ namespace PortfolioServer.Test.Services
         [Fact]
         public async Task GetShiftReturnsNullWithWrongUser()
         {
-            var service = new ShiftService(_client, TestDb, TestContainer);
+            IShiftService service = new ShiftService(_client, TestDb, TestContainer);
 
             var fixture = new Fixture();
             var testShifts = fixture.CreateMany<Shift>();
@@ -275,7 +275,7 @@ namespace PortfolioServer.Test.Services
         [Fact]
         public async Task GetShiftThrowsOnEmptyUser()
         {
-            var service = new ShiftService(_client, TestDb, TestContainer);
+            IShiftService service = new ShiftService(_client, TestDb, TestContainer);
             var fixture = new Fixture();
 
             var testId = fixture.Create<string>();
@@ -287,7 +287,7 @@ namespace PortfolioServer.Test.Services
         [Fact]
         public async Task GetShiftThrowsOnShiftId()
         {
-            var service = new ShiftService(_client, TestDb, TestContainer);
+            IShiftService service = new ShiftService(_client, TestDb, TestContainer);
             var fixture = new Fixture();
 
             var testId = fixture.Create<string>();
@@ -299,7 +299,7 @@ namespace PortfolioServer.Test.Services
         [Fact]
         public async Task UpdateShiftThrowsOnEmptyUserId()
         {
-            var service = new ShiftService(_client, TestDb, TestContainer);
+            IShiftService service = new ShiftService(_client, TestDb, TestContainer);
             var fixture = new Fixture();
 
             var testJob = fixture.Create<Shift>();
@@ -311,7 +311,7 @@ namespace PortfolioServer.Test.Services
         [Fact]
         public async Task UpdateShiftThrowsOnNullShift()
         {
-            var service = new ShiftService(_client, TestDb, TestContainer);
+            IShiftService service = new ShiftService(_client, TestDb, TestContainer);
             var fixture = new Fixture();
 
             var userId = fixture.Create<string>();
@@ -323,7 +323,7 @@ namespace PortfolioServer.Test.Services
         [Fact]
         public async Task UpdateShiftUpdatesDatabase()
         {
-            var service = new ShiftService(_client, TestDb, TestContainer);
+            IShiftService service = new ShiftService(_client, TestDb, TestContainer);
             var fixture = new Fixture();
 
             var userId = fixture.Create<string>();
@@ -348,7 +348,7 @@ namespace PortfolioServer.Test.Services
         [Fact]
         public async Task UpdateShiftWithWrongUserDoesNotUpdateDatabase()
         {
-            var service = new ShiftService(_client, TestDb, TestContainer);
+            IShiftService service = new ShiftService(_client, TestDb, TestContainer);
             var fixture = new Fixture();
 
             var userId = fixture.Create<string>();
