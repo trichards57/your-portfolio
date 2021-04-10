@@ -14,9 +14,13 @@ namespace PortfolioServer.Services
 
         Task<string> AddShift(string userId, NewShift shift);
 
+        Task<bool> DeleteShift(string userId, string id);
+
         Task<IEnumerable<Shift>> GetAllShifts(string userId);
 
         Task<Shift> GetShift(string userId, string id);
+
+        Task<bool> UndeleteShift(string userId, string id);
 
         Task<bool> UpdateShift(string userId, Shift shift);
     }
@@ -99,6 +103,11 @@ namespace PortfolioServer.Services
             return response.Resource.Id;
         }
 
+        public Task<bool> DeleteShift(string userId, string id)
+        {
+            return SetDelete(userId, id, true);
+        }
+
         public async Task<IEnumerable<Shift>> GetAllShifts(string userId)
         {
             if (string.IsNullOrWhiteSpace(userId))
@@ -146,6 +155,11 @@ namespace PortfolioServer.Services
             return null;
         }
 
+        public Task<bool> UndeleteShift(string userId, string id)
+        {
+            return SetDelete(userId, id, false);
+        }
+
         public async Task<bool> UpdateShift(string userId, Shift shift)
         {
             if (string.IsNullOrWhiteSpace(userId))
@@ -183,6 +197,39 @@ namespace PortfolioServer.Services
                 _database = await _client.CreateDatabaseIfNotExistsAsync(_databaseId);
             if (_container == null)
                 _container = await _database.CreateContainerIfNotExistsAsync(_containerId, "/userId");
+        }
+
+        private async Task<bool> SetDelete(string userId, string id, bool delete)
+        {
+            if (string.IsNullOrWhiteSpace(userId))
+                throw new ArgumentException($"'{nameof(userId)}' cannot be null or whitespace.", nameof(userId));
+
+            if (string.IsNullOrWhiteSpace(id))
+                throw new ArgumentException($"'{nameof(id)}' cannot be null or whitespace.", nameof(id));
+
+            await Initialise();
+
+            try
+            {
+                var shift = (Shift)await _container.ReadItemAsync<Shift>(id, new PartitionKey(userId));
+
+                if (shift == null)
+                    return false;
+
+                shift.Deleted = delete;
+
+                await _container.ReplaceItemAsync(shift, shift.Id, new PartitionKey(userId), new ItemRequestOptions
+                {
+                    EnableContentResponseOnWrite = false
+                });
+                return true;
+            }
+            catch (CosmosException ex)
+                when (ex.StatusCode == System.Net.HttpStatusCode.BadRequest
+                || ex.StatusCode == System.Net.HttpStatusCode.NotFound)
+            {
+                return false;
+            }
         }
     }
 }

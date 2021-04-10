@@ -15,9 +15,13 @@ namespace PortfolioServer.Test.Services
     {
         private const string StandardEndPoint = "https://localhost:8081";
         private const string StandardKey = "C2y6yDjf5/R+ob0N8A7Cgv30VRDJIWEHLM+4QDU5DE2nQ9nDuVTqobD4b8mGGyPMbIZnqyMsEcaGQy67XIw/Jw==";
-        private const string TestContainer = "testcontainer";
-        private const string TestDb = "testdb";
+        private const string TestContainerRoot = "testcontainer";
+        private const string TestDbRoot = "testdb";
+        private static readonly object runCounterLock = new object();
+        private static int runCounter = 0;
         private readonly CosmosClient _client;
+        private readonly string TestContainer;
+        private readonly string TestDb;
 
         public ShiftServiceTests()
         {
@@ -25,6 +29,13 @@ namespace PortfolioServer.Test.Services
             {
                 ApplicationName = "ShiftsTests"
             });
+
+            lock (runCounterLock)
+            {
+                TestContainer = $"{TestContainerRoot}{runCounter}";
+                TestDb = $"{TestDbRoot}{runCounter}";
+                runCounter++;
+            }
         }
 
         [Fact]
@@ -188,6 +199,93 @@ namespace PortfolioServer.Test.Services
 
             var func = new Func<Task>(() => service.AddShift(userId, null));
             await func.Should().ThrowAsync<ArgumentException>();
+        }
+
+        [Fact]
+        public async Task DeleteShiftThrowsOnEmptyUserId()
+        {
+            IShiftService service = new ShiftService(_client, TestDb, TestContainer);
+            var fixture = new Fixture();
+
+            var testShiftId = fixture.Create<string>();
+
+            var func = new Func<Task>(() => service.DeleteShift(string.Empty, testShiftId));
+            await func.Should().ThrowAsync<ArgumentException>();
+        }
+
+        [Fact]
+        public async Task DeleteShiftThrowsOnNullShift()
+        {
+            IShiftService service = new ShiftService(_client, TestDb, TestContainer);
+            var fixture = new Fixture();
+
+            var userId = fixture.Create<string>();
+
+            var func = new Func<Task>(() => service.DeleteShift(userId, null));
+            await func.Should().ThrowAsync<ArgumentException>();
+        }
+
+        [Fact]
+        public async Task DeleteShiftUpdatesDatabase()
+        {
+            IShiftService service = new ShiftService(_client, TestDb, TestContainer);
+            var fixture = new Fixture();
+
+            var userId = fixture.Create<string>();
+            var testOriginalShift = fixture.Build<Shift>()
+                .With(s => s.Deleted, false)
+                .With(s => s.UserId, userId).Create();
+
+            await _client.CreateDatabaseIfNotExistsAsync(TestDb);
+            await _client.GetDatabase(TestDb).CreateContainerIfNotExistsAsync(TestContainer, "/userId");
+            await _client.GetContainer(TestDb, TestContainer).CreateItemAsync(testOriginalShift, new PartitionKey(userId));
+
+            var res = await service.DeleteShift(userId, testOriginalShift.Id);
+
+            var shiftResponse = await _client.GetContainer(TestDb, TestContainer).ReadItemAsync<Shift>(testOriginalShift.Id, new PartitionKey(userId));
+            var actualShift = shiftResponse.Resource;
+
+            actualShift.Deleted.Should().BeTrue();
+            res.Should().BeTrue();
+        }
+
+        [Fact]
+        public async Task DeleteShiftWithNotFoundReturnsFalse()
+        {
+            IShiftService service = new ShiftService(_client, TestDb, TestContainer);
+            var fixture = new Fixture();
+
+            var userId = fixture.Create<string>();
+            var badShiftId = fixture.Create<string>();
+
+            var res = await service.DeleteShift(userId, badShiftId);
+
+            res.Should().BeFalse();
+        }
+
+        [Fact]
+        public async Task DeleteShiftWithWrongUserDoesNotUpdateDatabase()
+        {
+            IShiftService service = new ShiftService(_client, TestDb, TestContainer);
+            var fixture = new Fixture();
+
+            var userId = fixture.Create<string>();
+            var badUserId = fixture.Create<string>();
+            var testOriginalShift = fixture.Build<Shift>()
+                .With(s => s.Deleted, false)
+                .With(s => s.UserId, userId).Create();
+
+            await _client.CreateDatabaseIfNotExistsAsync(TestDb);
+            await _client.GetDatabase(TestDb).CreateContainerIfNotExistsAsync(TestContainer, "/userId");
+            await _client.GetContainer(TestDb, TestContainer).CreateItemAsync(testOriginalShift, new PartitionKey(userId));
+
+            var res = await service.DeleteShift(badUserId, testOriginalShift.Id);
+
+            var shiftResponse = await _client.GetContainer(TestDb, TestContainer).ReadItemAsync<Shift>(testOriginalShift.Id, new PartitionKey(userId));
+            var actualShift = shiftResponse.Resource;
+
+            actualShift.Should().BeEquivalentTo(testOriginalShift);
+            res.Should().BeFalse();
         }
 
         public async void Dispose()
@@ -363,6 +461,93 @@ namespace PortfolioServer.Test.Services
         }
 
         [Fact]
+        public async Task UndeleteShiftThrowsOnEmptyUserId()
+        {
+            IShiftService service = new ShiftService(_client, TestDb, TestContainer);
+            var fixture = new Fixture();
+
+            var testShiftId = fixture.Create<string>();
+
+            var func = new Func<Task>(() => service.DeleteShift(string.Empty, testShiftId));
+            await func.Should().ThrowAsync<ArgumentException>();
+        }
+
+        [Fact]
+        public async Task UndeleteShiftThrowsOnNullShift()
+        {
+            IShiftService service = new ShiftService(_client, TestDb, TestContainer);
+            var fixture = new Fixture();
+
+            var userId = fixture.Create<string>();
+
+            var func = new Func<Task>(() => service.DeleteShift(userId, null));
+            await func.Should().ThrowAsync<ArgumentException>();
+        }
+
+        [Fact]
+        public async Task UndeleteShiftUpdatesDatabase()
+        {
+            IShiftService service = new ShiftService(_client, TestDb, TestContainer);
+            var fixture = new Fixture();
+
+            var userId = fixture.Create<string>();
+            var testOriginalShift = fixture.Build<Shift>()
+                .With(s => s.Deleted, true)
+                .With(s => s.UserId, userId).Create();
+
+            await _client.CreateDatabaseIfNotExistsAsync(TestDb);
+            await _client.GetDatabase(TestDb).CreateContainerIfNotExistsAsync(TestContainer, "/userId");
+            await _client.GetContainer(TestDb, TestContainer).CreateItemAsync(testOriginalShift, new PartitionKey(userId));
+
+            var res = await service.UndeleteShift(userId, testOriginalShift.Id);
+
+            var shiftResponse = await _client.GetContainer(TestDb, TestContainer).ReadItemAsync<Shift>(testOriginalShift.Id, new PartitionKey(userId));
+            var actualShift = shiftResponse.Resource;
+
+            actualShift.Deleted.Should().BeFalse();
+            res.Should().BeTrue();
+        }
+
+        [Fact]
+        public async Task UndeleteShiftWithNotFoundReturnsFalse()
+        {
+            IShiftService service = new ShiftService(_client, TestDb, TestContainer);
+            var fixture = new Fixture();
+
+            var userId = fixture.Create<string>();
+            var badShiftId = fixture.Create<string>();
+
+            var res = await service.UndeleteShift(userId, badShiftId);
+
+            res.Should().BeFalse();
+        }
+
+        [Fact]
+        public async Task UndeleteShiftWithWrongUserDoesNotUpdateDatabase()
+        {
+            IShiftService service = new ShiftService(_client, TestDb, TestContainer);
+            var fixture = new Fixture();
+
+            var userId = fixture.Create<string>();
+            var badUserId = fixture.Create<string>();
+            var testOriginalShift = fixture.Build<Shift>()
+                .With(s => s.Deleted, true)
+                .With(s => s.UserId, userId).Create();
+
+            await _client.CreateDatabaseIfNotExistsAsync(TestDb);
+            await _client.GetDatabase(TestDb).CreateContainerIfNotExistsAsync(TestContainer, "/userId");
+            await _client.GetContainer(TestDb, TestContainer).CreateItemAsync(testOriginalShift, new PartitionKey(userId));
+
+            var res = await service.UndeleteShift(badUserId, testOriginalShift.Id);
+
+            var shiftResponse = await _client.GetContainer(TestDb, TestContainer).ReadItemAsync<Shift>(testOriginalShift.Id, new PartitionKey(userId));
+            var actualShift = shiftResponse.Resource;
+
+            actualShift.Should().BeEquivalentTo(testOriginalShift);
+            res.Should().BeFalse();
+        }
+
+        [Fact]
         public async Task UpdateShiftThrowsOnEmptyUserId()
         {
             IShiftService service = new ShiftService(_client, TestDb, TestContainer);
@@ -441,6 +626,22 @@ namespace PortfolioServer.Test.Services
             var actualShift = shiftResponse.Resource;
 
             actualShift.Should().BeEquivalentTo(testOriginalShift);
+            res.Should().BeFalse();
+        }
+
+        [Fact]
+        public async Task UpdateShiftWithNotFoundReturnsFalse()
+        {
+            IShiftService service = new ShiftService(_client, TestDb, TestContainer);
+            var fixture = new Fixture();
+
+            var userId = fixture.Create<string>();
+            var testNewShift = fixture.Build<Shift>()
+                .With(s => s.UserId, userId)
+                .With(s => s.Deleted, false).Create();
+
+            var res = await service.UpdateShift(userId, testNewShift);
+
             res.Should().BeFalse();
         }
 
