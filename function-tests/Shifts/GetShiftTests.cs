@@ -57,7 +57,7 @@ namespace PortfolioServer.Test.Shifts
         public async Task ReturnsShiftWithGoodId()
         {
             var fixture = new Fixture();
-            var testShift = fixture.Create<Shift>();
+            var testShift = fixture.Build<Shift>().With(s => s.Deleted, false).Create();
             var expectedResult = new UpdatedShift
             {
                 CrewMate = testShift.CrewMate,

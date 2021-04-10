@@ -22,7 +22,7 @@ namespace PortfolioServer.Test.Shifts
         public async Task ReturnsEmptyIfPageTooLarge()
         {
             var fixture = new Fixture();
-            var testShifts = fixture.CreateMany<Shift>(20);
+            var testShifts = fixture.Build<Shift>().With(s => s.Deleted, false).CreateMany(20);
             var expectedShifts = Enumerable.Empty<ShiftSummary>();
 
             var shiftServiceMock = new Mock<IShiftService>(MockBehavior.Strict);
@@ -47,7 +47,7 @@ namespace PortfolioServer.Test.Shifts
         {
             const int count = 5;
             var fixture = new Fixture();
-            var testShifts = fixture.CreateMany<Shift>(20);
+            var testShifts = fixture.Build<Shift>().With(s => s.Deleted, false).CreateMany(20);
             var expectedShifts = testShifts.OrderByDescending(s => s.Date).Take(count).Select(s => new ShiftSummary
             {
                 CrewMate = s.CrewMate,
@@ -80,7 +80,7 @@ namespace PortfolioServer.Test.Shifts
         public async Task ReturnsFirstTenShiftsIfNotSpecified()
         {
             var fixture = new Fixture();
-            var testShifts = fixture.CreateMany<Shift>(20);
+            var testShifts = fixture.Build<Shift>().With(s => s.Deleted, false).CreateMany(20);
             var expectedShifts = testShifts.OrderByDescending(s => s.Date).Take(10).Select(s => new ShiftSummary
             {
                 CrewMate = s.CrewMate,
@@ -113,7 +113,7 @@ namespace PortfolioServer.Test.Shifts
         public async Task ReturnsSecondTwentyIfPageSpecified()
         {
             var fixture = new Fixture();
-            var testShifts = fixture.CreateMany<Shift>(20);
+            var testShifts = fixture.Build<Shift>().With(s => s.Deleted, false).CreateMany(20);
             var expectedShifts = testShifts.OrderByDescending(s => s.Date).Skip(10).Take(10).Select(s => new ShiftSummary
             {
                 CrewMate = s.CrewMate,
@@ -149,7 +149,7 @@ namespace PortfolioServer.Test.Shifts
             const int count = 5;
             const int page = 2;
             var fixture = new Fixture();
-            var testShifts = fixture.CreateMany<Shift>(20);
+            var testShifts = fixture.Build<Shift>().With(s => s.Deleted, false).CreateMany(20);
             var expectedShifts = testShifts.OrderByDescending(s => s.Date).Skip(count * page).Take(count).Select(s => new ShiftSummary
             {
                 CrewMate = s.CrewMate,

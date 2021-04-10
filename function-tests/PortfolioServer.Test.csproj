@@ -7,6 +7,15 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="coveragehistory\**" />
+    <Compile Remove="coveragereport\**" />
+    <EmbeddedResource Remove="coveragehistory\**" />
+    <EmbeddedResource Remove="coveragereport\**" />
+    <None Remove="coveragehistory\**" />
+    <None Remove="coveragereport\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="AutoFixture" Version="4.15.0" />
     <PackageReference Include="FluentAssertions" Version="5.10.3" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.5.0" />

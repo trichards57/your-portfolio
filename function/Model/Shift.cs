@@ -13,6 +13,9 @@ namespace PortfolioServer.Model
         [JsonProperty("date")]
         public DateTime Date { get; set; }
 
+        [JsonProperty("deleted")]
+        public bool Deleted { get; set; } = false;
+
         [JsonProperty("duration"), JsonConverter(typeof(TimespanConverter))]
         public TimeSpan Duration { get; set; }
 
@@ -41,6 +44,11 @@ namespace PortfolioServer.Model
 
             return CrewMate == shift.CrewMate && Date == shift.Date && Duration == shift.Duration
                 && Event == shift.Event && Location == shift.Location && Role == shift.Role && UserId == shift.UserId;
+        }
+
+        public bool ShouldSerializeDeleted()
+        {
+            return Deleted;
         }
 
         public bool ShouldSerializeJobs()

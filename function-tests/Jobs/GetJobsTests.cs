@@ -37,7 +37,7 @@ namespace PortfolioServer.Test.Jobs
         public async Task ReturnsEmptyListIfNoJobs()
         {
             var fixture = new Fixture();
-            var testShift = fixture.Create<Shift>();
+            var testShift = fixture.Build<Shift>().With(s => s.Deleted, false).Create();
             testShift.Jobs.Clear();
             var expectedJobs = Enumerable.Empty<JobSummary>();
 
@@ -61,7 +61,7 @@ namespace PortfolioServer.Test.Jobs
         public async Task ReturnsJobsIfFound()
         {
             var fixture = new Fixture();
-            var testShift = fixture.Create<Shift>();
+            var testShift = fixture.Build<Shift>().With(s => s.Deleted, false).Create();
             var expectedJobs = testShift.Jobs.Select(j => new JobSummary
             {
                 Age = j.Age,
@@ -90,7 +90,7 @@ namespace PortfolioServer.Test.Jobs
         public async Task ReturnsNotFoundRequestIfNoShift()
         {
             var fixture = new Fixture();
-            var testShift = fixture.Create<Shift>();
+            var testShift = fixture.Build<Shift>().With(s => s.Deleted, false).Create();
 
             var shiftServiceMock = new Mock<IShiftService>(MockBehavior.Strict);
             shiftServiceMock.Setup(s => s.GetShift(AuthenticationHelperMock.GoodUserId, testShift.Id)).Returns(Task.FromResult<Shift>(null));

@@ -50,6 +50,7 @@ namespace PortfolioServer.Test.Services
             var userId = fixture.Create<string>();
             var testShift = fixture.Build<Shift>()
                 .With(s => s.UserId, userId)
+                .With(s => s.Deleted, false)
                 .Without(s => s.Jobs)
                 .Create();
             var testJob = fixture.Build<NewJob>()
@@ -64,7 +65,7 @@ namespace PortfolioServer.Test.Services
                 Gender = testJob.Gender,
                 Notes = testJob.Notes,
                 Outcome = testJob.Outcome,
-                ReflectionFlag = testJob.ReflectionFlag
+                ReflectionFlag = testJob.ReflectionFlag,
             };
 
             await _client.CreateDatabaseIfNotExistsAsync(TestDb);
@@ -136,6 +137,7 @@ namespace PortfolioServer.Test.Services
             shift.Location.Should().Be(testShift.Location);
             shift.Role.Should().Be(testShift.Role);
             shift.UserId.Should().Be(userId);
+            shift.Deleted.Should().BeFalse();
         }
 
         [Fact]
@@ -186,8 +188,11 @@ namespace PortfolioServer.Test.Services
 
             var usersShifts = fixture.Build<Shift>()
                 .With(s => s.UserId, userId)
+                .With(s => s.Deleted, false)
                 .CreateMany();
-            var otherShifts = fixture.CreateMany<Shift>();
+            var otherShifts = fixture.Build<Shift>()
+                .With(s => s.Deleted, false)
+                .CreateMany();
 
             await _client.CreateDatabaseIfNotExistsAsync(TestDb);
             await _client.GetDatabase(TestDb).CreateContainerIfNotExistsAsync(TestContainer, "/userId");
@@ -216,7 +221,9 @@ namespace PortfolioServer.Test.Services
             IShiftService service = new ShiftService(_client, TestDb, TestContainer);
 
             var fixture = new Fixture();
-            var testShifts = fixture.CreateMany<Shift>();
+            var testShifts = fixture.Build<Shift>()
+                .With(s => s.Deleted, false)
+                .CreateMany();
             var expectedShift = testShifts.Skip(1).Take(1).First();
 
             await _client.CreateDatabaseIfNotExistsAsync(TestDb);
@@ -236,7 +243,9 @@ namespace PortfolioServer.Test.Services
             IShiftService service = new ShiftService(_client, TestDb, TestContainer);
 
             var fixture = new Fixture();
-            var testShifts = fixture.CreateMany<Shift>();
+            var testShifts = fixture.Build<Shift>()
+                .With(s => s.Deleted, false)
+                .CreateMany();
             var expectedShift = testShifts.Skip(1).Take(1).First();
             var testId = fixture.Create<string>();
 
@@ -257,7 +266,9 @@ namespace PortfolioServer.Test.Services
             IShiftService service = new ShiftService(_client, TestDb, TestContainer);
 
             var fixture = new Fixture();
-            var testShifts = fixture.CreateMany<Shift>();
+            var testShifts = fixture.Build<Shift>()
+                .With(s => s.Deleted, false)
+                .CreateMany();
             var expectedShift = testShifts.Skip(1).Take(1).First();
             var testId = fixture.Create<string>();
 
@@ -302,7 +313,9 @@ namespace PortfolioServer.Test.Services
             IShiftService service = new ShiftService(_client, TestDb, TestContainer);
             var fixture = new Fixture();
 
-            var testJob = fixture.Create<Shift>();
+            var testJob = fixture.Build<Shift>()
+                .With(s => s.Deleted, false)
+                .Create();
 
             var func = new Func<Task>(() => service.UpdateShift(string.Empty, testJob));
             await func.Should().ThrowAsync<ArgumentException>();
@@ -328,8 +341,10 @@ namespace PortfolioServer.Test.Services
 
             var userId = fixture.Create<string>();
             var testOriginalShift = fixture.Build<Shift>()
+                .With(s => s.Deleted, false)
                 .With(s => s.UserId, userId).Create();
             var testNewShift = fixture.Build<Shift>()
+                .With(s => s.Deleted, false)
                 .With(s => s.Id, testOriginalShift.Id)
                 .With(s => s.UserId, userId).Create();
 
@@ -353,8 +368,10 @@ namespace PortfolioServer.Test.Services
 
             var userId = fixture.Create<string>();
             var testOriginalShift = fixture.Build<Shift>()
+                .With(s => s.Deleted, false)
                 .With(s => s.UserId, userId).Create();
             var testNewShift = fixture.Build<Shift>()
+                .With(s => s.Deleted, false)
                 .With(s => s.Id, testOriginalShift.Id).Create();
 
             await _client.CreateDatabaseIfNotExistsAsync(TestDb);

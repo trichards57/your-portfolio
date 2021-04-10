@@ -129,6 +129,7 @@ namespace PortfolioServer.Test.Shifts
             var testId = fixture.Create<string>();
             var testOriginalShift = fixture.Build<Shift>()
                 .With(j => j.Duration, TimeSpan.FromHours(2))
+                .With(s => s.Deleted, false)
                 .Create();
             var testUpdatedShift = fixture.Build<UpdatedShift>()
                 .With(j => j.Id, testOriginalShift.Id)
@@ -144,7 +145,8 @@ namespace PortfolioServer.Test.Shifts
                 Location = testUpdatedShift.Location,
                 Role = testUpdatedShift.Role,
                 UserId = testOriginalShift.UserId,
-                Jobs = testOriginalShift.Jobs
+                Jobs = testOriginalShift.Jobs,
+                Deleted = false
             };
 
             var body = JsonConvert.SerializeObject(testUpdatedShift);
@@ -173,6 +175,7 @@ namespace PortfolioServer.Test.Shifts
 
             var testId = fixture.Create<string>();
             var testOriginalShift = fixture.Build<Shift>()
+                .With(s => s.Deleted, false)
                 .With(j => j.Duration, TimeSpan.FromHours(2))
                 .Create();
             var testUpdatedShift = fixture.Build<UpdatedShift>()
@@ -189,7 +192,8 @@ namespace PortfolioServer.Test.Shifts
                 Location = testUpdatedShift.Location,
                 Role = testUpdatedShift.Role,
                 UserId = testOriginalShift.UserId,
-                Jobs = testOriginalShift.Jobs
+                Jobs = testOriginalShift.Jobs,
+                Deleted = false
             };
 
             var body = JsonConvert.SerializeObject(testUpdatedShift);

@@ -23,7 +23,7 @@ namespace PortfolioServer.Test.Shifts
         public async Task ReturnsSixShifts()
         {
             var fixture = new Fixture();
-            var testShifts = fixture.CreateMany<Shift>(20);
+            var testShifts = fixture.Build<Shift>().With(s => s.Deleted, false).CreateMany(20);
             var expectedShifts = testShifts.Where(s => s.Date.Date <= DateTime.Today).OrderByDescending(s => s.Date).Take(6).Select(s => new ShiftSummary
             {
                 CrewMate = s.CrewMate,
@@ -33,7 +33,7 @@ namespace PortfolioServer.Test.Shifts
                 Id = s.Id,
                 Location = s.Location,
                 LoggedCalls = s.Jobs?.Count ?? 0,
-                Role = s.Role
+                Role = s.Role,
             });
 
             var shiftServiceMock = new Mock<IShiftService>(MockBehavior.Strict);
