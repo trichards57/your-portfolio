@@ -27,7 +27,7 @@ namespace PortfolioServer.Shifts
             [HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = null)] HttpRequest req,
             ILogger log)
         {
-            log.LogInformation("Received recent shift request.");
+            log.LogInformation("Received specific shift request.");
 
             var claims = await _authenticationHelper.DecodeToken(req.Headers["Authorization"]);
 
