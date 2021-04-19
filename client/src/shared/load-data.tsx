@@ -8,7 +8,6 @@ function useLoadedData<T>(uri: string) {
   const [data, setData] = useState<T | undefined>(undefined);
   const { getAccessTokenSilently } = useAuth0();
   const history = useHistory();
-  const [totalItems, setTotalItems] = useState<number | undefined>(0);
 
   useEffect(() => {
     setIsLoading(true);
@@ -36,9 +35,6 @@ function useLoadedData<T>(uri: string) {
         setErrorLoading(true);
       } else {
         const result = (await response.json()) as T;
-        const totalCount = response.headers.get("x-total-count");
-        if (totalCount) setTotalItems(parseInt(totalCount, 10));
-        else setTotalItems(undefined);
         setData(result);
       }
 
@@ -52,7 +48,6 @@ function useLoadedData<T>(uri: string) {
     data,
     isLoading,
     errorLoading,
-    totalItems,
   };
 }
 

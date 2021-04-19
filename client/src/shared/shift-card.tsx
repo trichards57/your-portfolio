@@ -27,6 +27,11 @@ const useStyles = makeStyles({
   },
 });
 
+interface IShiftCardProps {
+  deleteClicked(id: string): void;
+  shift: ShiftSummary;
+}
+
 function LoadingCard() {
   const classes = useStyles();
 
@@ -53,7 +58,7 @@ function LoadingCard() {
   );
 }
 
-function ShiftCard({ shift }: { shift: ShiftSummary }) {
+function ShiftCard({ deleteClicked, shift }: IShiftCardProps) {
   const classes = useStyles();
 
   return (
@@ -73,7 +78,7 @@ function ShiftCard({ shift }: { shift: ShiftSummary }) {
           className={classNames(classes.location, classes.trimText)}
           color="textSecondary"
         >
-          {shift.location}
+          {shift.location || "[no location]"}
         </Typography>
         <Typography variant="body2" component="p">
           Role: {shift.role}
@@ -89,6 +94,14 @@ function ShiftCard({ shift }: { shift: ShiftSummary }) {
           {...{ component: Link, to: `/editShift/${shift.id}` }}
         >
           Edit
+        </Button>
+        <Button
+          variant="contained"
+          size="small"
+          color="secondary"
+          onClick={() => deleteClicked(shift.id)}
+        >
+          Delete
         </Button>
         <Button
           color="primary"
@@ -112,11 +125,14 @@ function ShiftCard({ shift }: { shift: ShiftSummary }) {
   );
 }
 
-function IsLoadingCard(props: { shift?: ShiftSummary }) {
-  const { shift } = props;
+function IsLoadingCard(props: Partial<IShiftCardProps>) {
+  const { shift, deleteClicked } = props;
 
   if (!shift) return <LoadingCard />;
-  return <ShiftCard shift={shift} />;
+  if (!deleteClicked)
+    throw Error("deleteClicked is required when shift is provided");
+
+  return <ShiftCard shift={shift} deleteClicked={deleteClicked} />;
 }
 
 export default IsLoadingCard;

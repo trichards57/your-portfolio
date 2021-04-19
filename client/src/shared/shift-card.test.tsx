@@ -21,7 +21,7 @@ it("renders without crashing", () => {
 
   ReactDOM.render(
     <Router>
-      <ShiftCard shift={defaultShift} />
+      <ShiftCard shift={defaultShift} deleteClicked={() => {}} />
     </Router>,
     div
   );
@@ -33,7 +33,7 @@ it("renders correctly", () => {
   const tree = renderer
     .create(
       <Router>
-        <ShiftCard shift={defaultShift} />
+        <ShiftCard shift={defaultShift} deleteClicked={() => {}} />
       </Router>
     )
     .toJSON();

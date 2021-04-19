@@ -6,7 +6,7 @@ import Nav from "../nav";
 import ShiftCard from "../shared/shift-card";
 import { ShiftSummary } from "../model/shift";
 import useSharedStyles from "../shared/shared-styles";
-import useLoadedData from "../shared/load-data";
+import useLoadedArrayData from "../shared/load-array-data";
 
 const PAGE_SIZE = 6;
 
@@ -27,7 +27,8 @@ export function HomeBase({ all }: HomeParams) {
     errorLoading,
     isLoading,
     totalItems: totalShifts,
-  } = useLoadedData<ShiftSummary[]>(uri);
+    deleteItem,
+  } = useLoadedArrayData<ShiftSummary>(uri);
 
   let content: ReactNode;
 
@@ -50,7 +51,7 @@ export function HomeBase({ all }: HomeParams) {
       .sort((a, b) => b.date.localeCompare(a.date))
       .map((s) => (
         <Grid item key={s.id} xs={6} sm={6} lg={3}>
-          <ShiftCard shift={s} />
+          <ShiftCard shift={s} deleteClicked={deleteItem} />
         </Grid>
       ));
   }
