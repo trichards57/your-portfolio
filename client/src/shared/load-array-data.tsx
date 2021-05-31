@@ -11,6 +11,7 @@ function useLoadedArrayData<T extends { id: string }>(
   const [isLoading, setIsLoading] = useState(false);
   const [isDeleting, setIsDeleting] = useState(false);
   const [data, setData] = useState<T[] | undefined>(undefined);
+  const [showUndelete, setShowUndelete] = useState<string[]>([]);
   const { getAccessTokenSilently } = useAuth0();
   const history = useHistory();
   const [totalItems, setTotalItems] = useState<number | undefined>(0);
@@ -53,6 +54,10 @@ function useLoadedArrayData<T extends { id: string }>(
     return () => abortController.abort();
   }, [getAccessTokenSilently, history, uri]);
 
+  function removeUndelete(id: string) {
+    setShowUndelete((d) => d.filter((i) => i !== id));
+  }
+
   const deleteItem = useCallback(
     (id: string) => {
       setIsDeleting(true);
@@ -84,6 +89,7 @@ function useLoadedArrayData<T extends { id: string }>(
         } else {
           setData((d) => d && d.filter((i) => i.id !== id));
           setTotalItems((s) => (s === undefined ? undefined : s - 1));
+          setShowUndelete((i) => [...i, id]);
         }
         setIsDeleting(false);
       }
@@ -100,8 +106,10 @@ function useLoadedArrayData<T extends { id: string }>(
     isLoading,
     errorDeleting,
     errorLoading,
+    showUndelete,
     totalItems,
     deleteItem,
+    removeUndelete,
   };
 }
 
