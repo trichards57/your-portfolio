@@ -20,6 +20,9 @@ namespace PortfolioServer.Model
         [JsonProperty("gender")]
         public Gender? Gender { get; set; }
 
+        [JsonProperty]
+        public string Id { get; set; }
+
         [JsonProperty("notes")]
         public string Notes { get; set; }
 

@@ -59,7 +59,8 @@ namespace PortfolioServer.Services
                 Gender = job.Gender,
                 Notes = job.Notes,
                 Outcome = job.Outcome,
-                ReflectionFlag = job.ReflectionFlag
+                ReflectionFlag = job.ReflectionFlag,
+                Id = Guid.NewGuid().ToString("N"),
             };
 
             var shift = await GetShift(userId, job.Shift);

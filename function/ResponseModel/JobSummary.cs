@@ -14,6 +14,9 @@ namespace PortfolioServer.ResponseModel
         [JsonProperty("gender")]
         public Gender? Gender { get; set; }
 
+        [JsonProperty("id")]
+        public string Id { get; set; }
+
         [JsonProperty("reflectionFlag")]
         public bool ReflectionFlag { get; set; }
     }

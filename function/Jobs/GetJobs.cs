@@ -51,6 +51,7 @@ namespace PortfolioServer.Jobs
 
             return new OkObjectResult(shift.Jobs.Select(j => new JobSummary
             {
+                Id = j.Id,
                 Age = j.Age,
                 Category = j.Category,
                 Gender = j.Gender,
