@@ -16,13 +16,8 @@ function useLoadedArrayData<T extends { id: string }>(
   const history = useHistory();
   const [totalItems, setTotalItems] = useState<number | undefined>(0);
 
-  useEffect(() => {
-    setIsLoading(true);
-    setErrorLoading(false);
-
-    const abortController = new AbortController();
-
-    async function loadData() {
+  const loadData = useCallback(
+    async (abortController?: AbortController) => {
       const token = await getAccessTokenSilently({
         audience: "https://tr-toolbox.me.uk/your-portfolio",
       });
@@ -31,10 +26,10 @@ function useLoadedArrayData<T extends { id: string }>(
         headers: {
           Authorization: `Bearer ${token}`,
         },
-        signal: abortController.signal,
+        signal: abortController?.signal,
       });
 
-      if (abortController.signal.aborted) return;
+      if (abortController?.signal.aborted) return;
 
       if (!response.ok) {
         if (response.status === 401) history.push("/");
@@ -49,10 +44,18 @@ function useLoadedArrayData<T extends { id: string }>(
       }
 
       setIsLoading(false);
-    }
-    loadData();
+    },
+    [getAccessTokenSilently, history, uri]
+  );
+
+  useEffect(() => {
+    setIsLoading(true);
+    setErrorLoading(false);
+
+    const abortController = new AbortController();
+    loadData(abortController);
     return () => abortController.abort();
-  }, [getAccessTokenSilently, history, uri]);
+  }, [loadData]);
 
   function removeUndelete(id: string) {
     setShowUndelete((d) => d.filter((i) => i !== id));
@@ -62,6 +65,7 @@ function useLoadedArrayData<T extends { id: string }>(
     (id: string) => {
       setIsDeleting(true);
       setErrorDeleting(false);
+      setShowUndelete([]);
 
       const abortController = new AbortController();
 
@@ -110,6 +114,7 @@ function useLoadedArrayData<T extends { id: string }>(
     totalItems,
     deleteItem,
     removeUndelete,
+    reloadData: loadData,
   };
 }
 
