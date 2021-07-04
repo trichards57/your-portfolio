@@ -8,17 +8,17 @@ exports[`renders correctly 1`] = `
     className="MuiCardContent-root"
   >
     <p
-      className="MuiTypography-root makeStyles-date-1 makeStyles-trimText-2 MuiTypography-body1 MuiTypography-colorTextSecondary MuiTypography-gutterBottom"
+      className="MuiTypography-root makeStyles-date-4 makeStyles-trimText-5 MuiTypography-body1 MuiTypography-colorTextSecondary MuiTypography-gutterBottom"
     >
       1 October 2021
     </p>
     <h2
-      className="MuiTypography-root makeStyles-trimText-2 MuiTypography-h5"
+      className="MuiTypography-root makeStyles-trimText-5 MuiTypography-h5"
     >
       SWASFT Shift
     </h2>
     <p
-      className="MuiTypography-root makeStyles-location-3 makeStyles-trimText-2 MuiTypography-body1 MuiTypography-colorTextSecondary"
+      className="MuiTypography-root makeStyles-location-6 makeStyles-trimText-5 MuiTypography-body1 MuiTypography-colorTextSecondary"
     >
       Test Location
     </p>
@@ -149,7 +149,7 @@ exports[`renders loading correctly 1`] = `
     className="MuiCardContent-root"
   >
     <p
-      className="MuiTypography-root makeStyles-date-1 MuiTypography-body1 MuiTypography-gutterBottom"
+      className="MuiTypography-root makeStyles-date-4 MuiTypography-body1 MuiTypography-gutterBottom"
     >
       <span
         className="MuiSkeleton-root MuiSkeleton-text MuiSkeleton-pulse"
@@ -162,7 +162,7 @@ exports[`renders loading correctly 1`] = `
       />
     </p>
     <h2
-      className="MuiTypography-root makeStyles-trimText-2 MuiTypography-h5"
+      className="MuiTypography-root makeStyles-trimText-5 MuiTypography-h5"
     >
       <span
         className="MuiSkeleton-root MuiSkeleton-text MuiSkeleton-pulse"
@@ -175,7 +175,7 @@ exports[`renders loading correctly 1`] = `
       />
     </h2>
     <p
-      className="MuiTypography-root makeStyles-location-3 MuiTypography-body1 MuiTypography-colorTextSecondary"
+      className="MuiTypography-root makeStyles-location-6 MuiTypography-body1 MuiTypography-colorTextSecondary"
     >
       <span
         className="MuiSkeleton-root MuiSkeleton-text MuiSkeleton-pulse"
