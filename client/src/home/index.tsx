@@ -69,14 +69,14 @@ export function HomeBase({ all }: HomeParams) {
         <ShiftCard />
       </Grid>
     ));
-  } else if (errorLoading || !shifts)
+  } else if (errorLoading || !shifts) {
     content = (
       <Alert severity="error" className={sharedClasses.alert}>
         There was a problem speaking to the server. Try refreshing, or come back
         a little later.
       </Alert>
     );
-  else {
+  } else {
     content = shifts
       .sort((a, b) => b.date.localeCompare(a.date))
       .map((s) => (

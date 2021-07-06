@@ -22,28 +22,35 @@ function useLoadedArrayData<T extends { id: string }>(
         audience: "https://tr-toolbox.me.uk/your-portfolio",
       });
 
-      const response = await fetch(uri, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-        signal: abortController?.signal,
-      });
+      try {
+        const response = await fetch(uri, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+          // signal: abortController?.signal,
+        });
 
-      if (abortController?.signal.aborted) return;
+        if (abortController?.signal.aborted) return;
 
-      if (!response.ok) {
-        if (response.status === 401) history.push("/");
-        else if (response.status === 404) history.push("/home");
-        setErrorLoading(true);
-      } else {
-        const result = (await response.json()) as T[];
-        const totalCount = response.headers.get("x-total-count");
-        if (totalCount) setTotalItems(parseInt(totalCount, 10));
-        else setTotalItems(undefined);
-        setData(result);
+        if (!response.ok) {
+          if (response.status === 401) history.push("/");
+          else if (response.status === 404) history.push("/home");
+          setErrorLoading(true);
+        } else {
+          const result = (await response.json()) as T[];
+          const totalCount = response.headers.get("x-total-count");
+          if (totalCount) setTotalItems(parseInt(totalCount, 10));
+          else setTotalItems(undefined);
+          setData(result);
+        }
+
+        setIsLoading(false);
+      } catch (err: unknown) {
+        if (err instanceof Error && err.name === "AbortError") {
+          return;
+        }
+        throw err;
       }
-
-      setIsLoading(false);
     },
     [getAccessTokenSilently, history, uri]
   );
@@ -61,48 +68,35 @@ function useLoadedArrayData<T extends { id: string }>(
     setShowUndelete((d) => d.filter((i) => i !== id));
   }
 
-  const deleteItem = useCallback(
-    (id: string) => {
-      setIsDeleting(true);
-      setErrorDeleting(false);
-      setShowUndelete([]);
+  async function deleteItem(id: string) {
+    setIsDeleting(true);
+    setErrorDeleting(false);
+    setShowUndelete([]);
 
-      const abortController = new AbortController();
+    const delUri = `${deleteUri}?id=${id}`;
 
-      async function runItem() {
-        const delUri = `${deleteUri}?id=${id}`;
+    const token = await getAccessTokenSilently({
+      audience: "https://tr-toolbox.me.uk/your-portfolio",
+    });
 
-        const token = await getAccessTokenSilently({
-          audience: "https://tr-toolbox.me.uk/your-portfolio",
-        });
+    const response = await fetch(delUri, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+      method: "POST",
+    });
 
-        const response = await fetch(delUri, {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-          method: "POST",
-          signal: abortController.signal,
-        });
-
-        if (abortController.signal.aborted) return;
-
-        if (!response.ok) {
-          if (response.status === 401) history.push("/");
-          else if (response.status === 404) history.push("/home");
-          setErrorDeleting(true);
-        } else {
-          setData((d) => d && d.filter((i) => i.id !== id));
-          setTotalItems((s) => (s === undefined ? undefined : s - 1));
-          setShowUndelete((i) => [...i, id]);
-        }
-        setIsDeleting(false);
-      }
-
-      runItem();
-      return () => abortController.abort();
-    },
-    [getAccessTokenSilently, history, deleteUri]
-  );
+    if (!response.ok) {
+      if (response.status === 401) history.push("/");
+      else if (response.status === 404) history.push("/home");
+      setErrorDeleting(true);
+    } else {
+      setData((d) => d && d.filter((i) => i.id !== id));
+      setTotalItems((s) => (s === undefined ? undefined : s - 1));
+      setShowUndelete((i) => [...i, id]);
+    }
+    setIsDeleting(false);
+  }
 
   return {
     data,
