@@ -19,26 +19,32 @@ function useLoadedData<T>(uri: string) {
       const token = await getAccessTokenSilently({
         audience: "https://tr-toolbox.me.uk/your-portfolio",
       });
+      try {
+        const response = await fetch(uri, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+          signal: abortController.signal,
+        });
 
-      const response = await fetch(uri, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-        signal: abortController.signal,
-      });
+        if (abortController.signal.aborted) return;
 
-      if (abortController.signal.aborted) return;
+        if (!response.ok) {
+          if (response.status === 401) history.push("/");
+          else if (response.status === 404) history.push("/home");
+          setErrorLoading(true);
+        } else {
+          const result = (await response.json()) as T;
+          setData(result);
+        }
 
-      if (!response.ok) {
-        if (response.status === 401) history.push("/");
-        else if (response.status === 404) history.push("/home");
-        setErrorLoading(true);
-      } else {
-        const result = (await response.json()) as T;
-        setData(result);
+        setIsLoading(false);
+      } catch (err: unknown) {
+        if (err instanceof Error && err.name === "AbortError") {
+          return;
+        }
+        throw err;
       }
-
-      setIsLoading(false);
     }
     loadData();
     return () => abortController.abort();
